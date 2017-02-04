@@ -16,9 +16,9 @@ var HeaderView = Marionette.View.extend({
   },
   onRender() {
     // Init perfect scrollbar
-  	this.$el.perfectScrollbar({
-  		suppressScrollX: true
-  	});
+  	// this.$el.perfectScrollbar({
+  	// 	suppressScrollX: true
+  	// });
   },
   onToggleUserInfo() {
     this.getUI('userNav').slideToggle(300, _.bind(function() {

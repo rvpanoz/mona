@@ -1,9 +1,20 @@
-const $ = require('jquery')
-const _ = require('underscore')
-const Marionette = require('backbone.marionette')
-const SidebarView = require('../../views/common/sidebar')
-const HeaderView = require('../../views/common/header')
-const template = require('../../templates/layouts/layout-base.hbs')
+import $ from 'jquery'
+import _ from 'underscore'
+import Bootstrap from 'bootstrap'
+import Marionette from 'backbone.marionette'
+
+import SidebarView from '../../views/common/sidebar'
+import HeaderView from '../../views/common/header'
+import template from '../../templates/layouts/layout-base.hbs'
+
+//theme scripts
+import themeJS from '../../scripts/theme';
+
+//styles
+import fontawesome from '../../assets/font-awesome/css/font-awesome.min.css';
+import bootstrapCss from 'bootstrap/dist/css/bootstrap.css';
+import themeCss from '../../assets/theme/right.light.css';
+import appCss from '../../assets/scss/app.scss';
 
 var LayoutBase = Marionette.View.extend({
   template: template,
@@ -24,7 +35,6 @@ var LayoutBase = Marionette.View.extend({
   },
   initialize() {
     this.listenTo(app, 'app:loadView', _.bind(function (url) {
-      console.log(url);
       var View = require("../../views/" + url.cls);
       var params = _.extend(url.params, {});
       app.activeView = new View(params);

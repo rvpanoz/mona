@@ -1,21 +1,41 @@
-<div class="sidebar__close"><img src="assets/themes/kite/img/close.svg" alt="Close sidebar"></div>
-<div class="sidebar__user">
-    <div class="sidebar-user__avatar">
-      <img src="assets/themes/kite/img/profile.jpeg" alt="..."></div><a class="sidebar-user__info">
-      <h4>{{app.user.email}}</h4>
-      <p>Profile&nbsp;<i class="fa fa-caret-down"></i></p></a>
+<div class="quickmenu">
+    <div class="quickmenu__cont">
+        <div class="quickmenu__list">
+            <div class="quickmenu__item active for-menu">
+                <div class="fa fa-fw fa-home"></div>
+            </div>
+            <div class="quickmenu__item for-actions">
+                <div class="fa fa-fw fa-list"></div>
+            </div>
+        </div>
     </div>
-<nav class="sidebar-user__nav">
-    <ul class="sidebar__nav">
-        <li><a class="navigate" href="#profile"><i class="fa fa-user"></i> View profile</a></li>
-    </ul>
-</nav>
-<nav>
-    <ul class="sidebar__nav">
-        <li class="sidebar-nav__heading">Dashboard</li>
-        <li><a class="navigate" href="#home"><i class="fa fa-th-large"></i> Dashboard</a></li>
-        <li class="sidebar-nav__heading">Pages</li>
-        <li><a class="navigate" href="#categories/categories"><i class="fa fa-list"></i> Categories</a></li>
-        <li><a class="navigate" href="#activities/activities"><i class="fa fa-list"></i> Activities</a></li>
-    </ul>
-</nav>
+</div>
+<div class="sidebar__cont">
+    <div class="sidebar__menu menu active" style="margin-left: 0px;">
+        <div class="sidebar__title">Menu</div>
+        <ul class="nav nav-menu">
+            <li class="active">
+                <a href="#" class="navigation-link" data-cls="home">
+                    <div class="nav-menu__ico"><i class="fa fa-fw fa-star"></i></div>
+                    <div class="nav-menu__text"><span>Dashboard</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="navigation-link" data-cls="records/records">
+                    <div class="nav-menu__ico"><i class="fa fa-fw fa-list"></i></div>
+                    <div class="nav-menu__text"><span>Records</span></div>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="navigation-link" data-cls="categories/categories">
+                    <div class="nav-menu__ico"><i class="fa fa-fw fa-list"></i></div>
+                    <div class="nav-menu__text"><span>Categories</span></div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="sidebar__menu actions">
+        <div class="sidebar__btn"><a href="" class="btn btn-block btn-default navigation-link" data-cls="records/record">New record</a></div>
+        <div class="sidebar__btn"><a href="" class="btn btn-block btn-default navigation-link" data-cls="categories/category">New category</a></div>
+    </div>
+</div>
