@@ -9,21 +9,12 @@ var HeaderView = Marionette.View.extend({
   events: {
     'click .sidebar-user__info': 'onToggleUserInfo',
     'click .sidebar__close': 'onSidebarToggle',
-    'click a.navigate': 'onNavigate'
+    'click a.navigation-link': 'onNavigate'
   },
   ui: {
     'userNav': '.sidebar-user__nav'
   },
-  onRender() {
-    // Init perfect scrollbar
-  	// this.$el.perfectScrollbar({
-  	// 	suppressScrollX: true
-  	// });
-  },
   onToggleUserInfo() {
-    this.getUI('userNav').slideToggle(300, _.bind(function() {
-			this.$el.perfectScrollbar("update");
-		}, this));
 		return false;
   },
   onSidebarToggle(e) {
@@ -31,14 +22,19 @@ var HeaderView = Marionette.View.extend({
     $('.wrapper').toggleClass('alt');
     return false;
   },
-  onNavigate(e) {
+  onNavigate: function(e) {
     e.preventDefault();
-    var $target = this.$(e.currentTarget);
-    var href = $target.attr('href');
-    var cls = href.slice(1, href.length);
-    app.navigate(cls);
-    this.onSidebarToggle(e);
-  }
+    var second_nav = $(this).find('.collapse').first();
+    if (second_nav.length) {
+      second_nav.collapse('toggle');
+      $(this).toggleClass('opened');
+    }
+    var cls = this.$(e.currentTarget).data('cls');
+    if(cls) {
+      app.navigate(cls);
+    }
+    return false;
+  },
 });
 
 module.exports = HeaderView

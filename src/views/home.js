@@ -4,12 +4,12 @@ const moment = require('moment');
 
 var HomeView = Marionette.View.extend({
   template: template,
-  className: 'home',
+  className: 'container home',
   serializeData() {
     return {
       title: 'Home'
     }
   }
-})
+});
 
 module.exports = HomeView;

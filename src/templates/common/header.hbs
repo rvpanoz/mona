@@ -4,11 +4,12 @@
             <button type="button" class="btn"><i class="fa fa-bars"></i></button>
         </div>
         <div class="header-navbar-mobile__title"><span>myApp</span></div>
-        <div class="header-navbar-mobile__settings dropdown"><a href="" data-toggle="dropdown"
-            role="button" aria-haspopup="true" aria-expanded="false" class="btn dropdown-toggle">
-            <i class="fa fa-power-off"></i></a>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="#" class="signout">Log Out</a></li>
+        <div class="header-navbar-mobile__settings dropdown">
+            <a href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" class="btn dropdown-toggle" id="dropdownMenu1">
+                <i class="fa fa-power-off"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labbeledby="dropdownMenu1">
+                <li><a href="#" class="signout">Sign out</a></li>
             </ul>
         </div>
     </div>
@@ -22,8 +23,10 @@
     </div>
     <div class="topnavbar">
         <ul class="nav navbar-nav navbar-left">
-            <li class="active"><a href="#" class="navigation-link" data-cls="home">
-              <span>Dashboard</span></a></li>
+            <li class="active">
+                <a href="#" class="navigation-link" data-cls="home">
+                    <span>Dashboard</span></a>
+            </li>
             <li><a href="#" data-cls="records/records" class="navigation-link"><span>Records</span></a></li>
             <li><a href="#" data-cls="categories/categories" class="navigation-link"><span>Categories</span></a>
             </li>
@@ -31,7 +34,7 @@
         <ul class="userbar nav navbar-nav">
             <li class="dropdown"><a href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="userbar__settings dropdown-toggle"><i class="fa fa-power-off"></i></a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#" class="signout">Log Out</a></li>
+                    <li><a href="#" class="signout">Sign out</a></li>
                 </ul>
             </li>
         </ul>

@@ -10,21 +10,19 @@ var LoginView = Marionette.View.extend({
     '#input-password': 'password'
   },
   events: {
-    'click input#btn-login': 'onSignin',
-    'click input#btn-register': 'onRegister'
+    'click button.btn-signin': 'onSignin',
+    'click a.new-account': 'onRegister'
   },
   ui: {
     'input-email': '#input-email',
     'input-password': '#input-password'
   },
-
-  initialize: function (params) {
+  initialize(params) {
     this.params = params;
     this.model = new Schema.User();
     this.listenTo(this.model, 'invalid', _.bind(this._onInvalid, this));
   },
-
-  _onInvalid: function (model, errors) {
+  _onInvalid(model, errors) {
     _.each(errors, function (err) {
       var input = this.$('.form-group-' + err.field);
       if (input.length) {
@@ -33,18 +31,15 @@ var LoginView = Marionette.View.extend({
     }, this);
     return false;
   },
-  onRegister: function(e) {
+  onRegister(e) {
     e.preventDefault();
-    return app.navigate('register');
+    app.navigate('register');
+    return false;
   },
-  onRender: function () {
+  onRender() {
     this.stickit();
-    if(_.has(this.params, 'registered')) {
-      this.$('#registered').modal('toggle');
-    }
   },
-
-  onSignin: function (e) {
+  onSignin(e) {
     e.preventDefault();
     var isValid = this.model.validate(this.model.attributes);
     if (_.isArray(isValid)) {
@@ -73,7 +68,7 @@ var LoginView = Marionette.View.extend({
   },
   serializeData() {
     return {
-      title: 'Sign in'
+      title: 'Login to your account'
     }
   }
 });

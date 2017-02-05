@@ -5,17 +5,24 @@ const template = require('../../templates/common/header.hbs')
 
 var HeaderView = Marionette.View.extend({
   template: template,
-  className: 'row',
   events: {
-    'click a#sidebar__toggle': 'onSidebarToggle',
-    'click a.signout': 'onSignout'
+    'click a.navigation-link': 'onNavigate',
+    'click a.signout': 'signout'
   },
-  onSidebarToggle(e) {
+  onNavigate: function(e) {
     e.preventDefault();
-    $('.wrapper').toggleClass('alt');
+    var second_nav = $(this).find('.collapse').first();
+    if (second_nav.length) {
+      second_nav.collapse('toggle');
+      $(this).toggleClass('opened');
+    }
+    var cls = this.$(e.currentTarget).data('cls');
+    if (cls) {
+      app.navigate(cls);
+    }
     return false;
   },
-  onSignout(e) {
+  signout: function(e) {
     e.preventDefault();
     localStorage.removeItem('token');
     app.navigate('login');
