@@ -18,7 +18,7 @@ const User = require('../models/user');
 const Category = require('../models/category');
 const config = require('../config');
 
-//set log level
+//set log level -
 wlog.level = 'debug';
 
 function hashPassword(password, cb) {
