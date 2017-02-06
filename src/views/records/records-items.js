@@ -1,6 +1,6 @@
 import Marionette from 'backbone.marionette';
-import RecordSchema from '../../schemas/record';
-import CategorySchema from '../../schemas/category';
+import RecordSchema from 'RecordSchema';
+import CategorySchema from 'CategorySchema';
 import RecordItemView from './record-item';
 import template from '../../templates/records/records.hbs'
 
@@ -19,36 +19,34 @@ var RecordsView = Marionette.CompositeView.extend({
   ui: {
     'records-table': '.records-table'
   },
-  initialize: function() {
+  initialize() {
     _.bindAll(this, 'onSync');
     this.title = 'Your records';
-    this.collection = new RecordSchema.collection();
-    this.categories = new CategorySchema.collection();
+    this.collection = new RecordSchema.Records();
+    this.categories = new CategorySchema.Categories();
     this.collection.fetch();
   },
-
-  getSelectedModels: function() {
+  onBeforeRender() {
+    app.triggerMethod("sidebar:switch", "actions");
+  },
+  getSelectedModels() {
     var selected = _.filter(this.collection.models, function(model) {
       return model.get('_selected') == true;
     });
     return selected;
   },
-
-  onChildSelectedModel: function(model) {
+  onChildSelectedModel(model) {
     var selected = this.getSelectedModels();
     var hide = selected.length > 1;
     this.triggerMethod('toggle:details', hide);
   },
-
-  onRemove: function(model, collection) {
+  onRemove(model, collection) {
     this.triggerMethod('model:removed', model);
   },
-
-  onSync: function() {
+  onSync() {
     this.triggerMethod('fetch:records', this.collection);
     this.render();
   },
-
   serializeData: function() {
     return _.extend(this.collection.toJSON(), {
       title: this.title

@@ -1,8 +1,8 @@
 import Marionette from 'backbone.marionette';
-import RecordSchema from '../../schemas/record';
-import CategorySchema from '../../schemas/category';
+import RecordSchema from 'RecordSchema';
+import CategorySchema from 'CategorySchema';
+import template from '../../templates/common/filters-view.hbs';
 import moment from 'moment';
-import template from '../../templates/records/filters-view.hbs'
 
 var FiltersView = Marionette.View.extend({
   template: template,
@@ -19,7 +19,7 @@ var FiltersView = Marionette.View.extend({
   },
 
   initialize: function() {
-    this.categories = new CategorySchema.collection();
+    // this.categories = new CategorySchema.Collection();
     this.model = new RecordSchema.model();
   },
 
@@ -59,16 +59,16 @@ var FiltersView = Marionette.View.extend({
     //datepickers
     // this.setDatepickers();
     this.ui.dateTo.datepicker();
-    
+
     //categories
-    this.categories.fetch().done(_.bind(function(response) {
-      this._createCategories(response);
-      this.ui.category.selectpicker();
-      this.ui.category.bind('hidden.bs.select', _.bind(function (e) {
-        var category_id = this.ui.category.selectpicker('val');
-        this.model.set('category_id', category_id);
-      }, this));
-    }, this));
+    // this.categories.fetch().done(_.bind(function(response) {
+    //   this._createCategories(response);
+    //   this.ui.category.selectpicker();
+    //   this.ui.category.bind('hidden.bs.select', _.bind(function (e) {
+    //     var category_id = this.ui.category.selectpicker('val');
+    //     this.model.set('category_id', category_id);
+    //   }, this));
+    // }, this));
 
     //kind
     this.ui.kind.selectpicker();

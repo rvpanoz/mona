@@ -5,15 +5,15 @@ const config = require('../config');
 var backboneSync = Backbone.sync;
 
 var Collection = Backbone.Collection.extend({
-  sync(method, model, options) {
+  sync(method, collection, options) {
     options = _.extend(options, {
-      url: config.api.url + (_.isFunction(model.url) ? model.url() : model.url)
+      url: config.api.url + (_.isFunction(collection.url) ? collection.url() : collection.url)
     });
-    backboneSync(method, model, options);
+    backboneSync(method, collection, options);
   },
   parse(response) {
     return response.data;
   }
 });
 
-module.exports = Collection
+module.exports = Collection;

@@ -1,5 +1,5 @@
 const Marionette = require('backbone.marionette');
-const Schema = require('../../schemas/category')
+const Schema = require('CategorySchema')
 const template = require('../../templates/categories/categories-layout.hbs')
 const CategoriesView = require('./categories-items');
 const DetailsView = require('./details');

@@ -1,5 +1,5 @@
 const Marionette = require('backbone.marionette');
-const Schema = require('../../schemas/category');
+const Schema = require('CategorySchema');
 const template = require('../../templates/categories/category-listitem.hbs');
 const moment = require('moment');
 
@@ -13,14 +13,12 @@ var CategoryItemView = Marionette.View.extend({
   events: {
     'click': 'onClick',
   },
-
   onClick: function(e) {
     e.preventDefault();
     var isSelected = this.$el.toggleClass('selected');
     this.model.set('_selected', this.$el.hasClass('selected'));
     this.triggerMethod('model:selected', this.model);
   },
-
   serializeData: function() {
     var dc = this.model.get('created_at');
     var du = this.model.get('updated_at');

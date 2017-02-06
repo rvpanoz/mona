@@ -13,7 +13,7 @@ module.exports = [{
   },
   {
     method: 'POST',
-    path: '/data/record',
+    path: '/data/records',
     config: {
       handler: function (req, reply) {
         var payload = req.payload;

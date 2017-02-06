@@ -29,7 +29,9 @@ module.exports = {
       'app': path.resolve(__dirname, './src/app'),
       'config': path.resolve(__dirname, './src/config'),
       'utils': path.resolve(__dirname, './src/utils'),
-      'pagination': path.resolve(__dirname, './src/components/pagination/pagination')
+      'pagination': path.resolve(__dirname, './src/components/pagination/pagination'),
+      'RecordSchema': path.resolve(__dirname, './src/schemas/record'),
+      'CategorySchema': path.resolve(__dirname, './src/schemas/category')
     }
   },
   resolveLoader: {

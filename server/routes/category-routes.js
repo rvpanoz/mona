@@ -13,7 +13,7 @@ module.exports = [{
   },
   {
     method: 'POST',
-    path: '/data/category',
+    path: '/data/categories',
     config: {
       handler: function (req, reply) {
         var payload = req.payload;
@@ -24,7 +24,7 @@ module.exports = [{
   },
   {
     method: 'PUT',
-    path: '/data/category/{id?}',
+    path: '/data/categories/{id?}',
     config: {
       handler: function (req, reply) {
         var payload = req.payload;
@@ -47,7 +47,7 @@ module.exports = [{
   },
   {
     method: 'GET',
-    path: '/data/category/{id}',
+    path: '/data/categories/{id}',
     config: {
       handler: function (req, reply) {
         var cid = req.params.id;

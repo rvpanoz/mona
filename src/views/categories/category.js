@@ -1,5 +1,5 @@
 const Marionette = require('backbone.marionette');
-const Schema = require('../../schemas/category');
+const Schema = require('CategorySchema');
 const Stickit = require('backbone.stickit');
 const template = require('../../templates/categories/category.hbs');
 
@@ -24,7 +24,7 @@ var CategoryView = Marionette.View.extend({
   },
 
   initialize: function(params) {
-    this.model = new Schema.model();
+    this.model = new Schema.Category();
     if (params.id) {
       this.model.set('_id', params.id);
       this.model.fetch();

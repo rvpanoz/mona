@@ -34,15 +34,10 @@ var LayoutBase = Marionette.View.extend({
   initialize() {
     //loadView: attach view to mainRegion content
     this.listenTo(app, 'app:loadView', _.bind(function (url) {
-      try {
-        var View = require("../views/" + url.cls);``
-        var params = _.extend(url.params, {});
-        app.activeView = new View(params);
-        this.showChildView('mainRegion', app.activeView);
-        app.activeView.$el.addClass('animated fadeIn');
-      } catch (e) {
-        throw new Error(e);
-      }
+      var View = require("../views/" + url.cls);
+      var params = _.extend(url.params, {});
+      app.activeView = new View(params);
+      this.showChildView('mainRegion', app.activeView);
     }, this));
 
     //showAlert: show app alert with messages

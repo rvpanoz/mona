@@ -1,11 +1,15 @@
-const $ = require('jquery')
-const _ = require('underscore')
-const Marionette = require('backbone.marionette')
-const template = require('../../templates/common/sidebar.hbs')
+const $ = require('jquery');
+const _ = require('underscore');
+const Marionette = require('backbone.marionette');
+// import FiltersView from './filters';
+const template = require('../../templates/common/sidebar.hbs');
 
-var HeaderView = Marionette.View.extend({
+var SidebarView = Marionette.View.extend({
   template: template,
   className: 'sidebar-content',
+  regions: {
+    filtersRegion: '#filters-content',
+  },
   events: {
     'click .sidebar-user__info': 'onToggleUserInfo',
     'click .sidebar__close': 'onSidebarToggle',
@@ -13,6 +17,10 @@ var HeaderView = Marionette.View.extend({
   },
   ui: {
     'userNav': '.sidebar-user__nav'
+  },
+  onRender() {
+    // var filtersView = new FiltersView();
+    // this.showChildView('filtersRegion', filtersView);
   },
   onToggleUserInfo() {
 		return false;
@@ -34,7 +42,7 @@ var HeaderView = Marionette.View.extend({
       app.navigate(cls);
     }
     return false;
-  },
+  }
 });
 
-module.exports = HeaderView
+module.exports = SidebarView;

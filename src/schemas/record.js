@@ -1,13 +1,15 @@
-import Backbone from 'backbone';
-import moment from 'moment';
+const Model = require('../libc/model');
+const Collection = require('../libc/collection');
+const moment = require('moment');
+const config = require('../config');
 
 var Record = Backbone.Model.extend({
   idAttribute: '_id',
   url: function() {
-    if (this.isNew()) {
-      return app.baseUrl + "/data/record";
+    if(this.isNew()) {
+      return config.api.url + '/data/records';
     } else {
-      return app.baseUrl + "/data/records/" + this.get('_id');
+      return '/data/records/' + this.get('_id');
     }
   },
   defaults: {
@@ -19,10 +21,6 @@ var Record = Backbone.Model.extend({
     category_id: null,
     updated_at: new Date(),
     created_at: new Date()
-  },
-  sync: function(method, model, options) {
-    //override if necessary
-    return Backbone.sync.call(this, method, model, options);
   },
   parse: function(response) {
     var data;
@@ -41,6 +39,7 @@ var Record = Backbone.Model.extend({
   validate: function(attrs) {
     var errors = [];
 
+    //amount validation
     if (!attrs.amount) {
       errors.push({
         field: 'amount',
@@ -48,6 +47,7 @@ var Record = Backbone.Model.extend({
       });
     }
 
+    //category_id
     if (!attrs.category_id) {
       errors.push({
         field: 'category_id',
@@ -55,6 +55,7 @@ var Record = Backbone.Model.extend({
       });
     }
 
+    //entry_date
     if (!attrs.entry_date) {
       errors.push({
         field: 'entry_date',
@@ -66,8 +67,11 @@ var Record = Backbone.Model.extend({
   }
 });
 
-var Records = Backbone.Collection.extend({
-  url: app.baseUrl + "/data/records",
+var Records = Collection.extend({
+  model: Record,
+  url: function() {
+    return '/data/records';
+  },
   sortField: null,
   sortDir: 1,
   pages: 1,
@@ -100,6 +104,6 @@ var Records = Backbone.Collection.extend({
 });
 
 module.exports = {
-  model: Record,
-  collection: Records
+  Record: Record,
+  Records: Records
 }

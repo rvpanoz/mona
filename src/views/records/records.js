@@ -1,6 +1,5 @@
 import Marionette from 'backbone.marionette';
 import RecordsView from './records-items';
-import FiltersView from './filters';
 import TotalsView from './totals';
 import DetailsView from './details';
 import PaginationView from 'pagination';
@@ -12,7 +11,6 @@ var RecordsLayoutView = Marionette.View.extend({
   regions: {
     recordsRegion: '#records-content',
     detailsRegion: '#details-content',
-    filtersRegion: '#filters-content',
     paginationRegion: '#pagination-content',
     totalsRegion: '#totals-content'
   },
@@ -33,9 +31,6 @@ var RecordsLayoutView = Marionette.View.extend({
   },
   onRender: function() {
     var recordsView = new RecordsView();
-    var filtersView = new FiltersView();
-
-    this.showChildView('filtersRegion', filtersView);
     this.showChildView('recordsRegion', recordsView);
   },
   onChildModelSelected: function(model) {

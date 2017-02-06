@@ -1,5 +1,5 @@
 const Marionette = require('backbone.marionette');
-const Schema = require('../../schemas/category');
+const Schema = require('CategorySchema');
 const template = require('../../templates/categories/browse-categories.hbs');
 const CategoryItemView = require('./category-item');
 
@@ -22,21 +22,18 @@ var Categories = Marionette.CompositeView.extend({
     'categories-table': '.categories-table'
   },
   initialize: function() {
-    this.collection = new Schema.collection();
+    this.collection = new Schema.Categories();
     this.collection.fetch();
   },
-
   onBeforeRender: function() {
     app.triggerMethod("sidebar:switch", "actions");
   },
-
   getSelectedModels: function() {
     var selected = _.filter(this.collection.models, function(model) {
       return model.get('_selected') == true;
     });
     return selected;
   },
-
   onChildSelectModel: function(model) {
     this._selected = [];
     this._selected = this._getSelectedModels();
@@ -46,7 +43,6 @@ var Categories = Marionette.CompositeView.extend({
     }
     this.getUI('actions').toggle();
   },
-
   serializeData: function() {
     var style = (this.collection.length == 0) ? 'display:none' : 'display:block';
     return _.extend(this.collection.toJSON(), {

@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const secret = require('./secret');
 
 function createToken(user) {
-  let scopes;
+  var scopes;
   // Check if the user object passed in
   // has admin set to true, and if so, set
   // scopes to admin

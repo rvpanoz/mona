@@ -2,7 +2,7 @@ const Marionette = require('backbone.marionette')
 
 var AlertView = Marionette.View.extend({
   alertType: 'info',
-  className: 'smart-alerts__container hide animated',
+  className: 'app-messages animated',
   initialize: function(params) {
     this.opts = _.extend(params);
     this.alertType = this.opts.alertType;
@@ -11,13 +11,13 @@ var AlertView = Marionette.View.extend({
   },
   onBeforeRender() {
   	$("body").append(this.$el);
-    this.$el.removeClass('hide').addClass('bounceInRight');
   },
   onRender() {
+    this.$el.removeClass('hide').addClass('bounceInRight');
     _.delay(_.bind(function() {
       if(this.isRendered())
         this.$el.addClass('hide').addClass('bounceInRight');
-    }, this), 10000)
+    }, this), 3000)
   },
   serializeData() {
     return {
@@ -26,4 +26,4 @@ var AlertView = Marionette.View.extend({
   }
 });
 
-module.exports = AlertView
+module.exports = AlertView;
