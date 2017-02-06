@@ -11,6 +11,7 @@ import fontawesome from '../assets/font-awesome/css/font-awesome.min.css';
 import bootstrapCss from 'bootstrap/dist/css/bootstrap.css';
 import themeCss from '../assets/theme/right.light.css';
 import formsCss from '../assets/scss/forms.scss';
+import overrideCss from '../assets/scss/overrides.scss';
 import appCss from '../assets/scss/app.scss';
 
 var LayoutBase = Marionette.View.extend({

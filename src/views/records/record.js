@@ -43,7 +43,6 @@ var RecordView =  Marionette.View.extend({
     category: '#input-category',
     entryDate: '#input-entry-date'
   },
-
   initialize: function(params) {
     this.model = new RecordSchema.model();
     this.collection = new CategorySchema.collection();

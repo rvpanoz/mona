@@ -8,7 +8,6 @@ const Router = require('./router')
 
 var app = Marionette.Application.extend({
   user: null,
-  types: null,
   content: null,
   activeAlert: null,
   region: '#app-content',

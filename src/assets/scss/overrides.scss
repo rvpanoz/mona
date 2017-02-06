@@ -1,0 +1,24 @@
+$c-black: #252525;
+$c-lgrey: #d5d5d3;
+$c-white: #ffffff;
+$c-dgrey: #444444;
+$c-yellow: #fdd947;
+
+.main {
+  border: 0;
+  margin-top: 5px;
+  overflow-x: hidden;
+}
+
+.topnavbar {
+  background: $c-yellow;
+}
+
+.header-navbar .navbar-brand {
+  border: 0;
+}
+
+.sidebar {
+  border: 0;
+  margin-top: 5px;
+}

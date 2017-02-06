@@ -5,7 +5,7 @@ const template = require('../../templates/common/sidebar.hbs')
 
 var HeaderView = Marionette.View.extend({
   template: template,
-  className: 'sidebar',
+  className: 'sidebar-content',
   events: {
     'click .sidebar-user__info': 'onToggleUserInfo',
     'click .sidebar__close': 'onSidebarToggle',
