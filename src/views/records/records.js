@@ -2,11 +2,9 @@ import Marionette from 'backbone.marionette';
 import RecordsView from './records-items';
 import FiltersView from './filters';
 import TotalsView from './totals';
+import DetailsView from './details';
 import PaginationView from 'pagination';
 import template from '../../templates/records/records-layout.hbs';
-
-require('../../plugins/datatables/media/css/jquery.dataTables.min.css');
-require('../../plugins/datatables/media/js/jquery.dataTables.min')
 
 var RecordsLayoutView = Marionette.View.extend({
   template: template,
@@ -33,9 +31,6 @@ var RecordsLayoutView = Marionette.View.extend({
     e.preventDefault();
     return app.navigate('records/record');
   },
-  onAttach: function() {
-    this.triggerMethod('sidebar:active', 1);
-  },
   onRender: function() {
     var recordsView = new RecordsView();
     var filtersView = new FiltersView();
@@ -45,7 +40,7 @@ var RecordsLayoutView = Marionette.View.extend({
   },
   onChildModelSelected: function(model) {
     var detailsView = this.getChildView('detailsRegion');
-    detailsView.model = model;
+    detailsView.setModel(model);
     detailsView.render();
   },
 

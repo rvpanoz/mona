@@ -3,10 +3,6 @@ import RecordSchema from '../../schemas/record';
 import CategorySchema from '../../schemas/category';
 import moment from 'moment';
 import template from '../../templates/records/filters-view.hbs'
-import datePicker from 'datePicker';
-import datePickerCss from '../../plugins/datepicker/css/datepicker.min';
-import bootstrapSelect from 'bootstrapSelect';
-import bootstrapSelectCss from '../../plugins/bootstrap-select/dist/css/bootstrap-select.min.css';
 
 var FiltersView = Marionette.View.extend({
   template: template,
@@ -59,9 +55,11 @@ var FiltersView = Marionette.View.extend({
   },
 
   onRender: function() {
-    //datepickers
-    this.setDatepickers();
 
+    //datepickers
+    // this.setDatepickers();
+    this.ui.dateTo.datepicker();
+    
     //categories
     this.categories.fetch().done(_.bind(function(response) {
       this._createCategories(response);

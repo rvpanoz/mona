@@ -26,6 +26,9 @@ var DetailItemView = Marionette.View.extend({
     });
     return false;
   },
+  setModel(model) {
+    this.model = model;
+  },
   serializeData: function() {
     var date_formatted = moment(new Date(this.model.get('entry_date'))).format('DD/MM/YYYY');
     var k = this.model.get('kind');

@@ -29,10 +29,7 @@ module.exports = {
       'app': path.resolve(__dirname, './src/app'),
       'config': path.resolve(__dirname, './src/config'),
       'utils': path.resolve(__dirname, './src/utils'),
-      'pagination': path.resolve(__dirname, './src/components/pagination/pagination'),
-      'selectPicker': path.resolve(__dirname, './src/plugins/bootstrap-select/dist/js/bootstrap-select.min'),
-      'datePicker': path.resolve(__dirname, './src/plugins/datepicker/js/datepicker.min'),
-      'bootstrapSelect': path.resolve(__dirname, './src/plugins/bootstrap-select/dist/js/bootstrap-select.min')
+      'pagination': path.resolve(__dirname, './src/components/pagination/pagination')
     }
   },
   resolveLoader: {

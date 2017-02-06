@@ -3,10 +3,6 @@ import Stickit from 'backbone.stickit';
 import RecordSchema from '../../schemas/record';
 import CategorySchema from '../../schemas/category';
 import template from '../../templates/records/record.hbs';
-import datePicker from 'datePicker';
-import datePickerCss from '../../plugins/datepicker/css/datepicker.min';
-import bootstrapSelect from 'bootstrapSelect';
-import bootstrapSelectCss from '../../plugins/bootstrap-select/dist/css/bootstrap-select.min.css';
 import moment from 'moment';
 
 var RecordView =  Marionette.View.extend({
@@ -98,13 +94,14 @@ var RecordView =  Marionette.View.extend({
     }, this));
 
     // datepicker date
-    this.ui.entryDate.datepicker({
-      dateFormat: 'dd/mm/yyyy',
-      autoClose: true,
-      onSelect: _.bind(function(d, fd) {
-        this.model.set('entry_date', d);
-      }, this)
-    });
+    // datepicker date
+   this.ui.entryDate.datepicker({
+     dateFormat: 'dd/mm/yyyy',
+     autoClose: true,
+     onSelect: _.bind(function(d, fd) {
+       this.model.set('entry_date', d);
+     }, this)
+   });
 
     if (this.model.isNew()) {
       this.model.set('entry_date', moment().format('DD/MM/YYYY'));

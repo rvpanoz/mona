@@ -27,18 +27,6 @@ var RecordsView = Marionette.CompositeView.extend({
     this.collection.fetch();
   },
 
-  onRender: function() {
-    if(this.$el.length) {
-      this.getUI('records-table').DataTable({
-        paging: false,
-        ordering: true,
-        sorting: false,
-        searching: false,
-        info: false
-      });
-    }
-  },
-
   getSelectedModels: function() {
     var selected = _.filter(this.collection.models, function(model) {
       return model.get('_selected') == true;

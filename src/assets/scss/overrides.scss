@@ -10,8 +10,8 @@ $c-yellow: #fdd947;
   overflow-x: hidden;
 }
 
-.topnavbar {
-  background: $c-yellow;
+.topnavbar, .header-navbar-mobile {
+  // background: $c-lgrey;
 }
 
 .header-navbar .navbar-brand {

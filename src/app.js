@@ -25,9 +25,10 @@ var app = Marionette.Application.extend({
     if (Backbone.history) {
       Backbone.history.start();
     }
-    //listen to user state (signin/signout)
+
     this.listenTo(this, 'app:signin', this.onSignin, this, arguments);
     this.listenTo(this, 'app:signout', this.onSignout, this, arguments);
+    this.listenTo(this, 'toggle:sidebar', this.onToggleSidebar, this, arguments);
   },
   navigate(cls, params) {
     var url = {};
@@ -38,7 +39,11 @@ var app = Marionette.Application.extend({
     this.router.navigate(JSON.stringify(url), {
       trigger: true
     });
+    this.trigger('toggle:sidebar');
     return false;
+  },
+  onToggleSidebar() {
+    $('.dashboard').toggleClass('dashboard_menu');
   },
   onSignin(token) {
     localStorage.setItem('token', token);

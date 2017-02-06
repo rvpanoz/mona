@@ -5,8 +5,7 @@ define([
   'bootstrap/dist/js/bootstrap.min',
   'underscore',
   'handlebars',
-  './app',
-  './assets/theme/right.light.css'
+  './app'
 ], function($, Backbone, Marionette, Bootstrap, _, Handlebars, Application) {
   Backbone.emulateHTTP = false;
 
