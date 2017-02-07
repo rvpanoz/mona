@@ -17,7 +17,7 @@ var Record = Model.extend({
     amount: null,
     payment_method: 1,
     kind: 1,
-    entry_date: moment(new Date()).format('DD/MM/YYYY'),
+    entry_date: new Date(),
     category_id: null,
     updated_at: new Date(),
     created_at: new Date()
