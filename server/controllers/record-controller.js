@@ -90,8 +90,6 @@ var RecordController = _.extend({
       limit: config.perPage
     };
 
-    console.log(query);
-
     var countQuery = function (callback) {
       Record.find(query).populate('category_id').exec(function (err, allRecords) {
         if (err) throw new Error(err);
@@ -110,7 +108,6 @@ var RecordController = _.extend({
 
     /** run in parallel **/
     async.parallel([countQuery, retrieveQuery], function (err, results) {
-      console.log(results);
       reply({
         success: true,
         data: results[1].docs,

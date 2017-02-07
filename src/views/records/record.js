@@ -38,6 +38,7 @@ var RecordView = Marionette.View.extend({
     'click .cancel': 'onBack'
   },
   ui: {
+    amount: '#input-amount',
     kind: '#input-kind',
     category: '#input-category',
     entryDate: '#input-entry-date'
@@ -54,9 +55,6 @@ var RecordView = Marionette.View.extend({
       }, this)
     });
     this.listenTo(this.model, 'invalid', this.onValidationError, this);
-  },
-  onDomRefresh() {
-
   },
   onRender: function() {
     this.ui.category.selectpicker();
@@ -79,18 +77,18 @@ var RecordView = Marionette.View.extend({
     //** entry_date
     this.ui.entryDate.datepicker({
       language: 'en',
-      selectOtherMonths: true,
       dateFormat: 'dd/mm/yyyy',
       autoClose: true,
       onSelect: _.bind(function(d, fd) {
-        this.model.set('entry_date', d);
+        this.model.set('entry_date', moment(d).format('DD/MM/YYYY'));
       }, this)
     });
 
     if (this.model.isNew()) {
       this.model.set('entry_date', moment(new Date()).format('DD/MM/YYYY'));
     } else {
-      this.ui.entryDate.val(this.model.get('entry_date'));
+      var date = this.model.get('entry_date');
+      this.ui.entryDate.val(moment(date).format('DD/MM/YYYY'));
     }
 
     //stickit
@@ -98,6 +96,9 @@ var RecordView = Marionette.View.extend({
   },
   onSave: function(e) {
     e.preventDefault();
+
+    var date = this.model.get('entry_date');
+    this.model.set('entry_date', moment(date).format('DD/MM/YYYY'));
     this.model.save(null, {
       success: _.bind(this.onBack, this)
     });

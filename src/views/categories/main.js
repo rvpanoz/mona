@@ -12,28 +12,37 @@ var CategoriesLayoutView = Marionette.View.extend({
     detailsRegion: '#details-content'
   },
   childViewTriggers: {
-    'model:selected': 'child:model:selected'
+    'toggle:details': 'child:toggle:details'
   },
   onRender: function() {
     var categoriesView = new CategoriesView();
     this.showChildView('categoriesRegion', categoriesView);
   },
-  onChildModelSelected: function(model) {
-    var categoriesView = this.getChildView('categoriesRegion');
-    _.each(categoriesView.collection.models, function(cmodel) {
-      if (cmodel !== model) {
-        cmodel.set('_selected', false);
-      }
-    });
-    this.showChildView('detailsRegion', new DetailsView({
-      model: model
-    }));
+  onChildToggleDetails: function(hide) {
+    var detailsView = this.getChildView('detailsRegion');
+  },
+  onChildModelSelected: function(e, model) {
+    var detailsView = this.getChildView('detailsRegion');
+    detailsView.setModel(model);
+    detailsView.render();
   },
   serializeData: function() {
     return {
       title: this.title
     }
-  }
+  },
+  onChildFetchRecords: function(collection) {
+    var detailsView = this.getChildView('detailsRegion');
+    this.collection = collection;
+    if(!detailsView && this.collection.length) {
+      var model = this.collection.first();
+      model.set('_selected', true);
+      this.showChildView('detailsRegion', new DetailsView({
+        model: model
+      }));
+    }
+    app.triggerMethod("sidebar:switch", "actions");
+  },
 });
 
 module.exports = CategoriesLayoutView;

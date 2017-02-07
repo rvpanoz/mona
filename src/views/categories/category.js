@@ -54,7 +54,7 @@ var CategoryView = Marionette.View.extend({
     if (e) {
       e.preventDefault();
     }
-    app.navigate('categories/categories');
+    app.navigate('categories/main');
     return false;
   },
   serializeData: function() {

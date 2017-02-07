@@ -9,10 +9,10 @@ var Categories = Marionette.CompositeView.extend({
   childView: CategoryItemView,
   childViewContainer: '.categories-items',
   childViewTriggers: {
-    'select:model': 'child:select:model'
+    'model:selected': 'child:selected:model'
   },
   collectionEvents: {
-    'sync': 'render'
+    'sync': 'onSync'
   },
   events: {
     'click a.btn-new': 'onNew',
@@ -34,14 +34,18 @@ var Categories = Marionette.CompositeView.extend({
     });
     return selected;
   },
-  onChildSelectModel: function(model) {
-    this._selected = [];
-    this._selected = this._getSelectedModels();
-    if(this._selected.length > 1) {
-      this.getUI('actions').hide();
-      return;
-    }
-    this.getUI('actions').toggle();
+  onSync() {
+    this.triggerMethod('fetch:records', this.collection);
+    this.render();
+  },
+  onChildSelectedModel: function(e, model) {
+    var target = e.currentTarget;
+    var selected = this.getSelectedModels();
+    var hide = selected.length > 1;
+    var index = $(e.currentTarget)[0].rowIndex;
+    this.getUI('categories-table').find('tr').removeClass('selected');
+    $(target).toggleClass('selected');
+    this.triggerMethod('toggle:details', hide);
   },
   serializeData: function() {
     var style = (this.collection.length == 0) ? 'display:none' : 'display:block';

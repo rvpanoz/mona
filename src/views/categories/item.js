@@ -17,7 +17,7 @@ var CategoryItemView = Marionette.View.extend({
     e.preventDefault();
     var isSelected = this.$el.toggleClass('selected');
     this.model.set('_selected', this.$el.hasClass('selected'));
-    this.triggerMethod('model:selected', this.model);
+    this.triggerMethod('model:selected', e, this.model);
   },
   serializeData: function() {
     var dc = this.model.get('created_at');

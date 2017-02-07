@@ -17,7 +17,7 @@ var AlertView = Marionette.View.extend({
     _.delay(_.bind(function() {
       if(this.isRendered())
         this.$el.addClass('hide').addClass('bounceInRight');
-    }, this), 3000)
+    }, this), 5000)
   },
   serializeData() {
     return {
