@@ -1,8 +1,8 @@
 import Marionette from 'backbone.marionette';
 import RecordSchema from 'RecordSchema';
 import CategorySchema from 'CategorySchema';
+import template from '../../templates/records/details.hbs';
 import moment from 'moment';
-import template from '../../templates/records/details-record.hbs'
 
 var DetailItemView = Marionette.View.extend({
   template: template,

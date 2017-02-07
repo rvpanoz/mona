@@ -1,9 +1,9 @@
 import Marionette from 'backbone.marionette';
-import config from '../../config';
 import RecordSchema from 'RecordSchema';
 import CategorySchema from 'CategorySchema';
 import moment from 'moment';
-import template from '../../templates/records/record-listitem.hbs'
+import config from '../../config';
+import template from '../../templates/records/item.hbs';
 
 var RecordItemView = Marionette.View.extend({
   template: template,

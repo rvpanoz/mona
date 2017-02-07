@@ -1,39 +1,60 @@
 const Marionette = require('backbone.marionette');
-const Schema = require('CategorySchema')
-const template = require('../../templates/categories/categories-layout.hbs')
-const CategoriesView = require('./categories-items');
-const DetailsView = require('./details');
+const Schema = require('CategorySchema');
+const template = require('../../templates/categories/categories.hbs');
+const CategoryItemView = require('./item');
 
-var CategoriesLayoutView = Marionette.View.extend({
+var Categories = Marionette.CompositeView.extend({
+  title: 'Your categories',
   template: template,
-  title: 'Categories',
-  regions: {
-    categoriesRegion: '#categories-content',
-    detailsRegion: '#details-content'
-  },
+  childView: CategoryItemView,
+  childViewContainer: '.categories-items',
   childViewTriggers: {
-    'model:selected': 'child:model:selected'
+    'select:model': 'child:select:model'
   },
-  onRender: function() {
-    var categoriesView = new CategoriesView();
-    this.showChildView('categoriesRegion', categoriesView);
+  collectionEvents: {
+    'sync': 'render'
   },
-  onChildModelSelected: function(model) {
-    var categoriesView = this.getChildView('categoriesRegion');
-    _.each(categoriesView.collection.models, function(cmodel) {
-      if (cmodel !== model) {
-        cmodel.set('_selected', false);
-      }
+  events: {
+    'click a.btn-new': 'onNew',
+    'click a.btn-update': 'onUpdate'
+  },
+  ui: {
+    'categories-table': '.categories-table'
+  },
+  initialize: function() {
+    this.collection = new Schema.Categories();
+    this.collection.fetch();
+  },
+  onBeforeRender: function() {
+    app.triggerMethod("sidebar:switch", "actions");
+  },
+  getSelectedModels: function() {
+    var selected = _.filter(this.collection.models, function(model) {
+      return model.get('_selected') == true;
     });
-    this.showChildView('detailsRegion', new DetailsView({
-      model: model
-    }));
+    return selected;
+  },
+  onChildSelectModel: function(model) {
+    this._selected = [];
+    this._selected = this._getSelectedModels();
+    if(this._selected.length > 1) {
+      this.getUI('actions').hide();
+      return;
+    }
+    this.getUI('actions').toggle();
   },
   serializeData: function() {
-    return {
-      title: this.title
-    }
+    var style = (this.collection.length == 0) ? 'display:none' : 'display:block';
+    return _.extend(this.collection.toJSON(), {
+      title: this.title,
+      records: {
+        style: style
+      },
+      stats: {
+        total: this.collection.length
+      }
+    });
   }
 });
 
-module.exports = CategoriesLayoutView;
+module.exports = Categories;

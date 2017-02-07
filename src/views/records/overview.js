@@ -1,5 +1,5 @@
 import Marionette from 'backbone.marionette';
-import template from '../../templates/records/totals-view.hbs';
+import template from '../../templates/records/overview.hbs';
 
 var TotalsView = Marionette.View.extend({
   template: template,
