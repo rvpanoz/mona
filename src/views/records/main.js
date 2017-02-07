@@ -33,16 +33,14 @@ var RecordsLayoutView = Marionette.View.extend({
     var recordsView = new RecordsView();
     this.showChildView('recordsRegion', recordsView);
   },
-  onChildModelSelected: function(model) {
+  onChildModelSelected: function(e, model) {
     var detailsView = this.getChildView('detailsRegion');
     detailsView.setModel(model);
     detailsView.render();
   },
-
   onChildToggleDetails: function(hide) {
     var detailsView = this.getChildView('detailsRegion');
   },
-
   onChildRecordsPaginate: function(page) {
     var pagination = this.getChildView('paginationRegion');
     var recordsView = this.getChildView('recordsRegion');
@@ -60,19 +58,13 @@ var RecordsLayoutView = Marionette.View.extend({
       });
     }
   },
-
   onChildFetchRecords: function(collection) {
     this.collection = collection;
 
     var paginationView = this.getChildView('paginationRegion');
-    var totalsView = this.getChildView('totalsRegion');
     var detailsView = this.getChildView('detailsRegion');
 
     this.showChildView('paginationRegion', new PaginationView({
-      collection: collection
-    }));
-
-    this.showChildView('totalsRegion', new TotalsView({
       collection: collection
     }));
 
@@ -86,12 +78,10 @@ var RecordsLayoutView = Marionette.View.extend({
 
     app.triggerMethod("sidebar:switch", "actions");
   },
-
   onChildModelRemoved: function(model) {
-    // var detailsRegion = this.getRegion('detailsRegion');
-    // detailsRegion.empty();
+    var detailsRegion = this.getRegion('detailsRegion');
+    detailsRegion.empty();
   },
-
   onChildViewFilter: function(opts) {
     this.query = opts.data;
     var recordsView = this.getChildView('recordsRegion');
@@ -100,7 +90,6 @@ var RecordsLayoutView = Marionette.View.extend({
     });
     return false;
   },
-
   serializeData: function() {
     return {
       title: this.title

@@ -1,7 +1,7 @@
 const Marionette = require('backbone.marionette');
 const Schema = require('CategorySchema');
-const template = require('../../templates/categories/item.hbs');
 const moment = require('moment');
+const template = require('../../templates/categories/item.hbs');
 
 var CategoryItemView = Marionette.View.extend({
   template: template,

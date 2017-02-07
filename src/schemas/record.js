@@ -3,11 +3,11 @@ const Collection = require('../libc/collection');
 const moment = require('moment');
 const config = require('../config');
 
-var Record = Backbone.Model.extend({
+var Record = Model.extend({
   idAttribute: '_id',
   url: function() {
     if(this.isNew()) {
-      return config.api.url + '/data/records';
+      return '/data/records';
     } else {
       return '/data/records/' + this.get('_id');
     }
@@ -17,26 +17,12 @@ var Record = Backbone.Model.extend({
     amount: null,
     payment_method: 1,
     kind: 1,
-    entry_date: new Date(),
+    entry_date: moment(new Date()).format('DD/MM/YYYY'),
     category_id: null,
     updated_at: new Date(),
     created_at: new Date()
   },
-  parse: function(response) {
-    var data;
-    if (response.success == false) {
-      var error = (response.error) ? response.error : false;
-      this.trigger('invalid', this, error);
-    } else {
-      if(response.data) {
-        data = response.data;
-        data.entry_date = moment(data.entry_date).format('DD/MM/YYYY');
-        data.amount = data.amount.toFixed(2);
-      }
-    }
-    return data;
-  },
-  validate: function(attrs) {
+  validate(attrs) {
     var errors = [];
 
     //amount validation

@@ -31,7 +31,7 @@ var RecordView = Marionette.View.extend({
     'sync': 'render'
   },
   collectionEvents: {
-    sync: 'render'
+    'sync': 'render'
   },
   events: {
     'click .save': 'onSave',
@@ -45,53 +45,44 @@ var RecordView = Marionette.View.extend({
   initialize: function(params) {
     this.model = new Schema.Record();
     this.collection = new CategorySchema.Categories();
-
     this.collection.fetch({
       success: _.bind(function() {
-        if (params.id) {
-          this.model.fetch({
-            id: params.id
-          });
+        if(params.id) {
+          this.model.set('_id', params.id);
+          this.model.fetch();
         }
       }, this)
     });
-
     this.listenTo(this.model, 'invalid', this.onValidationError, this);
   },
-
-  onRender: function() {
-    var model = this.model;
-
-    // selectpicker category
-    this.ui.category.selectpicker();
+  onDomRefresh() {
     this.ui.category.selectpicker('val', this.model.get('category_id'));
     this.ui.category.bind('hidden.bs.select', _.bind(function(e) {
       var category_id = this.ui.category.selectpicker('val');
       this.model.set('category_id', category_id);
     }, this));
-
-    // selectpicker kind
-    this.ui.kind.selectpicker();
     this.ui.kind.selectpicker('val', this.model.get('kind'));
     this.ui.kind.bind('hidden.bs.select', _.bind(function(e) {
       var kind = this.ui.kind.selectpicker('val');
       this.model.set('kind', kind);
     }, this));
-
-    // datepicker date
+  },
+  onRender: function() {
+    this.ui.category.selectpicker();
+    this.ui.kind.selectpicker();
     this.ui.entryDate.datepicker({
+      language: 'en',
       dateFormat: 'dd/mm/yyyy',
       autoClose: true,
       onSelect: _.bind(function(d, fd) {
         this.model.set('entry_date', d);
       }, this)
     });
-
     if (this.model.isNew()) {
-      this.model.set('entry_date', moment().format('DD/MM/YYYY'));
+      this.model.set('entry_date', moment(new Date()).format('DD/MM/YYYY'));
     } else {
       var d = this.model.get('entry_date');
-      this.ui.entryDate.val(d);
+      this.ui.entryDate.val(moment(d).format('DD/MM/YYYY'));
     }
 
     //stickit
@@ -120,7 +111,7 @@ var RecordView = Marionette.View.extend({
     return _.isEmpty(errors) ? void 0 : errors;
   },
   onBack: function(e) {
-    return app.navigate('records/records');
+    return app.navigate('records/main');
   },
   serializeData: function() {
     return {

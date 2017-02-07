@@ -23,7 +23,6 @@ var RecordItemView = Marionette.View.extend({
     'buttonRemove': '.remove',
     'buttonClone': '.clone'
   },
-
   initialize: function() {
     this.listenTo(this.model, 'change:_selected', _.bind(function(model, selected) {
       if(selected == true) {
@@ -33,12 +32,11 @@ var RecordItemView = Marionette.View.extend({
       }
     }, this));
   },
-
   onClick: function(e) {
     e.preventDefault();
     this.$el.toggleClass('selected');
     this.model.set('_selected', this.$el.hasClass('selected'));
-    this.triggerMethod('model:selected', this.model);
+    this.triggerMethod('model:selected', e, this.model);
   },
 
   onModelDestroy: function(model) {
@@ -49,6 +47,7 @@ var RecordItemView = Marionette.View.extend({
     var d = this.model.get('entry_date');
     var k = this.model.get('kind');
     var p = this.model.get('payment_method');
+
     return _.extend(this.model.toJSON(), {
       'entry_date_formatted': moment(new Date(d)).format('DD/MM/YYYY'),
       'kind_descr': (k == 1) ? 'Expense' : 'Income',

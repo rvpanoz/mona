@@ -2,6 +2,7 @@ const config = require('../config');
 const _ = require('lodash');
 const utils = require('../util');
 const async = require('async');
+const Boom = require('boom');
 const moment = require('moment');
 const Record = require('../models/record');
 

@@ -6,11 +6,12 @@ import template from '../../templates/records/records.hbs'
 
 var RecordsView = Marionette.CompositeView.extend({
   template: template,
+  className: 'records',
   childView: RecordItemView,
   childViewContainer: '.records-items',
   childViewTriggers: {
     'clone:model': 'child:clone:model',
-    'model:selected': 'child:selected:model'
+    'model:selected': 'child:model:selected'
   },
   collectionEvents: {
     'sync': 'onSync',
@@ -35,9 +36,13 @@ var RecordsView = Marionette.CompositeView.extend({
     });
     return selected;
   },
-  onChildSelectedModel(model) {
+  onChildModelSelected(e, model) {
+    var target = e.currentTarget;
     var selected = this.getSelectedModels();
     var hide = selected.length > 1;
+    var index = $(e.currentTarget)[0].rowIndex;
+    this.getUI('records-table').find('tr').removeClass('selected');
+    $(target).toggleClass('selected');
     this.triggerMethod('toggle:details', hide);
   },
   onRemove(model, collection) {

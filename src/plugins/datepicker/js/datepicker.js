@@ -220,6 +220,7 @@
         },
 
         _defineLocale: function (lang) {
+          debugger;
             if (typeof lang == 'string') {
                 this.loc = $.fn.datepicker.language[lang];
                 if (!this.loc) {

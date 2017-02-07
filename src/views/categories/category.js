@@ -22,7 +22,6 @@ var CategoryView = Marionette.View.extend({
     'click .save': 'onSave',
     'click .cancel': 'onBack'
   },
-
   initialize: function(params) {
     this.model = new Schema.Category();
     if (params.id) {
@@ -31,11 +30,9 @@ var CategoryView = Marionette.View.extend({
     }
     this.listenTo(this.model, 'invalid', this.onValidationError, this);
   },
-
   onRender: function() {
     this.stickit();
   },
-
   onSave: function(e) {
     if (e) {
       e.preventDefault();
@@ -44,21 +41,15 @@ var CategoryView = Marionette.View.extend({
       success: _.bind(this.onEventSaveCallback, this)
     });
   },
-
-  onModelChange: function(model) {
-    // console.log(model.toJSON());
-  },
-
+  onModelChange: function(model) {},
   onEventSaveCallback: function(model) {
-    app.navigate('categories/categories');
+    app.navigate('categories/main');
     return false;
   },
-
   onValidationError: function(model) {
     var errors = model.validationError;
     return _.isEmpty(errors) ? void 0 : errors;
   },
-
   onBack: function(e) {
     if (e) {
       e.preventDefault();
@@ -66,7 +57,6 @@ var CategoryView = Marionette.View.extend({
     app.navigate('categories/categories');
     return false;
   },
-
   serializeData: function() {
     return {
       title: (this.model.isNew()) ? 'New category' : 'Edit category'

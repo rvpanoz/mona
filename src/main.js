@@ -23,7 +23,6 @@ define([
     },
     statusCode: {
       400: function(data) {
-        console.log('HTTP 400');
         if (data && data.responseText) {
           var response = JSON.parse(data.responseText);
           var alertView = require('./views/common/alert');
