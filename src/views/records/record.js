@@ -90,8 +90,7 @@ var RecordView = Marionette.View.extend({
     if (this.model.isNew()) {
       this.model.set('entry_date', moment(new Date()).format('DD/MM/YYYY'));
     } else {
-      var d = this.model.get('entry_date');
-      this.ui.entryDate.val(moment(d).format('DD/MM/YYYY'));
+      this.ui.entryDate.val(this.model.get('entry_date'));
     }
 
     //stickit
