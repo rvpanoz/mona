@@ -62,15 +62,21 @@ var RecordView = Marionette.View.extend({
     this.ui.category.selectpicker();
     this.ui.kind.selectpicker();
     this.ui.category.selectpicker('val', this.model.get('category_id'));
+
+    //cateogry_id
     this.ui.category.bind('hidden.bs.select', _.bind(function(e) {
       var category_id = this.ui.category.selectpicker('val');
       this.model.set('category_id', category_id);
     }, this));
+
+    //** kind
     this.ui.kind.selectpicker('val', this.model.get('kind'));
     this.ui.kind.bind('hidden.bs.select', _.bind(function(e) {
       var kind = this.ui.kind.selectpicker('val');
       this.model.set('kind', kind);
     }, this));
+
+    //** entry_date
     this.ui.entryDate.datepicker({
       language: 'en',
       selectOtherMonths: true,
@@ -80,6 +86,7 @@ var RecordView = Marionette.View.extend({
         this.model.set('entry_date', d);
       }, this)
     });
+
     if (this.model.isNew()) {
       this.model.set('entry_date', moment(new Date()).format('DD/MM/YYYY'));
     } else {
