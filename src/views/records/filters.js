@@ -1,7 +1,7 @@
 import Marionette from 'backbone.marionette';
 import RecordSchema from 'RecordSchema';
 import CategorySchema from 'CategorySchema';
-import template from '../../templates/common/filters-view.hbs';
+import template from '../../templates/records/filters.hbs'
 import moment from 'moment';
 
 var FiltersView = Marionette.View.extend({
@@ -17,23 +17,10 @@ var FiltersView = Marionette.View.extend({
   modelEvents: {
     'change': 'onModelChange'
   },
-
-  initialize: function() {
-    // this.categories = new CategorySchema.Collection();
-    this.model = new RecordSchema.model();
-  },
-
   onModelChange: function(model) {
     this._doSearch();
   },
-
-  _createCategories: function(categories) {
-    _.each(categories.data, function(category) {
-      this.ui.category.append('<option value="' + category._id + '">' + category.name + "</option>");
-    }, this);
-    this.ui.category.val();
-  },
-
+  
   setDatepickers: function() {
     for (var z in this.ui) {
       if (z.indexOf('date') > -1) {
@@ -47,7 +34,6 @@ var FiltersView = Marionette.View.extend({
       }
     }
 
-    //set default values
     var dateFrom = moment().startOf('month').format('DD/MM/YYYY');
     var dateTo = moment().endOf('month').format('DD/MM/YYYY');
     this.ui.dateTo.val(dateTo);
@@ -55,7 +41,6 @@ var FiltersView = Marionette.View.extend({
   },
 
   onRender: function() {
-
     //datepickers
     // this.setDatepickers();
     this.ui.dateTo.datepicker();

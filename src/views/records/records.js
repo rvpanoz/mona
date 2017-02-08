@@ -8,6 +8,7 @@ var RecordsView = Marionette.CompositeView.extend({
   template: template,
   className: 'records',
   childView: RecordItemView,
+  wantsFilters: true,
   childViewContainer: '.records-items',
   childViewTriggers: {
     'clone:model': 'child:clone:model',
@@ -50,6 +51,9 @@ var RecordsView = Marionette.CompositeView.extend({
   onSync() {
     this.triggerMethod('fetch:records', this.collection);
     this.render();
+    if(this.wantsFilters) {
+      app.trigger('show:filters');
+    }
   },
   serializeData: function() {
     return _.extend(this.collection.toJSON(), {

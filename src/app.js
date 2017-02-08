@@ -36,6 +36,7 @@ var app = Marionette.Application.extend({
       cls: cls,
       params: (params) ? params : void 0
     });
+    this.trigger('hide:filters');
     this.router.navigate(JSON.stringify(url), {
       trigger: true
     });

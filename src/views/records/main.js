@@ -18,7 +18,7 @@ var RecordsLayoutView = Marionette.View.extend({
     'fetch:records': 'child:fetch:records',
     'model:removed': 'child:model:removed',
     'model:selected': 'child:model:selected',
-    'apply:filters': 'child:view:filter',
+    'apply:filters': 'child:apply:filters',
     'paginate': 'child:records:paginate',
     'toggle:details': 'child:toggle:details'
   },
@@ -48,7 +48,6 @@ var RecordsLayoutView = Marionette.View.extend({
     if(this.query) {
       this.query.page = page;
     }
-
     if(recordsView && recordsView.collection) {
       var collection = recordsView.collection;
       collection.fetch({
@@ -82,11 +81,10 @@ var RecordsLayoutView = Marionette.View.extend({
     var detailsRegion = this.getRegion('detailsRegion');
     detailsRegion.empty();
   },
-  onChildViewFilter: function(opts) {
-    this.query = opts.data;
+  onChildApplyFilter: function(opts) {
     var recordsView = this.getChildView('recordsRegion');
     recordsView.collection.fetch({
-      data: this.query
+      data: opts.data
     });
     return false;
   },

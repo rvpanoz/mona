@@ -1,7 +1,7 @@
 const $ = require('jquery');
 const _ = require('underscore');
 const Marionette = require('backbone.marionette');
-// import FiltersView from './filters';
+const FiltersView = require('../records/filters');
 const template = require('../../templates/common/sidebar.hbs');
 
 var SidebarView = Marionette.View.extend({
@@ -18,9 +18,20 @@ var SidebarView = Marionette.View.extend({
   ui: {
     'userNav': '.sidebar-user__nav'
   },
-  onRender() {
-    // var filtersView = new FiltersView();
-    // this.showChildView('filtersRegion', filtersView);
+  initialize() {
+    _.bindAll(this, 'onShowFilters');
+    this.listenTo(app, "show:filters", this.onShowFilters, arguments, this);
+    this.listenTo(app, "hide:filters", this.onHideFilters, arguments, this);
+  },
+  onShowFilters(opts) {
+    var filtersView = new FiltersView(opts);
+    this.showChildView('filtersRegion', filtersView);
+    this.setActiveMenuItem('.for-filters');
+  },
+  onHideFilters(opts) {
+    var filtersRegion = this.getRegion('filtersRegion');
+    filtersRegion.empty();
+    this.setActiveMenuItem('.for-actions');
   },
   onToggleUserInfo() {
 		return false;
@@ -29,6 +40,14 @@ var SidebarView = Marionette.View.extend({
     e.preventDefault();
     $('.wrapper').toggleClass('alt');
     return false;
+  },
+  setActiveMenuItem(itemClass) {
+    var item = this.$(itemClass);
+    var menu = this.$('.sidebar__menu');
+    menu.removeClass('active').eq(item.index()).addClass('active');
+    $('.quickmenu__item').removeClass('active');
+    item.addClass('active');
+    menu.eq(0).css('margin-left', '-' + item.index() * 200 + 'px');
   },
   onNavigate: function(e) {
     e.preventDefault();
