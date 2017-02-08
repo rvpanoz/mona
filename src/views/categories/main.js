@@ -12,6 +12,8 @@ var CategoriesLayoutView = Marionette.View.extend({
     detailsRegion: '#details-content'
   },
   childViewTriggers: {
+    'fetch:categories': 'child:fetch:categories',
+    'model:selected': 'child:model:selected',
     'toggle:details': 'child:toggle:details'
   },
   onRender: function() {
@@ -23,6 +25,7 @@ var CategoriesLayoutView = Marionette.View.extend({
   },
   onChildModelSelected: function(e, model) {
     var detailsView = this.getChildView('detailsRegion');
+
     detailsView.setModel(model);
     detailsView.render();
   },
@@ -31,8 +34,9 @@ var CategoriesLayoutView = Marionette.View.extend({
       title: this.title
     }
   },
-  onChildFetchRecords: function(collection) {
+  onChildFetchCategories: function(collection) {
     var detailsView = this.getChildView('detailsRegion');
+
     this.collection = collection;
     if(!detailsView && this.collection.length) {
       var model = this.collection.first();

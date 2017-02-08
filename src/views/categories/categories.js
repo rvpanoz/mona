@@ -35,7 +35,7 @@ var Categories = Marionette.CompositeView.extend({
     return selected;
   },
   onSync() {
-    this.triggerMethod('fetch:records', this.collection);
+    this.triggerMethod('fetch:categories', this.collection);
     this.render();
   },
   onChildSelectedModel: function(e, model) {
@@ -45,7 +45,6 @@ var Categories = Marionette.CompositeView.extend({
     var index = $(e.currentTarget)[0].rowIndex;
     this.getUI('categories-table').find('tr').removeClass('selected');
     $(target).toggleClass('selected');
-    this.triggerMethod('toggle:details', hide);
   },
   serializeData: function() {
     var style = (this.collection.length == 0) ? 'display:none' : 'display:block';

@@ -17,6 +17,9 @@ var DetailItemView = Marionette.View.extend({
     });
     return false;
   },
+  setModel(model) {
+    this.model = model;
+  },
   onRemove: function(e) {
     e.preventDefault();
     var id = this.model.get('_id');

@@ -24,6 +24,16 @@ var FormView = Marionette.View.extend({
     }, this);
 
     return _.isEmpty(errors) ? void 0 : errors;
+  },
+  onSave: function(e) {
+    if(e) e.preventDefault();
+    this.model.save(null, {
+      success: _.bind(this.onBack, this)
+    });
+  },
+  onBack: function(e) {
+    if(e) e.preventDefault();
+    return history.back();
   }
 });
 

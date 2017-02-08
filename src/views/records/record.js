@@ -36,7 +36,6 @@ var RecordView = FormView.extend({
     entryDate: '#input-entry-date'
   },
   initialize: function() {
-    RecordView.__super__.initialize.call(this, arguments);
     this.model = new Schema.Record();
     this.collection = new CategorySchema.Categories();
     this.collection.fetch({
@@ -47,6 +46,7 @@ var RecordView = FormView.extend({
         }
       }, this)
     });
+    RecordView.__super__.initialize.call(this, arguments);
   },
   onRender: function() {
     RecordView.__super__.onRender.call(this, arguments);
@@ -75,15 +75,7 @@ var RecordView = FormView.extend({
       }, this)
     });
   },
-  onSave: function(e) {
-    e.preventDefault();
-    this.model.save(null, {
-      success: _.bind(this.onBack, this)
-    });
-  },
-  onBack: function(e) {
-    return app.navigate('records/main');
-  },
+
   serializeData: function() {
     return {
       title: (this.model.isNew()) ? 'New record' : 'Edit record',
