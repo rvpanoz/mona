@@ -25,6 +25,9 @@ var RecordsLayoutView = Marionette.View.extend({
   events: {
     'click .new': 'onNew'
   },
+  initialize() {
+    this.listenTo(app, 'apply:filters', this.onChildApplyFilter, arguments, this);
+  },
   onNew: function(e) {
     e.preventDefault();
     return app.navigate('records/record');
@@ -74,12 +77,11 @@ var RecordsLayoutView = Marionette.View.extend({
         model: model
       }));
     }
-
     app.triggerMethod("sidebar:switch", "actions");
   },
   onChildModelRemoved: function(model) {
     var detailsRegion = this.getRegion('detailsRegion');
-    detailsRegion.empty();
+    detailsRegion.currentView.$el.empty();
   },
   onChildApplyFilter: function(opts) {
     var recordsView = this.getChildView('recordsRegion');

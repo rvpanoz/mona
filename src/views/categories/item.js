@@ -10,6 +10,9 @@ var CategoryItemView = Marionette.View.extend({
   attributes: {
     role: 'row'
   },
+  modelEvents: {
+    'destroy': 'onModelDestroy'
+  },
   events: {
     'click': 'onClick',
   },
@@ -18,6 +21,9 @@ var CategoryItemView = Marionette.View.extend({
     var isSelected = this.$el.toggleClass('selected');
     this.model.set('_selected', this.$el.hasClass('selected'));
     this.triggerMethod('model:selected', e, this.model);
+  },
+  onModelDestroy: function(model) {
+    this.triggerMethod('model:removed', model);
   },
   serializeData: function() {
     var dc = this.model.get('created_at');

@@ -40,7 +40,7 @@ var RecordItemView = Marionette.View.extend({
   },
 
   onModelDestroy: function(model) {
-    this.triggerMethod('remove:model', model);
+    this.triggerMethod('model:removed', model);
   },
 
   serializeData: function() {

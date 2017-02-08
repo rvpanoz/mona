@@ -1,12 +1,131 @@
 #records-content {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 #pagination-content {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .text-center {
-  text-align: center;
-  padding: 10px;
+    text-align: center;
+    padding: 10px;
+}
+/** loader **/
+$animationLength: 1.5s;
+$animationRadius: 12px;
+$dotSize: 8px;
+$zindex: 999;
+
+.loading {
+    z-index: $zindex;
+    display: none;
+}
+
+.loader {
+    position: absolute;
+    width: $animationRadius * 3 + $dotSize;
+    height: $dotSize;
+    margin: $animationRadius auto;
+    top: 25px;
+    left: 45%;
+}
+
+.dot {
+    display: inline-block;
+    width: $dotSize;
+    height: $dotSize;
+    border-radius: $dotSize * 0.5;
+    background: #ccc;
+    position: absolute;
+}
+
+.dot_1 {
+    animation: animateDot1 $animationLength linear infinite;
+    left: $animationRadius;
+    background: #e579b8;
+}
+
+.dot_2 {
+    animation: animateDot2 $animationLength linear infinite;
+    animation-delay: $animationLength / 3;
+    left: $animationRadius * 2;
+}
+
+.dot_3 {
+    animation: animateDot3 $animationLength linear infinite;
+    left: $animationRadius;
+}
+
+.dot_4 {
+    animation: animateDot4 $animationLength linear infinite;
+    animation-delay: $animationLength / 3;
+    left: $animationRadius * 2;
+}
+@keyframes animateDot1 {
+    0% {
+        transform: rotate(0deg) translateX(-$animationRadius);
+    }
+
+    25% {
+        transform: rotate(180deg) translateX(-$animationRadius);
+    }
+
+    75% {
+        transform: rotate(180deg) translateX(-$animationRadius);
+    }
+
+    100% {
+        transform: rotate(360deg) translateX(-$animationRadius);
+    }
+}
+@keyframes animateDot2 {
+    0% {
+        transform: rotate(-0deg) translateX(-$animationRadius);
+    }
+
+    25% {
+        transform: rotate(-180deg) translateX(-$animationRadius);
+    }
+
+    75% {
+        transform: rotate(-180deg) translateX(-$animationRadius);
+    }
+
+    100% {
+        transform: rotate(-360deg) translateX(-$animationRadius);
+    }
+}
+@keyframes animateDot3 {
+    0% {
+        transform: rotate(0deg) translateX($animationRadius);
+    }
+
+    25% {
+        transform: rotate(180deg) translateX($animationRadius);
+    }
+
+    75% {
+        transform: rotate(180deg) translateX($animationRadius);
+    }
+
+    100% {
+        transform: rotate(360deg) translateX($animationRadius);
+    }
+}
+@keyframes animateDot4 {
+    0% {
+        transform: rotate(-0deg) translateX($animationRadius);
+    }
+
+    25% {
+        transform: rotate(-180deg) translateX($animationRadius);
+    }
+
+    75% {
+        transform: rotate(-180deg) translateX($animationRadius);
+    }
+
+    100% {
+        transform: rotate(-360deg) translateX($animationRadius);
+    }
 }

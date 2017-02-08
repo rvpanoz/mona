@@ -31,8 +31,7 @@ var FormView = Marionette.View.extend({
       success: _.bind(this.onBack, this)
     });
   },
-  onBack: function(e) {
-    if(e) e.preventDefault();
+  onBack: function() {
     return history.back();
   }
 });

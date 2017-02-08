@@ -13,6 +13,7 @@ var CategoriesLayoutView = Marionette.View.extend({
   },
   childViewTriggers: {
     'fetch:categories': 'child:fetch:categories',
+    'model:removed': 'child:model:removed',
     'model:selected': 'child:model:selected',
     'toggle:details': 'child:toggle:details'
   },
@@ -25,9 +26,13 @@ var CategoriesLayoutView = Marionette.View.extend({
   },
   onChildModelSelected: function(e, model) {
     var detailsView = this.getChildView('detailsRegion');
-
     detailsView.setModel(model);
     detailsView.render();
+  },
+  onChildModelRemoved: function(model) {
+    debugger;
+    var detailsRegion = this.getRegion('detailsRegion');
+    detailsRegion.currentView.$el.empty();
   },
   serializeData: function() {
     return {
