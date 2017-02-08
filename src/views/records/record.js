@@ -23,7 +23,7 @@ var RecordView = FormView.extend({
     'sync': 'render'
   },
   collectionEvents: {
-    'sync': 'render'
+    'sync': 'onSync'
   },
   events: {
     'click .save': 'onSave',
@@ -75,7 +75,17 @@ var RecordView = FormView.extend({
       }, this)
     });
   },
-
+  onSync() {
+    this.render();
+    if(!this.collection.length) {
+      var alertView = require('../common/alert');
+      var activeAlert = new alertView({
+        alertType: 'alert-danger',
+        message: "You do not have any categories"
+      });
+      activeAlert.render();
+    }
+  },
   serializeData: function() {
     return {
       title: (this.model.isNew()) ? 'New record' : 'Edit record',

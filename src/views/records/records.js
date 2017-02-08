@@ -27,6 +27,9 @@ var RecordsView = Marionette.CompositeView.extend({
     this.collection = new RecordSchema.Records();
     this.categories = new CategorySchema.Categories();
     this.collection.fetch();
+    if(this.wantsFilters) {
+      app.trigger('show:filters');
+    }
   },
   onBeforeRender() {
     app.triggerMethod("sidebar:switch", "actions");
@@ -51,9 +54,6 @@ var RecordsView = Marionette.CompositeView.extend({
   onSync() {
     this.triggerMethod('fetch:records', this.collection);
     this.render();
-    if(this.wantsFilters) {
-      app.trigger('show:filters');
-    }
   },
   serializeData: function() {
     return _.extend(this.collection.toJSON(), {
