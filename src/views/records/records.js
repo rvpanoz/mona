@@ -32,7 +32,7 @@ var RecordsView = Marionette.CompositeView.extend({
     }
   },
   onBeforeRender() {
-    app.triggerMethod("sidebar:switch", "actions");
+    app.triggerMethod("sidebar:switch", ".for-filters");
   },
   getSelectedModels() {
     var selected = _.filter(this.collection.models, function(model) {
@@ -42,12 +42,11 @@ var RecordsView = Marionette.CompositeView.extend({
   },
   onDomRefresh() {
     this.getUI('table').addClass('dataTable').DataTable({
-      order: [[0, 'desc'], [2, 'asc']],
+      order: [[0, 'desc'], [1, 'asc'], [2, 'asc']],
       paging: false,
       bInfo: false,
       searching: false
     });
-    // this.getUI('table').order();
   },
   onChildModelSelected(e, model) {
     var target = e.currentTarget;

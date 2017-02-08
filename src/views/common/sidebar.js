@@ -22,16 +22,17 @@ var SidebarView = Marionette.View.extend({
     _.bindAll(this, 'onShowFilters');
     this.listenTo(app, "show:filters", this.onShowFilters, arguments, this);
     this.listenTo(app, "hide:filters", this.onHideFilters, arguments, this);
+    this.listenTo(app, "sidebar:switch", this.setActiveMenuItem, arguments, this);
   },
   onShowFilters(opts) {
     var filtersView = new FiltersView(opts);
     this.showChildView('filtersRegion', filtersView);
-    this.setActiveMenuItem('.for-filters');
+    app.trigger('sidebar:switch', '.for-filters');
   },
   onHideFilters(opts) {
     var filtersRegion = this.getRegion('filtersRegion');
     filtersRegion.empty();
-    this.setActiveMenuItem('.for-actions');
+    app.trigger('sidebar:switch', '.for-actions');
   },
   onToggleUserInfo() {
 		return false;
@@ -45,7 +46,7 @@ var SidebarView = Marionette.View.extend({
     var item = this.$(itemClass);
     var menu = this.$('.sidebar__menu');
     menu.removeClass('active').eq(item.index()).addClass('active');
-    $('.quickmenu__item').removeClass('active');
+    this.$('.quickmenu__item').removeClass('active');
     item.addClass('active');
     menu.eq(0).css('margin-left', '-' + item.index() * 200 + 'px');
   },

@@ -3,7 +3,7 @@ const $ = require('jquery')
 const Bootstrap = require('bootstrap/dist/js/bootstrap.min')
 const Backbone = require('backbone')
 const Marionette = require('backbone.marionette')
-const LayoutView = require('./views/layout-base')
+const LayoutView = require('./views/layout')
 const Router = require('./router')
 
 var app = Marionette.Application.extend({
@@ -25,7 +25,6 @@ var app = Marionette.Application.extend({
     if (Backbone.history) {
       Backbone.history.start();
     }
-
     this.listenTo(this, 'app:signin', this.onSignin, this, arguments);
     this.listenTo(this, 'app:signout', this.onSignout, this, arguments);
     this.listenTo(this, 'hide:sidebar', this.onHideSidebar, this, arguments);
@@ -34,7 +33,7 @@ var app = Marionette.Application.extend({
     var url = {};
     _.extend(url, {
       cls: cls,
-      params: (params) ? params : void 0
+      params: params
     });
     this.trigger('hide:filters');
     this.router.navigate(JSON.stringify(url), {

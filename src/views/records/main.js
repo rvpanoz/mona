@@ -45,6 +45,8 @@ var RecordsLayoutView = Marionette.View.extend({
     var detailsView = this.getChildView('detailsRegion');
   },
   onChildRecordsPaginate: function(page) {
+    debugger;
+    
     var pagination = this.getChildView('paginationRegion');
     var recordsView = this.getChildView('recordsRegion');
 

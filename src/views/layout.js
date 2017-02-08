@@ -1,7 +1,7 @@
 import Marionette from 'backbone.marionette'
 import SidebarView from '../views/common/sidebar'
 import HeaderView from '../views/common/header'
-import template from '../templates/layouts/layout-base.hbs'
+import template from '../templates/layout.hbs'
 
 import plugins from '../scripts/plugins';
 import themeJS from '../scripts/theme';

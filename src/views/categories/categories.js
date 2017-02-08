@@ -27,7 +27,7 @@ var Categories = Marionette.CompositeView.extend({
     this.collection.fetch();
   },
   onBeforeRender: function() {
-    app.triggerMethod("sidebar:switch", "actions");
+    app.triggerMethod("sidebar:switch", ".for-actions");
   },
   getSelectedModels: function() {
     var selected = _.filter(this.collection.models, function(model) {

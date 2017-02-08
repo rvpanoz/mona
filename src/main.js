@@ -49,7 +49,7 @@ define([
   });
 
   $(document).ajaxError(function(e, xhr, options, type) {
-    throw new Error('Ajax Error');
+    app.wait(false);
   });
 
   $(document).ajaxStart(function() {

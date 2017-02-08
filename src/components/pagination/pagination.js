@@ -1,6 +1,7 @@
 import Marionette from 'backbone.marionette';
 import PaginationItemView from './paginationItemView';
 import template from './pagination.hbs';
+import config from '../../config';
 
 var PaginationView = Marionette.CompositeView.extend({
   template: template,
@@ -12,10 +13,9 @@ var PaginationView = Marionette.CompositeView.extend({
   total: 0,
   initialize: function(opts) {
     this.pages = opts.collection.pages;
-    this.page = 1;
-    this.total = opts.collection.total;
-
+    this.totals = opts.collection.total;
     this.collection = new Backbone.Collection();
+
     for(var p=0;p<this.pages;p++) {
       var model = new Backbone.Model({
         page: p
@@ -23,6 +23,12 @@ var PaginationView = Marionette.CompositeView.extend({
       var page = parseInt(model.get('page'));
       model.set('page', page+=1);
       this.collection.add(model);
+    }
+  },
+  onRender() {
+    var perPage = config.perPage;
+    if(this.totals < perPage) {
+      this.$el.addClass('hide');
     }
   }
 });

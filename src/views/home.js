@@ -5,6 +5,9 @@ const moment = require('moment');
 var HomeView = Marionette.View.extend({
   template: template,
   className: 'container home',
+  onBeforeRender() {
+    app.triggerMethod("sidebar:switch", ".for-menu");
+  },
   serializeData() {
     return {
       title: 'Home'
