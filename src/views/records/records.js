@@ -19,7 +19,7 @@ var RecordsView = Marionette.CompositeView.extend({
     'remove': 'onRemove'
   },
   ui: {
-    'records-table': '.records-table'
+    'table': '.records-table'
   },
   initialize() {
     _.bindAll(this, 'onSync');
@@ -40,12 +40,21 @@ var RecordsView = Marionette.CompositeView.extend({
     });
     return selected;
   },
+  onDomRefresh() {
+    this.getUI('table').addClass('dataTable').DataTable({
+      order: [[0, 'desc'], [2, 'asc']],
+      paging: false,
+      bInfo: false,
+      searching: false
+    });
+    // this.getUI('table').order();
+  },
   onChildModelSelected(e, model) {
     var target = e.currentTarget;
     var selected = this.getSelectedModels();
     var hide = selected.length > 1;
     var index = $(e.currentTarget)[0].rowIndex;
-    this.getUI('records-table').find('tr').removeClass('selected');
+    this.getUI('table').find('tr').removeClass('selected');
     $(target).toggleClass('selected');
   },
   onRemove(model, collection) {

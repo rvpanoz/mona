@@ -32,7 +32,10 @@ var FormView = Marionette.View.extend({
     });
   },
   onBack: function() {
-    return history.back();
+    if(this.parentUrl) {
+      app.navigate(this.parentUrl);
+    }
+    return false;
   }
 });
 

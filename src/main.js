@@ -49,13 +49,7 @@ define([
   });
 
   $(document).ajaxError(function(e, xhr, options, type) {
-    var alertView = require('./views/common/alert');
-    var activeAlert = new alertView({
-      alertType: 'alert-danger',
-      message: 'Server error'
-    });
-    activeAlert.render();
-    app.triggerMethod('app:signout');
+    throw new Error('Ajax Error');
   });
 
   $(document).ajaxStart(function() {

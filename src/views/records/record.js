@@ -9,6 +9,7 @@ import moment from 'moment';
 var RecordView = FormView.extend({
   template: template,
   className: 'record-form',
+  parentUrl: 'records/main',
   wantsValidate: true,
   bindings: {
     '#input-amount': 'amount',

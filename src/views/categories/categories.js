@@ -7,6 +7,7 @@ var Categories = Marionette.CompositeView.extend({
   title: 'Your categories',
   template: template,
   childView: CategoryItemView,
+  parentUrl: 'categories/main',
   childViewContainer: '.categories-items',
   childViewTriggers: {
     'model:selected': 'child:selected:model'
@@ -19,7 +20,7 @@ var Categories = Marionette.CompositeView.extend({
     'click a.btn-update': 'onUpdate'
   },
   ui: {
-    'categories-table': '.categories-table'
+    'table': '.table-categories'
   },
   initialize: function() {
     this.collection = new Schema.Categories();
@@ -34,6 +35,14 @@ var Categories = Marionette.CompositeView.extend({
     });
     return selected;
   },
+  onDomRefresh() {
+    this.getUI('table').addClass('dataTable').DataTable({
+      order: [[0, "desc" ]],
+      paging: false,
+      bInfo: false,
+      searching: false
+    });
+  },
   onSync() {
     this.triggerMethod('fetch:categories', this.collection);
     this.render();
@@ -43,7 +52,7 @@ var Categories = Marionette.CompositeView.extend({
     var selected = this.getSelectedModels();
     var hide = selected.length > 1;
     var index = $(e.currentTarget)[0].rowIndex;
-    this.getUI('categories-table').find('tr').removeClass('selected');
+    this.getUI('table').find('tr').removeClass('selected');
     $(target).toggleClass('selected');
   },
   serializeData: function() {

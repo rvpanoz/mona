@@ -50,12 +50,7 @@ var RecordItemView = Marionette.View.extend({
 
     return _.extend(this.model.toJSON(), {
       'entry_date_formatted': moment(new Date(d)).format('DD/MM/YYYY'),
-      'kind_descr': (k == 1) ? 'Expense' : 'Income',
-      'kind_color': (k == 1) ? 'red' : 'green',
-      'kind_check': (k == 1) ? 'times' : 'check',
-      'payment_check': (p == 1) ? 'euro' : 'credit-card',
-      'payment_badge': (p == 1) ? 'primary' : 'primary',
-      'payment_method_descr': (p == 1) ? 'Cash' : 'Credit card'
+      'kind_color': (k == 1) ? 'red' : 'green'
     });
   }
 

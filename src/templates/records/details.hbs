@@ -21,14 +21,12 @@
         <div title="date" class="details-preview__prop">
             <i class="fa fa-calendar"></i><span class="details-preview__location" title="Date">{{ entry_date_formatted }}</span>
         </div>
-        <div title="Type" class="details-preview__prop">
+        <div title="kind" class="details-preview__prop">
             <i class="fa fa-bar-chart"></i>
-            <span class="details-preview__contact">
-        {{ kind_descr }}
-      </span>
+            <span class="details-preview__contact">{{ kind_descr }}</span>
         </div>
-        <div title="Contact" class="details-preview__prop">
-            <i class="fa fa-pie-chart"></i>
+        <div title="payment" class="details-preview__prop">
+            <i class="fa fa-credit-card"></i>
             <span class="details-preview__contact">{{ payment_method_descr }}</span>
         </div>
     </div>

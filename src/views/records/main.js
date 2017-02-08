@@ -1,6 +1,6 @@
 import Marionette from 'backbone.marionette';
 import RecordsView from './records';
-import TotalsView from './overview';
+import OverView from './overview';
 import DetailsView from './details';
 import PaginationView from 'pagination';
 import template from '../../templates/records/main.hbs';
@@ -12,7 +12,7 @@ var RecordsLayoutView = Marionette.View.extend({
     recordsRegion: '#records-content',
     detailsRegion: '#details-content',
     paginationRegion: '#pagination-content',
-    totalsRegion: '#totals-content'
+    overviewRegion: '#overview-content'
   },
   childViewTriggers: {
     'fetch:records': 'child:fetch:records',
@@ -61,10 +61,13 @@ var RecordsLayoutView = Marionette.View.extend({
     }
   },
   onChildFetchRecords: function(collection) {
-    this.collection = collection;
-
     var paginationView = this.getChildView('paginationRegion');
     var detailsView = this.getChildView('detailsRegion');
+    this.collection = collection;
+
+    this.showChildView('overviewRegion', new OverView({
+      collection: collection
+    }));
 
     this.showChildView('paginationRegion', new PaginationView({
       collection: collection

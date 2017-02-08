@@ -73,6 +73,26 @@ var app = Marionette.Application.extend({
 
     return new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
   },
+  showMessage: function(message, html) {
+
+    var alertView = require('./views/common/alert');
+    var activeAlert = new alertView({
+      className: 'alert-active',
+      alertType: 'alert-info',
+      message: message
+    });
+    activeAlert.render();
+
+    //hide snackbar
+    setTimeout(_.bind(function() {
+      this.hideMessage();
+    }, this), 5000);
+  },
+
+  hideMessage: function() {
+    var active = $('.alert-active');
+    active.remove();
+  },
   wait(active) {
     var spinner = $('.loading');
     if (active == true) {

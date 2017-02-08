@@ -5,8 +5,13 @@
             <div class="account-wall">
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
                 <form class="form-signin">
-                    <input type="text" class="form-control" placeholder="Email" required autofocus>
-                    <input type="password" class="form-control" placeholder="Password" required>
+                   <input style="display:none"> <!-- http://stackoverflow.com/questions/12374442/chrome-browser-ignoring-autocomplete-off-->
+                    <div class="form-group form-group-email">
+                        <input type="text" class="form-control" id="input-email" placeholder="Your email address" required autofocus autocomplete="off">
+                    </div>
+                    <div class="form-group form-group-password">
+                        <input type="password" class="form-control" id="input-password" placeholder="Choose a password" required autocomplete="off">
+                    </div>
                     <button class="btn btn-lg btn-success btn-block" id="btn-register">Register</button>
                 </form>
             </div>
