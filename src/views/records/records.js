@@ -43,7 +43,6 @@ var RecordsView = Marionette.CompositeView.extend({
     var index = $(e.currentTarget)[0].rowIndex;
     this.getUI('records-table').find('tr').removeClass('selected');
     $(target).toggleClass('selected');
-    this.triggerMethod('toggle:details', hide);
   },
   onRemove(model, collection) {
     this.triggerMethod('model:removed', model);

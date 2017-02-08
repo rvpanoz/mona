@@ -17,8 +17,27 @@ var Model = Backbone.Model.extend({
       var error = (response.error) ? response.error : '';
       this.trigger('invalid', this, error);
     } else {
-      return response.data;
+      var data = this.formatFields(response.data);
+      return data;
     }
+  },
+  formatFields(data) {
+    if(!this.fieldTypes) {
+      return data;
+    }
+    var fields = this.fieldTypes;
+    for(var z in fields) {
+      var type = fields[z];
+      switch(type) {
+        case "date":
+          data[z] = moment(data[z]).format('DD/MM/YYYY');
+        break;
+        case "float":
+          data[z] = parseFloat(data[z]).toFixed(2);
+        break;
+      }
+    }
+    return data;
   }
 });
 

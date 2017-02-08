@@ -49,9 +49,13 @@ define([
   });
 
   $(document).ajaxError(function(e, xhr, options, type) {
-    if (type && (type == "Unauthorized")) {
-      app.triggerMethod('app:signout');
-    }
+    var alertView = require('./views/common/alert');
+    var activeAlert = new alertView({
+      alertType: 'alert-danger',
+      message: 'Server error'
+    });
+    activeAlert.render();
+    app.triggerMethod('app:signout');
   });
 
   $(document).ajaxStart(function() {

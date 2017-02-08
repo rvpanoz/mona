@@ -1,29 +1,21 @@
-import Marionette from 'backbone.marionette';
+import FormView from 'FormView';
+
 import Stickit from 'backbone.stickit';
 import Schema from 'RecordSchema';
 import CategorySchema from 'CategorySchema';
 import template from '../../templates/records/record.hbs';
 import moment from 'moment';
 
-var RecordView = Marionette.View.extend({
+var RecordView = FormView.extend({
   template: template,
   className: 'record-form',
+  wantsValidate: true,
   bindings: {
-    '#input-amount': {
-      observe: 'amount'
-    },
-    '[name="input-payment"]': {
-      observe: 'payment_method'
-    },
-    '[name="input-kind"]': {
-      observe: 'kind'
-    },
-    '#input-entry-date': {
-      observe: 'entry_date'
-    },
-    '#input-category': {
-      observe: 'category_id'
-    },
+    '#input-amount': 'amount',
+    '#input-payment': 'payment_method',
+    '#input-kind': 'kind',
+    '#input-entry-date': 'entry_date',
+    '#input-category': 'category_id',
     '#input-notes': 'notes'
   },
   modelEvents: {
@@ -43,31 +35,30 @@ var RecordView = Marionette.View.extend({
     category: '#input-category',
     entryDate: '#input-entry-date'
   },
-  initialize: function(params) {
+  initialize: function() {
+    RecordView.__super__.initialize.call(this, arguments);
     this.model = new Schema.Record();
     this.collection = new CategorySchema.Categories();
     this.collection.fetch({
       success: _.bind(function() {
-        if(params.id) {
-          this.model.set('_id', params.id);
+        if(this.params.id) {
+          this.model.set('_id', this.params.id);
           this.model.fetch();
         }
       }, this)
     });
-    this.listenTo(this.model, 'invalid', this.onValidationError, this);
   },
   onRender: function() {
-    this.ui.category.selectpicker();
-    this.ui.kind.selectpicker();
-    this.ui.category.selectpicker('val', this.model.get('category_id'));
+    RecordView.__super__.onRender.call(this, arguments);
 
-    //cateogry_id
+    this.ui.category.selectpicker();
+    this.ui.category.selectpicker('val', this.model.get('category_id'));
     this.ui.category.bind('hidden.bs.select', _.bind(function(e) {
       var category_id = this.ui.category.selectpicker('val');
       this.model.set('category_id', category_id);
     }, this));
 
-    //** kind
+    this.ui.kind.selectpicker();
     this.ui.kind.selectpicker('val', this.model.get('kind'));
     this.ui.kind.bind('hidden.bs.select', _.bind(function(e) {
       var kind = this.ui.kind.selectpicker('val');
@@ -79,45 +70,16 @@ var RecordView = Marionette.View.extend({
       language: 'en',
       dateFormat: 'dd/mm/yyyy',
       autoClose: true,
-      onSelect: _.bind(function(d, fd) {
-        this.model.set('entry_date', moment(d).format('DD/MM/YYYY'));
+      onSelect: _.bind(function(fd, d) {
+        this.model.set('entry_date', fd);
       }, this)
     });
-
-    if (this.model.isNew()) {
-      this.model.set('entry_date', moment(new Date()).format('DD/MM/YYYY'));
-    } else {
-      var date = this.model.get('entry_date');
-      this.ui.entryDate.val(moment(date).format('DD/MM/YYYY'));
-    }
-
-    //stickit
-    this.stickit();
   },
   onSave: function(e) {
     e.preventDefault();
-
-    var date = this.model.get('entry_date');
-    this.model.set('entry_date', moment(date).format('DD/MM/YYYY'));
     this.model.save(null, {
       success: _.bind(this.onBack, this)
     });
-  },
-  onValidationError: function(model) {
-    var errors = model.validationError;
-    var groups = this.$('.form-group');
-
-    //remove has-error
-    groups.removeClass('has-error');
-
-    _.each(errors, function(err) {
-      var element = this.$('.form-group-' + err.field);
-      if (element) {
-        element.addClass('has-error');
-      }
-    }, this);
-
-    return _.isEmpty(errors) ? void 0 : errors;
   },
   onBack: function(e) {
     return app.navigate('records/main');
