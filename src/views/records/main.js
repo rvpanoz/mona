@@ -1,7 +1,6 @@
 import Marionette from 'backbone.marionette';
 import RecordsView from './records';
 import OverView from './overview';
-import DetailsView from './details';
 import PaginationView from 'pagination';
 import template from '../../templates/records/main.hbs';
 
@@ -10,7 +9,6 @@ var RecordsLayoutView = Marionette.View.extend({
   title: 'Records',
   regions: {
     recordsRegion: '#records-content',
-    detailsRegion: '#details-content',
     paginationRegion: '#pagination-content',
     overviewRegion: '#overview-content'
   },
@@ -19,8 +17,7 @@ var RecordsLayoutView = Marionette.View.extend({
     'model:removed': 'child:model:removed',
     'model:selected': 'child:model:selected',
     'apply:filters': 'child:apply:filters',
-    'paginate': 'child:records:paginate',
-    'toggle:details': 'child:toggle:details'
+    'paginate': 'child:records:paginate'
   },
   events: {
     'click .new': 'onNew'
@@ -36,17 +33,7 @@ var RecordsLayoutView = Marionette.View.extend({
     var recordsView = new RecordsView();
     this.showChildView('recordsRegion', recordsView);
   },
-  onChildModelSelected: function(e, model) {
-    var detailsView = this.getChildView('detailsRegion');
-    detailsView.setModel(model);
-    detailsView.render();
-  },
-  onChildToggleDetails: function(hide) {
-    var detailsView = this.getChildView('detailsRegion');
-  },
   onChildRecordsPaginate: function(page) {
-    debugger;
-    
     var pagination = this.getChildView('paginationRegion');
     var recordsView = this.getChildView('recordsRegion');
 
@@ -64,7 +51,6 @@ var RecordsLayoutView = Marionette.View.extend({
   },
   onChildFetchRecords: function(collection) {
     var paginationView = this.getChildView('paginationRegion');
-    var detailsView = this.getChildView('detailsRegion');
     this.collection = collection;
 
     this.showChildView('overviewRegion', new OverView({
@@ -75,19 +61,9 @@ var RecordsLayoutView = Marionette.View.extend({
       collection: collection
     }));
 
-    if(!detailsView && this.collection.length) {
-      var model = this.collection.first();
-      model.set('_selected', true);
-      this.showChildView('detailsRegion', new DetailsView({
-        model: model
-      }));
-    }
     app.triggerMethod("sidebar:switch", "actions");
   },
-  onChildModelRemoved: function(model) {
-    var detailsRegion = this.getRegion('detailsRegion');
-    detailsRegion.currentView.$el.empty();
-  },
+
   onChildApplyFilter: function(opts) {
     var recordsView = this.getChildView('recordsRegion');
     recordsView.collection.fetch({

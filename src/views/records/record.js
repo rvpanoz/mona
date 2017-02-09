@@ -13,8 +13,8 @@ var RecordView = FormView.extend({
   wantsValidate: true,
   bindings: {
     '#input-amount': 'amount',
-    '#input-payment': 'payment_method',
-    '#input-kind': 'kind',
+    "[name='input-payment']": 'payment_method',
+    "[name='input-kind']": 'kind',
     '#input-entry-date': 'entry_date',
     '#input-category': 'category_id',
     '#input-notes': 'notes'
@@ -28,7 +28,8 @@ var RecordView = FormView.extend({
   },
   events: {
     'click .save': 'onSave',
-    'click .cancel': 'onBack'
+    'click .cancel': 'onBack',
+    'click .add-category': 'onAddCategory'
   },
   ui: {
     amount: '#input-amount',
@@ -53,18 +54,6 @@ var RecordView = FormView.extend({
     RecordView.__super__.onRender.call(this, arguments);
 
     this.ui.category.selectpicker();
-    this.ui.category.selectpicker('val', this.model.get('category_id'));
-    this.ui.category.bind('hidden.bs.select', _.bind(function(e) {
-      var category_id = this.ui.category.selectpicker('val');
-      this.model.set('category_id', category_id);
-    }, this));
-
-    this.ui.kind.selectpicker();
-    this.ui.kind.selectpicker('val', this.model.get('kind'));
-    this.ui.kind.bind('hidden.bs.select', _.bind(function(e) {
-      var kind = this.ui.kind.selectpicker('val');
-      this.model.set('kind', kind);
-    }, this));
 
     //** entry_date
     this.ui.entryDate.datepicker({
@@ -75,6 +64,11 @@ var RecordView = FormView.extend({
         this.model.set('entry_date', fd);
       }, this)
     });
+  },
+  onAddCategory(e) {
+    e.preventDefault();
+    app.navigate('categories/category');
+    return false;
   },
   onSync() {
     this.render();

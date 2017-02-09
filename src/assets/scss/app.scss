@@ -10,6 +10,28 @@
     text-align: center;
     padding: 10px;
 }
+/**
+ * Alerts
+ */
+.alert-container {
+    position: fixed;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    padding: 10px;
+}
+@media(min-width: 768px) {
+    .alerts-container {
+      top: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 300px;
+    }
+}
 /** loader **/
 $animationLength: 1.5s;
 $animationRadius: 12px;

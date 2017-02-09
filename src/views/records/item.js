@@ -14,9 +14,9 @@ var RecordItemView = Marionette.View.extend({
   },
   events: {
     'click': 'onClick',
-    'click .update': 'onEventUpdate',
-    'click .remove': 'onEventRemove',
-    'click .clone': 'onEventClone'
+    'click .update': 'onUpdate',
+    'click .remove': 'onRemove',
+    'click .clone': 'onClone'
   },
   ui: {
     'buttonUpdate': '.update',
@@ -38,7 +38,12 @@ var RecordItemView = Marionette.View.extend({
     this.model.set('_selected', this.$el.hasClass('selected'));
     this.triggerMethod('model:selected', e, this.model);
   },
-
+  onUpdate: function(e) {
+    e.preventDefault();
+    return app.navigate('records/record', {
+      id: this.model.get('_id')
+    });
+  },
   onModelDestroy: function(model) {
     this.triggerMethod('model:removed', model);
   },
