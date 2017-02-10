@@ -52,6 +52,7 @@ var app = Marionette.Application.extend({
   onSignin(token) {
     localStorage.setItem('token', token);
     this.onAppEvent('userstate:change', true);
+    this.navigate('home');
     return false;
   },
   onSignout() {
@@ -60,7 +61,7 @@ var app = Marionette.Application.extend({
     this.navigate('login');
     return false;
   },
-  checkState() {
+  updateUI() {
     return localStorage.get('token');
   },
   stringToDate(_date, _format, _delimiter) {
@@ -74,26 +75,6 @@ var app = Marionette.Application.extend({
     month -= 1;
 
     return new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
-  },
-  showMessage: function(message, html) {
-
-    var alertView = require('./views/common/alert');
-    var activeAlert = new alertView({
-      className: 'alert-active',
-      alertType: 'alert-info',
-      message: message
-    });
-    activeAlert.render();
-
-    //hide snackbar
-    setTimeout(_.bind(function() {
-      this.hideMessage();
-    }, this), 5000);
-  },
-
-  hideMessage: function() {
-    var active = $('.alert-active');
-    active.remove();
   },
   wait(active) {
     var spinner = $('.loading');

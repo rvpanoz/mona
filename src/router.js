@@ -23,7 +23,7 @@ module.exports = Backbone.Router.extend({
       return app.navigate('login');
     } else {
       if (($.inArray(url.cls, app.publicUrls) !== -1)) {
-        app.onAppEvent('userstate:change');
+        app.onAppEvent('userstate:change', token);
       }
     }
 

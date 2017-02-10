@@ -41,33 +41,28 @@ var LayoutBase = Marionette.View.extend({
     }, this));
 
     //showAlert: show app alert with messages
-    this.listenTo(app, 'show:alert', _.bind(function(opts) {
+    this.listenTo(app, 'show:alert', _.bind(function (opts) {
       return this.showAlert(opts);
     }, this));
 
     //userstate: update UI based on user start (login/logout)
     this.listenTo(app, 'userstate:change', _.bind(function (state) {
-      this.checkState();
+      this.updateUI();
     }, this));
-  },
-  showAlert(opts) {
-    var alertView = require('../views/common/alert');
-    this.activeAlert = new alertView(opts);
-    this.activeAlert.render();
   },
   onChildModalShow(opts) {
     var params = opts || {};
     var modalView = new opts.view(params);
     this.showChildView('modalContentRegion', modalView);
-    if(!params.id) {
+    if (!params.id) {
       this.onChildModalReady();
     }
   },
   onRender: function () {
     app.wait(false);
-    this.checkState();
+    this.updateUI();
   },
-  checkState: function () {
+  updateUI: function () {
     var token = localStorage.getItem('token');
     if (token) {
       this.showChildView('sidebarRegion', new SidebarView());
@@ -76,6 +71,14 @@ var LayoutBase = Marionette.View.extend({
       this.getRegion('sidebarRegion').empty();
       this.getRegion('headerRegion').empty();
     }
+  },
+  onDomRefresh() {
+    new Tether({
+      element: '.sidebar',
+      target: '.guide',
+      attachment: 'top right',
+      targetAttachment: 'top left'
+    });
   }
 });
 
