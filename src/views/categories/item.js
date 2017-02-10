@@ -7,13 +7,11 @@ var CategoryItemView = Marionette.View.extend({
   template: template,
   className: 'category-item',
   tagName: 'tr',
-  attributes: {
-    role: 'row'
-  },
   modelEvents: {
     'destroy': 'onModelDestroy'
   },
   events: {
+    'click .update': 'onUpdate',
     'click': 'onClick',
   },
   onClick: function(e) {
@@ -21,6 +19,12 @@ var CategoryItemView = Marionette.View.extend({
     var isSelected = this.$el.toggleClass('selected');
     this.model.set('_selected', this.$el.hasClass('selected'));
     this.triggerMethod('model:selected', e, this.model);
+  },
+  onUpdate: function(e) {
+    e.preventDefault();
+    return app.navigate('categories/category', {
+      id: this.model.get('_id')
+    });
   },
   onModelDestroy: function(model) {
     this.triggerMethod('model:removed', model);

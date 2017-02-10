@@ -27,7 +27,7 @@ var RecordsView = Marionette.CompositeView.extend({
     this.collection = new RecordSchema.Records();
     this.categories = new CategorySchema.Categories();
     this.collection.fetch();
-    if(this.wantsFilters) {
+    if (this.wantsFilters) {
       app.trigger('show:filters');
     }
   },
@@ -35,18 +35,22 @@ var RecordsView = Marionette.CompositeView.extend({
     app.triggerMethod("sidebar:switch", ".for-filters");
   },
   getSelectedModels() {
-    var selected = _.filter(this.collection.models, function(model) {
+    var selected = _.filter(this.collection.models, function (model) {
       return model.get('_selected') == true;
     });
     return selected;
   },
   onDomRefresh() {
-    this.getUI('table').addClass('dataTable').DataTable({
-      order: [[0, 'desc'], [1, 'asc'], [2, 'asc']],
+    var table = this.getUI('table');
+    table.addClass('dataTable').DataTable({
+      columnDefs: [{
+        "orderable": false,
+        "targets": 3
+        }],
       paging: false,
       bInfo: false,
       searching: false
-    });
+    }).order([2, 'desc']).draw();
   },
   onChildModelSelected(e, model) {
     var target = e.currentTarget;
@@ -63,7 +67,7 @@ var RecordsView = Marionette.CompositeView.extend({
     this.triggerMethod('fetch:records', this.collection);
     this.render();
   },
-  serializeData: function() {
+  serializeData: function () {
     return _.extend(this.collection.toJSON(), {
       title: this.title
     });

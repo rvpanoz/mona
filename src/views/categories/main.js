@@ -8,31 +8,22 @@ var CategoriesLayoutView = Marionette.View.extend({
   template: template,
   title: 'Categories',
   regions: {
-    categoriesRegion: '#categories-content',
-    detailsRegion: '#details-content'
+    categoriesRegion: '#categories-content'
   },
   childViewTriggers: {
     'fetch:categories': 'child:fetch:categories',
     'model:removed': 'child:model:removed',
-    'model:selected': 'child:model:selected',
-    'toggle:details': 'child:toggle:details'
+    'model:selected': 'child:model:selected'
   },
   onRender: function() {
     var categoriesView = new CategoriesView();
     this.showChildView('categoriesRegion', categoriesView);
   },
-  onChildToggleDetails: function(hide) {
-    var detailsView = this.getChildView('detailsRegion');
-  },
   onChildModelSelected: function(e, model) {
-    var detailsView = this.getChildView('detailsRegion');
-    detailsView.setModel(model);
-    detailsView.render();
+
   },
   onChildModelRemoved: function(model) {
-    debugger;
-    var detailsRegion = this.getRegion('detailsRegion');
-    detailsRegion.currentView.$el.empty();
+
   },
   serializeData: function() {
     return {
@@ -40,16 +31,6 @@ var CategoriesLayoutView = Marionette.View.extend({
     }
   },
   onChildFetchCategories: function(collection) {
-    var detailsView = this.getChildView('detailsRegion');
-
-    this.collection = collection;
-    if(!detailsView && this.collection.length) {
-      var model = this.collection.first();
-      model.set('_selected', true);
-      this.showChildView('detailsRegion', new DetailsView({
-        model: model
-      }));
-    }
     app.triggerMethod("sidebar:switch", "actions");
   },
 });

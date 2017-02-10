@@ -15,12 +15,16 @@ $nav-color: #fff;
 }
 
 .main {
-    border: 0;
-    margin-top: 5px;
-    overflow-x: hidden;
+  border: 0;
+  margin-top: 5px;
+  overflow-x: hidden;
 }
 
 .header-navbar-mobile,
 .topnavbar {
-    background: $nav-color;
+  background: $nav-color;
+}
+
+.sidebar__menu{
+  overflow:visible;
 }
