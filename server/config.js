@@ -8,5 +8,5 @@ module.exports = {
   mongoDebug: false,
   mongoConString: 'mongodb://127.0.0.1/mona_db',
   port: 5510,
-  perPage: 15
+  perPage: 3
 }

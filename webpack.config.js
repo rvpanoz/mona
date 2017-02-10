@@ -39,14 +39,14 @@ module.exports = {
     fallback: [path.join(__dirname, './node_modules')]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: true,
-      },
-      output: {
-        comments: true,
-      },
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: true,
+    //   },
+    //   output: {
+    //     comments: true,
+    //   },
+    // }),
     new CopyWebpackPlugin([{
       from: path.resolve(__dirname, './index.html'),
       to: path.resolve(__dirname, './dist/index.html')

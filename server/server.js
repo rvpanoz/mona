@@ -84,6 +84,16 @@ server.register(require('hapi-auth-jwt'), (err) => {
     }
   });
 
+  server.route({
+    method: 'GET',
+    path: '/init',
+    config: {
+      handler: function(req, reply) {
+        return app.init(req, reply);
+      }
+    }
+  })
+
   //record routes
   server.route(require('./routes/record-routes'));
 

@@ -57,6 +57,7 @@ var RecordsView = Marionette.CompositeView.extend({
     var selected = this.getSelectedModels();
     var hide = selected.length > 1;
     var index = $(e.currentTarget)[0].rowIndex;
+    
     this.getUI('table').find('tr').removeClass('selected');
     $(target).toggleClass('selected');
   },

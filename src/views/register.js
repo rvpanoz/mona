@@ -25,9 +25,13 @@ var RegisterView = Marionette.View.extend({
     this.listenTo(this.model, 'invalid', _.bind(this._onInvalid, this));
   },
 
-  _onInvalid: function(model, errors) {
-    var message = errors[0].message;
-    app.showMessage(message);
+  _onInvalid(model, errors) {
+    _.each(errors, function (err) {
+      var input = this.$('.form-group-' + err.field);
+      if (input.length) {
+        input.addClass('has-error');
+      }
+    }, this);
     return false;
   },
 

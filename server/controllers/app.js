@@ -35,7 +35,11 @@ module.exports = function(server) {
   var app = _.extend({}, {
 
     user_id: null,
-
+    init(req, reply) {
+      reply({
+        perPage: config.perPage
+      });
+    },
     users: {
       authenticate: function(req, reply) {
         // If the user's password is correct, we can issue a token.
@@ -69,11 +73,6 @@ module.exports = function(server) {
             });
           });
         });
-      }
-    },
-    charts: {
-      getMonthlyData: function(uid) {
-        //todo..
       }
     }
   });

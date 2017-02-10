@@ -62,5 +62,4 @@ define([
 
   //start application
   app.start();
-
 });

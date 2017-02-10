@@ -21,10 +21,14 @@ var app = Marionette.Application.extend({
   },
   onStart() {
     var token = localStorage.getItem('token');
+
+    this.config = config;
     this.showView(new LayoutView());
+
     if (Backbone.history) {
       Backbone.history.start();
     }
+
     this.listenTo(this, 'app:signin', this.onSignin, this, arguments);
     this.listenTo(this, 'app:signout', this.onSignout, this, arguments);
     this.listenTo(this, 'hide:sidebar', this.onHideSidebar, this, arguments);
@@ -48,7 +52,6 @@ var app = Marionette.Application.extend({
   onSignin(token) {
     localStorage.setItem('token', token);
     this.onAppEvent('userstate:change', true);
-    this.navigate('home');
     return false;
   },
   onSignout() {
