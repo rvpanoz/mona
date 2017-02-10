@@ -23,6 +23,14 @@ var FormView = Marionette.View.extend({
       }
     }, this);
 
+    if(errors.length) {
+      var alertView = require('../views/common/alert');
+      var activeAlert = new alertView({
+        alertType: 'alert-danger',
+        message: errors[0].error
+      });
+      activeAlert.render();
+    }
     return _.isEmpty(errors) ? void 0 : errors;
   },
   onSave: function(e) {
