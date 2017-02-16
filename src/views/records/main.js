@@ -1,8 +1,8 @@
-import Marionette from 'backbone.marionette';
-import RecordsView from './records';
-import OverView from './overview';
-import PaginationView from 'pagination';
-import template from '../../templates/records/main.hbs';
+const Marionette = require('backbone.marionette');
+const RecordsView = require('./records');
+const OverView = require('./overview');
+const PaginationView = require('components/pagination/pagination');
+const template = require('templates/records/main.hbs');
 
 var RecordsLayoutView = Marionette.View.extend({
   template: template,

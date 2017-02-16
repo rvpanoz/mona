@@ -7,7 +7,7 @@ var AlertView = Marionette.View.extend({
     this.opts = _.extend(params);
     this.alertType = this.opts.alertType;
     this.message = this.opts.message;
-    this.template = require('../../templates/common/' + this.alertType + '.hbs');
+    this.template = require('templates/common/' + this.alertType + '.hbs');
   },
   onBeforeRender() {
   	$("body").append(this.$el);

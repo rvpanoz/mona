@@ -23,6 +23,7 @@
     "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^5.7.0",
     "lodash": "^4.17.2",
+    "mongodb": "^2.2.24",
     "mongoose": "^4.6.6",
     "mongoose-paginate": "^5.0.3",
     "vision": "^4.1.0",

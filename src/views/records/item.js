@@ -1,9 +1,9 @@
-import Marionette from 'backbone.marionette';
-import RecordSchema from 'RecordSchema';
-import CategorySchema from 'CategorySchema';
-import moment from 'moment';
-import config from '../../config';
-import template from '../../templates/records/item.hbs';
+const Marionette = require('backbone.marionette');
+const RecordSchema = require('schemas/record');
+const CategorySchema = require('schemas/category');
+const template = require('templates/records/item.hbs');
+const moment = require('moment');
+const config = require('../../config');
 
 var RecordItemView = Marionette.View.extend({
   template: template,

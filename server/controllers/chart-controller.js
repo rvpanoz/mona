@@ -6,8 +6,6 @@ const Record = require('../models/record');
 const Category = require('../models/category');
 const mongoose = require('mongoose');
 
-var self = this;
-
 var ChartController = _.extend({
   getData: function(req, reply) {
     var id = req.auth.credentials.id;
@@ -43,8 +41,11 @@ var ChartController = _.extend({
         }
       }
     ], function(err, records) {
+      console.log(records);
+      if(err) throw new Error(err);
       reply({
-        data: records.reverse()
+        success: true,
+        data: records
       });
     });
   }

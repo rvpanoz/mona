@@ -1,8 +1,7 @@
-const $ = require('jquery');
-const _ = require('underscore');
+const _ = require('lodash');
 const Marionette = require('backbone.marionette');
 const FiltersView = require('../records/filters');
-const template = require('../../templates/common/sidebar.hbs');
+const template = require('templates/common/sidebar.hbs');
 
 var SidebarView = Marionette.View.extend({
   template: template,

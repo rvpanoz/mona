@@ -1,7 +1,6 @@
-const $ = require('jquery')
-const _ = require('underscore')
+const _ = require('lodash')
 const Marionette = require('backbone.marionette')
-const template = require('../../templates/common/header.hbs')
+const template = require('templates/common/header.hbs')
 
 var HeaderView = Marionette.View.extend({
   template: template,

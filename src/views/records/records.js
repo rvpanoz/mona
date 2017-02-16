@@ -1,8 +1,8 @@
-import Marionette from 'backbone.marionette';
-import RecordSchema from 'RecordSchema';
-import CategorySchema from 'CategorySchema';
-import RecordItemView from './item';
-import template from '../../templates/records/records.hbs'
+const Marionette = require('backbone.marionette');
+const RecordSchema = require('schemas/record');
+const CategorySchema = require('schemas/category');
+const RecordItemView = require('./item');
+const template = require('templates/records/records.hbs');
 
 var RecordsView = Marionette.CompositeView.extend({
   template: template,
@@ -57,7 +57,7 @@ var RecordsView = Marionette.CompositeView.extend({
     var selected = this.getSelectedModels();
     var hide = selected.length > 1;
     var index = $(e.currentTarget)[0].rowIndex;
-    
+
     this.getUI('table').find('tr').removeClass('selected');
     $(target).toggleClass('selected');
   },

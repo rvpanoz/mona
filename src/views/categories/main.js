@@ -1,6 +1,6 @@
 const Marionette = require('backbone.marionette');
-const Schema = require('CategorySchema')
-const template = require('../../templates/categories/main.hbs')
+const Schema = require('schemas/category');
+const template = require('templates/categories/main.hbs');
 const CategoriesView = require('./categories');
 const DetailsView = require('./details');
 
@@ -19,12 +19,8 @@ var CategoriesLayoutView = Marionette.View.extend({
     var categoriesView = new CategoriesView();
     this.showChildView('categoriesRegion', categoriesView);
   },
-  onChildModelSelected: function(e, model) {
-
-  },
-  onChildModelRemoved: function(model) {
-
-  },
+  onChildModelSelected: function(e, model) {},
+  onChildModelRemoved: function(model) {},
   serializeData: function() {
     return {
       title: this.title

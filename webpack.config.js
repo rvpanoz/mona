@@ -1,147 +1,97 @@
-const path = require('path')
-const projectRoot = path.resolve(__dirname, '../')
-const webpack = require('webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval-cheap-module-source-map',
-  entry: {
-    app: ["./src/main.js"]
-  },
+  context: path.resolve(__dirname, './src'),
+  entry: './entry',
   output: {
-    path: path.resolve(__dirname),
-    filename: "./dist/bundle.js"
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundleprod.js',
+    publicPath: '/assets/'
   },
   devServer: {
-    inline: true,
-    contentBase: path.join(__dirname, "src"),
-    compress: false,
-    outputPath: path.join(__dirname, 'dist')
+    contentBase: path.resolve(__dirname, './src')
   },
   resolve: {
-    extensions: ['', '.js', '.json', '.css'],
-    fallback: [path.join(__dirname, './node_modules')],
-    root: path.resolve(__dirname),
+    extensions: ['.js', '.json', '.css', '.scss'],
+    modules: [
+      path.join(__dirname, './src'),
+      "node_modules"
+    ],
     alias: {
-      'src': path.resolve(__dirname, './src'),
-      'assets': path.resolve(__dirname, './src/assets'),
-      'handlebars': 'handlebars/dist/handlebars.min.js',
-      'app': path.resolve(__dirname, './src/app'),
-      'config': path.resolve(__dirname, './src/config'),
-      'utils': path.resolve(__dirname, './src/utils'),
-      'pagination': path.resolve(__dirname, './src/components/pagination/pagination'),
-      'FormView': path.resolve(__dirname, './src/libc/formView'),
-      'RecordSchema': path.resolve(__dirname, './src/schemas/record'),
-      'CategorySchema': path.resolve(__dirname, './src/schemas/category')
+      src: path.resolve(__dirname, 'src'),
+      libc: path.resolve(__dirname, 'src/libc'),
+      handlebars: 'handlebars/dist/handlebars.min.js',
+      assets: path.resolve(__dirname, 'src/assets'),
+      components: path.resolve(__dirname, 'src/components'),
+      scripts: path.resolve(__dirname, 'src/scripts'),
+      utilities: path.resolve(__dirname, 'src/utilities/'),
+      templates: path.resolve(__dirname, 'src/templates/'),
+      schemas: path.resolve(__dirname, 'src/schemas/'),
+      views: path.resolve(__dirname, 'src/views/'),
+      app$: path.resolve(__dirname, 'src/app.js')
     }
   },
-  resolveLoader: {
-    fallback: [path.join(__dirname, './node_modules')]
-  },
   plugins: [
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: true,
-    //   },
-    //   output: {
-    //     comments: true,
-    //   },
-    // }),
-    new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, './index.html'),
-      to: path.resolve(__dirname, './dist/index.html')
-    }]),
+    new webpack.optimize.UglifyJsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
-      jQuery: 'jquery',
       $: 'jquery',
-      jquery: 'jquery'
+      jQuery: 'jquery'
     })
   ],
   module: {
-    preLoaders: [{
-      test: /\.js$/, // include .js files
-      exclude: /node_modules/, // exclude any and all files in the node_modules folder
-      loader: "jshint-loader"
-    }],
-    loaders: [{
+    rules: [{
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        use: [
+          "style-loader", "css-loader"
+        ]
       },
       {
         test: /\.scss$/,
-        loaders: ["style-loader", "css-loader", "sass-loader"]
+        use: [{
+          loader: "style-loader" // creates style nodes from JS strings
+            }, {
+          loader: "css-loader" // translates CSS into CommonJS
+            }, {
+          loader: "sass-loader" // compiles Sass to CSS
+            }]
+      },
+      {
+        test: /[\/\\]node_modules[\/\\]jquery[\/\\]index\.js$/,
+        use: [{
+          loader: "imports?this=>window"
+        }]
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+        use: ['url-loader?limit=10000&mimetype=application/font-woff']
       },
       {
         test: /\.(ttf|otf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?|(jpg|gif)$/,
-        loader: 'file-loader'
+        use: ['file-loader']
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015']
-        }
-      },
-      {
-        test: /\.json$/,
-        loader: 'json'
-      },
-      {
-        test: /\.html$/,
-        loader: "underscore-template-loader",
-        query: {
-          engine: 'underscore',
-        }
+        use: [{
+          loader: 'babel-loader',
+          query: {
+            presets: ['es2015']
+          }
+        }]
       },
       {
         test: /\.(jpe?g|png|gif)$/i,
-        loaders: [
-            'file?hash=sha512&digest=hex&name=[hash].[ext]',
-            'image-webpack?bypassOnDebug'
+        use: [
+            'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+            'image-webpack-loader?bypassOnDebug'
         ]
       },
       {
-        test: /\.pug$/,
-        loader: 'pug-loader'
-      },
-      {
-        test: require.resolve("underscore"),
-        loader: 'expose?_'
-      },
-      {
         test: /\.hbs$/,
-        loader: "handlebars-loader"
+        use: ['handlebars-loader']
       }
     ]
-  },
-  sassLoader: {
-    includePaths: [path.resolve(__dirname, "./assets/scss")]
-  },
-  htmlLoader: {
-    ignoreCustomFragments: [/\{\{.*?}}/],
-    root: path.resolve(__dirname, 'templates'),
-    attrs: ['img:src', 'link:href']
-  },
-  jshint: {
-    // any jshint option http://www.jshint.com/docs/options/
-    camelcase: true,
-
-    // jshint errors are displayed by default as warnings
-    // set emitErrors to true to display them as errors
-    emitErrors: false,
-
-    // jshint to not interrupt the compilation
-    // if you want any file with jshint errors to fail
-    // set failOnHint to true
-    failOnHint: false,
-
-    // custom reporter function
-    reporter: function(errors) {}
   }
-};
+}

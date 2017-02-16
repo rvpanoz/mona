@@ -1,10 +1,10 @@
-const config = require('./config')
-const $ = require('jquery')
-const Bootstrap = require('bootstrap/dist/js/bootstrap.min')
-const Backbone = require('backbone')
-const Marionette = require('backbone.marionette')
-const LayoutView = require('./views/layout')
-const Router = require('./router')
+const jquery = require('jquery');
+
+const Backbone = require('backbone');
+const Marionette = require('backbone.marionette');
+const LayoutView = require('Views/layout');
+const Router = require('./router');
+const config = require('./config');
 
 var app = Marionette.Application.extend({
   user: null,

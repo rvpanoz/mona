@@ -1,10 +1,9 @@
+const $ = require('jquery');
 const Model = require('../libc/model');
 const Collection = require('../libc/collection');
-const moment = require('moment');
 const config = require('../config');
 
 var date = new Date();
-var fd = moment(date).format('DD/MM/YYYY');
 
 var Record = Model.extend({
   idAttribute: '_id',
@@ -21,7 +20,7 @@ var Record = Model.extend({
     category_id: null,
     payment_method: 1,
     kind: 1,
-    entry_date: fd,
+    entry_date: date,
     updated_at: date,
     created_at: date
   },

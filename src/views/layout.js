@@ -1,20 +1,20 @@
-import Marionette from 'backbone.marionette'
-import SidebarView from '../views/common/sidebar'
-import HeaderView from '../views/common/header'
-import template from '../templates/layout.hbs'
+const Marionette = require('backbone.marionette');
+const SidebarView = require('views/common/sidebar');
+const HeaderView = require('views/common/header');
+const template = require('templates/layout.hbs');
 
-import plugins from '../scripts/plugins';
-import themeJS from '../scripts/theme';
-import styles from '../scripts/all-styles';
+const plugins = require('scripts/plugins');
+const themeJS = require('scripts/theme');
+const styles = require('scripts/all-styles');
 
-import bootstrapCss from 'bootstrap/dist/css/bootstrap.css';
-import fontawesome from '../assets/font-awesome/css/font-awesome.min.css';
-import themeCss from '../assets/theme/right.light.css';
-import formsCss from '../assets/scss/forms.scss';
-import overrideCss from '../assets/scss/overrides.scss';
-import appCss from '../assets/scss/app.scss';
+const bootstrapCss = require('bootstrap/dist/css/bootstrap.css');
+const fontawesome = require('assets/font-awesome/css/font-awesome.min.css');
+const themeCss = require('assets/theme/right.light.css');
+const formsCss = require('assets/scss/forms.scss');
+const overrideCss = require('assets/scss/overrides.scss');
+const appCss = require('assets/scss/app.scss');
 
-var LayoutBase = Marionette.View.extend({
+var Layout = Marionette.View.extend({
   template: template,
   className: 'wrapper',
   childViewTriggers: {
@@ -34,7 +34,7 @@ var LayoutBase = Marionette.View.extend({
   initialize() {
     //loadView: attach view to mainRegion content
     this.listenTo(app, 'app:loadView', _.bind(function (url) {
-      var View = require("../views/" + url.cls);
+      var View = require("Views/" + url.cls);
       var params = _.extend(url.params, {});
       app.activeView = new View(params);
       this.showChildView('mainRegion', app.activeView);
@@ -71,15 +71,7 @@ var LayoutBase = Marionette.View.extend({
       this.getRegion('sidebarRegion').empty();
       this.getRegion('headerRegion').empty();
     }
-  },
-  onDomRefresh() {
-    new Tether({
-      element: '.sidebar',
-      target: '.guide',
-      attachment: 'top right',
-      targetAttachment: 'top left'
-    });
   }
 });
 
-module.exports = LayoutBase
+module.exports = Layout;

@@ -1,7 +1,8 @@
-const Marionette = require('backbone.marionette')
-const Schema = require('../schemas/user')
-const Stickit = require('backbone.stickit')
-const template = require('../templates/login.hbs')
+const _ = require('lodash');
+const Marionette = require('backbone.marionette');
+const Schema = require('schemas/user');
+const Stickit = require('backbone.stickit');
+const template = require('templates/login.hbs');
 
 var LoginView = Marionette.View.extend({
   template: template,
@@ -18,13 +19,15 @@ var LoginView = Marionette.View.extend({
     'input-password': '#input-password'
   },
   initialize(params) {
+    _.bindAll(this, '_onInvalid');
     this.params = params;
     this.model = new Schema.User();
-    this.listenTo(this.model, 'invalid', _.bind(this._onInvalid, this));
+    this.listenTo(this.model, 'invalid', this._onInvalid, arguments);
   },
   _onInvalid(model, errors) {
+    var self = this;
     _.each(errors, function (err) {
-      var input = this.$('.form-group-' + err.field);
+      var input = self.$el.find('.form-group-' + err.field);
       if (input.length) {
         input.addClass('has-error');
       }

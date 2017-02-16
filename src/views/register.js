@@ -1,8 +1,8 @@
-const Marionette = require('backbone.marionette')
-const Stickit = require('backbone.stickit')
-const Schema = require('../schemas/user')
-const template = require('../templates/register.hbs')
-const config = require('../config')
+const _ = require('lodash');
+const Marionette = require('backbone.marionette');
+const Schema = require('schemas/user');
+const Stickit = require('backbone.stickit');
+const template = require('templates/register.hbs');
 
 var RegisterView = Marionette.View.extend({
   template: template,
@@ -19,31 +19,29 @@ var RegisterView = Marionette.View.extend({
     'input-email': '#input-email',
     'input-password': '#input-password'
   },
-
-  initialize: function() {
+  initialize(params) {
+    _.bindAll(this, '_onInvalid');
+    this.params = params;
     this.model = new Schema.User();
-    this.listenTo(this.model, 'invalid', _.bind(this._onInvalid, this));
+    this.listenTo(this.model, 'invalid', this._onInvalid, arguments);
   },
-
   _onInvalid(model, errors) {
+    var self = this;
     _.each(errors, function (err) {
-      var input = this.$('.form-group-' + err.field);
+      var input = self.$el.find('.form-group-' + err.field);
       if (input.length) {
         input.addClass('has-error');
       }
     }, this);
     return false;
   },
-
   onRender: function() {
     this.stickit();
   },
-
   onCancel: function(e) {
     e.preventDefault();
     return app.navigate('login');
   },
-
   onRegister: function(e) {
     e.preventDefault();
     this.model.save(null, {
@@ -59,7 +57,6 @@ var RegisterView = Marionette.View.extend({
 
     return false;
   },
-
   serializeData: function() {
     return {
       title: this.title
@@ -67,4 +64,4 @@ var RegisterView = Marionette.View.extend({
   }
 });
 
-module.exports = RegisterView
+module.exports = RegisterView;

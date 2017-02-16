@@ -1,7 +1,6 @@
-const $ = require('jquery')
-const _ = require('underscore');
-const Backbone = require('backbone')
-const utils = require('./utils')
+const _ = require('lodash');
+const Backbone = require('backbone');
+const utils = require('./utils');
 
 module.exports = Backbone.Router.extend({
   routes: {

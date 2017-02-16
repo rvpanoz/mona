@@ -1,10 +1,9 @@
-import FormView from 'FormView';
-
-import Stickit from 'backbone.stickit';
-import Schema from 'RecordSchema';
-import CategorySchema from 'CategorySchema';
-import template from '../../templates/records/record.hbs';
-import moment from 'moment';
+const FormView = require('libc/formView');
+const Stickit = require('backbone.stickit');
+const Schema = require('schemas/record');
+const CategorySchema = require('schemas/category');
+const template = require('templates/records/record.hbs');
+const moment = require('moment');
 
 var RecordView = FormView.extend({
   template: template,

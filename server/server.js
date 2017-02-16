@@ -13,6 +13,8 @@ const config = require('./config');
 const verifyCredentials = require('./util').verifyCredentials;
 const verifyUniqueUser = require('./util').verifyUniqueUser;
 
+// const db = require('./db');
+
 // database connection
 Mongoose.connect(config.mongoConString);
 

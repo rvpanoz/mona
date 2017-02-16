@@ -1,14 +1,14 @@
 const Marionette = require('backbone.marionette');
-const Schema = require('CategorySchema');
-const template = require('../../templates/categories/categories.hbs');
+const Schema = require('schemas/category');
 const CategoryItemView = require('./item');
+const template = require('templates/categories/categories.hbs');
 
 var Categories = Marionette.CompositeView.extend({
   title: 'Your categories',
-  template: template,
-  childView: CategoryItemView,
   parentUrl: 'categories/main',
   childViewContainer: '.categories-items',
+  template: template,
+  childView: CategoryItemView,
   childViewTriggers: {
     'model:selected': 'child:selected:model'
   },
