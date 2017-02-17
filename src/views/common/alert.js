@@ -1,4 +1,4 @@
-const Marionette = require('backbone.marionette')
+const Marionette = require('backbone.marionette');
 
 var AlertView = Marionette.View.extend({
   alertType: 'info',

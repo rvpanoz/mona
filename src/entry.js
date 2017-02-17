@@ -1,25 +1,22 @@
-window.$ = window.jQuery = require("jquery");
-
 const _ = require('lodash');
 const Backbone = require('backbone');
 const Marionette = require('backbone.marionette');
+const Bootstrap = require('bootstrap/dist/js/bootstrap.min');
 const handlebars = require('handlebars');
 const Application = require('./app');
 const config = require('./config');
 
 Backbone.emulateHTTP = false;
-/**
- * Load templates using Handlebars engine
- * @param  {string} rawTemplate
- * @param  {object} options
- * @return {object}
- */
+
+// load templates using Handlebars engine
 Marionette.TemplateCache.prototype.lazyLoadTemplate = function (rawTemplate, options) {
   return Handlebars.compile(rawTemplate);
 };
 
+// instatiate global app
 window.app = new Application();
 
+// ajax setup
 $.ajaxSetup({
   cache: false,
   beforeSend: function(xhr) {
@@ -53,6 +50,9 @@ $.ajaxSetup({
   }
 });
 
+/**
+ * ajax events
+ */
 $(document).ajaxError(function(e, xhr, options, type) {
   app.wait(false);
 });

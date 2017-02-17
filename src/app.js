@@ -2,7 +2,7 @@ const jquery = require('jquery');
 
 const Backbone = require('backbone');
 const Marionette = require('backbone.marionette');
-const LayoutView = require('Views/layout');
+const LayoutView = require('views/layout');
 const Router = require('./router');
 const config = require('./config');
 
