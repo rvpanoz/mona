@@ -2,7 +2,6 @@ const Backbone = require('backbone');
 
 var User = Backbone.Model.extend({
   idAttribute: '_id',
-
   url: function() {
     if (this.isNew()) {
       return app.baseUrl + "/user";
@@ -10,18 +9,15 @@ var User = Backbone.Model.extend({
       return app.baseUrl + "/user/" + this.get('_id');
     }
   },
-
   defaults: {
     email: null,
     password: null,
     updated_at: new Date(),
     created_at: new Date()
   },
-
   parse: function(response) {
     return response.data;
   },
-
   validate: function(attrs) {
     var errors = [];
 
@@ -57,9 +53,7 @@ var User = Backbone.Model.extend({
 });
 
 var Users = Backbone.Collection.extend({
-
   url: app.baseUrl + "/data/users",
-
   parse: function(response) {
     return response.data;
   }

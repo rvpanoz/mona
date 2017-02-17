@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const Backbone = require('backbone');
 const Marionette = require('backbone.marionette');
-const handlebars = require('handlebars');
+const Handlebars = require('handlebars');
 const Application = require('./app');
 const config = require('./config');
 

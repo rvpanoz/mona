@@ -21,7 +21,6 @@ module.exports = {
     alias: {
       src: path.resolve(__dirname, 'src'),
       libc: path.resolve(__dirname, 'src/libc'),
-      handlebars: 'handlebars/dist/handlebars.min.js',
       assets: path.resolve(__dirname, 'src/assets'),
       components: path.resolve(__dirname, 'src/components'),
       scripts: path.resolve(__dirname, 'src/scripts'),
