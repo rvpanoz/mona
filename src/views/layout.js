@@ -1,4 +1,5 @@
 const Marionette = require('backbone.marionette');
+const Bootstrap = require('bootstrap/dist/js/bootstrap.min');
 const SidebarView = require('views/common/sidebar');
 const HeaderView = require('views/common/header');
 const template = require('templates/layout.hbs');
@@ -34,7 +35,7 @@ var Layout = Marionette.View.extend({
   initialize() {
     //loadView: attach view to mainRegion content
     this.listenTo(app, 'app:loadView', _.bind(function (url) {
-      var View = require("Views/" + url.cls);
+      var View = require("views/" + url.cls);
       var params = _.extend(url.params, {});
       app.activeView = new View(params);
       this.showChildView('mainRegion', app.activeView);

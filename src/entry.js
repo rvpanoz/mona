@@ -1,7 +1,6 @@
 const _ = require('lodash');
 const Backbone = require('backbone');
 const Marionette = require('backbone.marionette');
-const Bootstrap = require('bootstrap/dist/js/bootstrap.min');
 const handlebars = require('handlebars');
 const Application = require('./app');
 const config = require('./config');
@@ -27,7 +26,7 @@ $.ajaxSetup({
     400: function(data) {
       if (data && data.responseText) {
         var response = JSON.parse(data.responseText);
-        var alertView = require('./views/common/alert');
+        var alertView = require('views/common/alert');
         var activeAlert = new alertView({
           alertType: 'alert-danger',
           message: response.message
@@ -38,7 +37,7 @@ $.ajaxSetup({
     401: function(data) {
       if (data && data.responseText) {
         var response = JSON.parse(data.responseText);
-        var alertView = require('./views/common/alert');
+        var alertView = require('views/common/alert');
         var activeAlert = new alertView({
           alertType: 'alert-danger',
           message: response.message
