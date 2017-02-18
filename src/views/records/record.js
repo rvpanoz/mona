@@ -1,5 +1,4 @@
 const FormView = require('libc/formView');
-const Stickit = require('backbone.stickit');
 const Schema = require('schemas/record');
 const CategorySchema = require('schemas/category');
 const template = require('templates/records/record.hbs');
@@ -19,7 +18,6 @@ var RecordView = FormView.extend({
     '#input-notes': 'notes'
   },
   modelEvents: {
-    'invalid': 'onValidationError',
     'sync': 'render'
   },
   collectionEvents: {
@@ -39,6 +37,7 @@ var RecordView = FormView.extend({
   initialize: function() {
     this.model = new Schema.Record();
     this.collection = new CategorySchema.Categories();
+
     this.collection.fetch({
       success: _.bind(function() {
         if(this.params.id) {
@@ -47,11 +46,13 @@ var RecordView = FormView.extend({
         }
       }, this)
     });
+
     RecordView.__super__.initialize.call(this, arguments);
   },
   onRender: function() {
     RecordView.__super__.onRender.call(this, arguments);
 
+    //** caregory_id
     this.ui.category.selectpicker();
 
     //** entry_date

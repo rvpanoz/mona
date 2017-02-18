@@ -3,8 +3,13 @@ const Stickit = require('backbone.stickit');
 
 var FormView = Marionette.View.extend({
   initialize(opts) {
+    _.bindAll(this, 'onValidationError');
     this.params = _.extend({}, opts[0]);
-    this.listenTo(this.model, 'invalid', this.onValidationError, this);
+    if(this.modelEvents) {
+      _.extend(this.modelEvents, {
+        'invalid': 'onValidationError',
+      });
+    }
   },
   onRender() {
     if(this.bindings) {
@@ -14,17 +19,18 @@ var FormView = Marionette.View.extend({
   onValidationError(model) {
     var errors = model.validationError;
     var groups = this.$('.form-group');
+    var self  = this;
 
     groups.removeClass('has-error');
     _.each(errors, function(err) {
-      var element = this.$('.form-group-' + err.field);
+      var element = self.$('.form-group-' + err.field);
       if (element) {
         element.addClass('has-error');
       }
     }, this);
 
     if(errors.length) {
-      var alertView = require('../views/common/alert');
+      var alertView = require('views/common/alert');
       var activeAlert = new alertView({
         alertType: 'alert-danger',
         message: errors[0].error

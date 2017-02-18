@@ -37,7 +37,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
-      jQuery: 'jquery'
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
     })
   ],
   module: {
@@ -50,12 +51,15 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [{
-          loader: "style-loader" // creates style nodes from JS strings
-            }, {
-          loader: "css-loader" // translates CSS into CommonJS
-            }, {
-          loader: "sass-loader" // compiles Sass to CSS
-            }]
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader"
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -78,8 +82,8 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif)$/i,
         use: [
-            'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-            'image-webpack-loader?bypassOnDebug'
+          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack-loader?bypassOnDebug'
         ]
       },
       {
