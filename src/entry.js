@@ -26,23 +26,11 @@ $.ajaxSetup({
     400: function(data) {
       if (data && data.responseText) {
         var response = JSON.parse(data.responseText);
-        var alertView = require('views/common/alert');
-        var activeAlert = new alertView({
-          alertType: 'alert-danger',
-          message: response.message
-        });
-        activeAlert.render();
       }
     },
     401: function(data) {
       if (data && data.responseText) {
         var response = JSON.parse(data.responseText);
-        var alertView = require('views/common/alert');
-        var activeAlert = new alertView({
-          alertType: 'alert-danger',
-          message: response.message
-        });
-        activeAlert.render();
         app.triggerMethod('app:signout');
       }
     }

@@ -6,8 +6,8 @@ module.exports = {
   entry: './entry',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'bundleprod.js',
-    publicPath: '/assets/'
+    filename: 'app.js',
+    publicPath: '/public/'
   },
   devServer: {
     contentBase: path.resolve(__dirname, './src')
@@ -22,7 +22,7 @@ module.exports = {
       handlebars: 'handlebars/dist/handlebars.min.js',
       src: path.resolve(__dirname, 'src'),
       libc: path.resolve(__dirname, 'src/libc'),
-      assets: path.resolve(__dirname, 'src/assets'),
+      public: path.resolve(__dirname, 'src/public'),
       components: path.resolve(__dirname, 'src/components'),
       scripts: path.resolve(__dirname, 'src/scripts'),
       utilities: path.resolve(__dirname, 'src/utilities/'),
@@ -61,13 +61,26 @@ module.exports = {
           }
         ]
       },
+      // Font Definitions
       {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: ['url-loader?limit=10000&mimetype=application/font-woff']
+        test: /\.svg$/,
+        loader: 'url-loader?limit=65000&mimetype=image/svg+xml&name=public/[name].[ext]'
       },
       {
-        test: /\.(ttf|otf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?|(jpg|gif)$/,
-        use: ['file-loader']
+        test: /\.woff$/,
+        loader: 'url-loader?limit=65000&mimetype=application/font-woff&name=public/[name].[ext]'
+      },
+      {
+        test: /\.woff2$/,
+        loader: 'url-loader?limit=65000&mimetype=application/font-woff2&name=public/[name].[ext]'
+      },
+      {
+        test: /\.[ot]tf$/,
+        loader: 'url-loader?limit=65000&mimetype=application/octet-stream&name=[name].[ext]'
+      },
+      {
+        test: /\.eot$/,
+        loader: 'url-loader?limit=65000&mimetype=application/vnd.ms-fontobject&name=[name].[ext]'
       },
       {
         test: /\.js$/,

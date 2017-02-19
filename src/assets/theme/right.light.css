@@ -1695,7 +1695,6 @@ body.main-scrollable .main {
 .login__logo {
   height: 125px;
   margin-bottom: 20px;
-  background: url('../img/rightlogo_dark.png') 50% top no-repeat;
   background-size: contain;
 }
 .no-padding {
