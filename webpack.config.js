@@ -1,5 +1,36 @@
 const path = require('path');
 const webpack = require('webpack');
+const isProd = (process.env.NODE_ENV === 'production');
+
+function getPlugins() {
+  var plugins = [];
+
+  // Always expose NODE_ENV to webpack, you can now use `process.env.NODE_ENV`
+  // inside your code for any environment checks; UglifyJS will automatically
+  // drop any unreachable code.
+  plugins.push(new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': process.env.NODE_ENV
+    }
+  }));
+
+  // Conditionally add plugins for Production builds.
+  if (isProd) {
+    plugins.push(new webpack.optimize.UglifyJsPlugin());
+  }
+
+  // Conditionally add plugins for Development
+  else {
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+    plugins.push(new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    }))
+  }
+
+  return plugins;
+}
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -32,15 +63,7 @@ module.exports = {
       app$: path.resolve(__dirname, 'src/app.js')
     }
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    })
-  ],
+  plugins: getPlugins(),
   module: {
     rules: [{
         test: /\.css$/,
