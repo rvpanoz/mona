@@ -35,4 +35,6 @@ npm run start
 ```
 to start the webpack dev server
 
+go to http://localhost:8080 to preview the app :()
+
 ### Technology stack
