@@ -40,7 +40,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'app.js',
-    publicPath: '/mona-prod/'
+    publicPath: '/public/'
   },
   devServer: {
     contentBase: path.resolve(__dirname, './src')

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod": "cross-env NODE_ENV=production webpack-dev-server --env.prod=true",
-    "build": "rm -rf dist && cross-env NODE_ENV=production webpack --env.prod=true",
+    "build": "cross-env NODE_ENV=production webpack --env.prod=true",
     "start": "webpack-dev-server"
   },
   "author": "rvpanoz@gmail.com",
