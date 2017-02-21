@@ -26,11 +26,27 @@ $.ajaxSetup({
     400: function(data) {
       if (data && data.responseText) {
         var response = JSON.parse(data.responseText);
+        alert(response.message);
       }
     },
     401: function(data) {
       if (data && data.responseText) {
         var response = JSON.parse(data.responseText);
+        app.showMessage(response.message, 'danger')
+        app.triggerMethod('app:signout');
+      }
+    },
+    403: function(data) {
+      if (data && data.responseText) {
+        var response = JSON.parse(data.responseText);
+        app.showMessage(response.message, 'danger')
+        app.triggerMethod('app:signout');
+      }
+    },
+    404: function(data) {
+      if (data && data.responseText) {
+        var response = JSON.parse(data.responseText);
+        app.showMessage(response.message, 'danger')
         app.triggerMethod('app:signout');
       }
     }

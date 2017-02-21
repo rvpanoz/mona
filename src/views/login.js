@@ -32,6 +32,10 @@ var LoginView = Marionette.View.extend({
         input.addClass('has-error');
       }
     }, this);
+    if (errors.length) {
+      var message = errors[0].message;
+      app.showMessage(message, 'danger');
+    }
     return false;
   },
   onRegister(e) {

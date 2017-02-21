@@ -14,6 +14,12 @@ function getPlugins() {
     }
   }));
 
+  plugins.push(new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    'window.jQuery': 'jquery'
+  }));
+
   // Conditionally add plugins for Production builds.
   if (isProd) {
     plugins.push(new webpack.optimize.UglifyJsPlugin());
@@ -22,11 +28,6 @@ function getPlugins() {
   // Conditionally add plugins for Development
   else {
     plugins.push(new webpack.HotModuleReplacementPlugin());
-    plugins.push(new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery'
-    }))
   }
 
   return plugins;
@@ -34,11 +35,12 @@ function getPlugins() {
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
+  devtool: 'source-map',
   entry: './entry',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'app.js',
-    publicPath: '/public/'
+    publicPath: '/mona-prod/'
   },
   devServer: {
     contentBase: path.resolve(__dirname, './src')
@@ -86,24 +88,8 @@ module.exports = {
       },
       // Font Definitions
       {
-        test: /\.svg$/,
-        loader: 'url-loader?limit=65000&mimetype=image/svg+xml&name=public/[name].[ext]'
-      },
-      {
-        test: /\.woff$/,
-        loader: 'url-loader?limit=65000&mimetype=application/font-woff&name=public/[name].[ext]'
-      },
-      {
-        test: /\.woff2$/,
-        loader: 'url-loader?limit=65000&mimetype=application/font-woff2&name=public/[name].[ext]'
-      },
-      {
-        test: /\.[ot]tf$/,
-        loader: 'url-loader?limit=65000&mimetype=application/octet-stream&name=[name].[ext]'
-      },
-      {
-        test: /\.eot$/,
-        loader: 'url-loader?limit=65000&mimetype=application/vnd.ms-fontobject&name=[name].[ext]'
+        test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader?name=[name].[ext]'
       },
       {
         test: /\.js$/,

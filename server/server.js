@@ -80,7 +80,7 @@ server.register(require('hapi-auth-jwt'), (err) => {
         method: verifyCredentials,
         assign: 'user'
       }],
-      handler: (req, reply) => {
+      handler(req, reply) {
         return app.users.authenticate(req, reply);
       }
     }
@@ -90,7 +90,7 @@ server.register(require('hapi-auth-jwt'), (err) => {
     method: 'GET',
     path: '/init',
     config: {
-      handler: function(req, reply) {
+      handler(req, reply) {
         return app.init(req, reply);
       }
     }

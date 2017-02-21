@@ -85,8 +85,22 @@ var app = Marionette.Application.extend({
         spinner.hide();
       }, 1000);
     }
+  },
+  showMessage(message, type) {
+    return $.bootstrapGrowl(message, {
+      ele: 'body',
+      type: type,
+      offset: {
+        from: 'top',
+        amount: 20
+      },
+      align: 'right',
+      width: 250,
+      delay: 4000,
+      allow_dismiss: true,
+      stackup_spacing: 10
+    });
   }
-
 });
 
 window.app = module.exports = app

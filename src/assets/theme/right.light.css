@@ -521,7 +521,6 @@ body.main-scrollable .main {
   background-position: 50% 50%;
   background-size: cover;
   background-color: #e9e9e9;
-  background-image: url('../img/nophoto.png');
   border-radius: 4px;
 }
 .users-preview__info {
@@ -1548,7 +1547,6 @@ body.main-scrollable .main {
   background-position: 50% 50%;
   background-size: cover;
   background-color: #e9e9e9;
-  background-image: url('../img/nocover.png');
   border-radius: 4px;
 }
 .products-preview__info {

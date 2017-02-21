@@ -26,7 +26,7 @@ function verifyUniqueUser(req, res) {
   });
 }
 
-function verifyCredentials(req, res) {
+function verifyCredentials(req, reply) {
 
   const password = req.payload.password;
 
@@ -43,13 +43,13 @@ function verifyCredentials(req, res) {
     if (user) {
       bcrypt.compare(password, user.password, (err, isValid) => {
         if (isValid) {
-          res(user);
+          reply(user);
         } else {
-          res(Boom.unauthorized('Incorrect password!'));
+          reply(Boom.forbidden( "Password is invalid" ));
         }
       });
     } else {
-      res(Boom.unauthorized('Incorrect password!'));
+      reply(Boom.notFound('User not found'));
     }
   });
 }
