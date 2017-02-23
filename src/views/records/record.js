@@ -24,6 +24,7 @@ var RecordView = FormView.extend({
     'sync': 'onSync'
   },
   events: {
+    'click .generate': 'onGenerate',
     'click .save': 'onSave',
     'click .cancel': 'onBack',
     'click .add-category': 'onAddCategory'
@@ -64,6 +65,12 @@ var RecordView = FormView.extend({
         this.model.set('entry_date', fd);
       }, this)
     });
+  },
+  onGenerate(e) {
+    e.preventDefault();
+    var faker = require('faker');
+    var randomAmount = faker.name.findName();
+    console.log(randomAmount);
   },
   onAddCategory(e) {
     e.preventDefault();

@@ -99,6 +99,9 @@
                             <div class="btn-toolbar">
                                 <button class="btn btn-danger cancel pull-right">Cancel</button>
                                 <button class="btn btn-info save pull-right">Save record</button>
+                                {{#if isAdmin}}
+                                  <button class="btn btn-warning ganerate pull-right">Generate</button>
+                                {{/if}}
                             </div>
                         </form>
                     </div>
