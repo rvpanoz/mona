@@ -41,7 +41,7 @@ module.exports = {
     publicPath: '/public'
   },
   devServer: {
-    open: true,
+    open: false,
     contentBase: path.resolve(__dirname, './src')
   },
   resolve: {

@@ -10,8 +10,8 @@ var User = Backbone.Model.extend({
     }
   },
   defaults: {
-    email: null,
-    password: null,
+    email: 'rvpanoz@gmail.com',
+    password: 'zouton128',
     updated_at: new Date(),
     created_at: new Date()
   },

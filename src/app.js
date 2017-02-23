@@ -11,24 +11,42 @@ var app = Marionette.Application.extend({
   content: null,
   activeAlert: null,
   region: '#app-content',
-  baseUrl: config.api.url,
   publicUrls: ['login', 'register'],
-  onAppEvent(event, opts) {
-    this.trigger(event, opts);
-  },
+  baseUrl: config.api.url,
   onBeforeStart() {
+    /**
+     * Instatiate router
+     * @type {Router}
+     */
     this.router = new Router();
   },
   onStart() {
+
+    /**
+     * Get JWToken
+     */
     var token = localStorage.getItem('token');
 
-    this.config = config;
+    /**
+     * setup config
+     */
+    this.config = _.extend({}, config);
+
+    /**
+     * Show layout view
+     */
     this.showView(new LayoutView());
 
+    /**
+     * Backbone history start
+     */
     if (Backbone.history) {
       Backbone.history.start();
     }
 
+    /**
+     * Global app events
+     */
     this.listenTo(this, 'app:signin', this.onSignin, this, arguments);
     this.listenTo(this, 'app:signout', this.onSignout, this, arguments);
     this.listenTo(this, 'hide:sidebar', this.onHideSidebar, this, arguments);
@@ -46,23 +64,31 @@ var app = Marionette.Application.extend({
     this.trigger('hide:sidebar');
     return false;
   },
+  onAppEvent(event, opts) {
+    this.trigger(event, opts);
+  },
   onHideSidebar() {
     $('.dashboard').removeClass('dashboard_menu');
   },
-  onSignin(token) {
+  onSignin(token, isAdmin) {
     localStorage.setItem('token', token);
+    localStorage.setItem('isAdmin', isAdmin);
     this.onAppEvent('userstate:change', true);
     this.navigate('home');
     return false;
   },
   onSignout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('isAdmin');
     this.onAppEvent('userstate:change', false);
     this.navigate('login');
     return false;
   },
+  isAdministrator() {
+    return localStorage.getItem('isAdmin');
+  },
   updateUI() {
-    return localStorage.get('token');
+    return localStorage.getItem('token');
   },
   stringToDate(_date, _format, _delimiter) {
     var formatLowerCase = _format.toLowerCase();

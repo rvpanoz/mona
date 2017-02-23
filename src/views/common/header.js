@@ -8,7 +8,7 @@ var HeaderView = Marionette.View.extend({
     'click a.navigation-link': 'onNavigate',
     'click a.signout': 'signout'
   },
-  onNavigate: function(e) {
+  onNavigate(e) {
     e.preventDefault();
     var second_nav = $(this).find('.collapse').first();
     if (second_nav.length) {
@@ -21,11 +21,16 @@ var HeaderView = Marionette.View.extend({
     }
     return false;
   },
-  signout: function(e) {
+  signout(e) {
     e.preventDefault();
     localStorage.removeItem('token');
     app.navigate('login');
     return false;
+  },
+  serializeData() {
+    return {
+      isAdmin: app.isAdministrator()
+    }
   }
 });
 
