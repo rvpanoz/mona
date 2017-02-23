@@ -1,9 +1,9 @@
-const $ = require('jquery');
+const moment = require('moment');
 const Model = require('../libc/model');
 const Collection = require('../libc/collection');
 const config = require('../config');
 
-var date = new Date();
+var date = moment(new Date()).format('DD/MM/YYYY');
 
 var Record = Model.extend({
   idAttribute: '_id',
