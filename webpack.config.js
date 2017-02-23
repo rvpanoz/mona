@@ -5,9 +5,7 @@ const isProd = (process.env.NODE_ENV === 'production');
 function getPlugins() {
   var plugins = [];
 
-  // Always expose NODE_ENV to webpack, you can now use `process.env.NODE_ENV`
-  // inside your code for any environment checks; UglifyJS will automatically
-  // drop any unreachable code.
+  // Always expose NODE_ENV to webpack
   plugins.push(new webpack.DefinePlugin({
     'process.env': {
       'NODE_ENV': process.env.NODE_ENV
@@ -40,9 +38,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'app.js',
-    publicPath: '/public/'
+    publicPath: '/public'
   },
   devServer: {
+    open: true,
     contentBase: path.resolve(__dirname, './src')
   },
   resolve: {
