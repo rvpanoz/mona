@@ -23,6 +23,10 @@ module.exports = Backbone.Router.extend({
     } else {
       if (($.inArray(url.cls, app.publicUrls) !== -1)) {
         app.onAppEvent('userstate:change', token);
+      } else {
+        if (($.inArray(url.cls, app.adminUrls) !== -1) && !app.isAdministrator()) {
+          return app.navigate('home');
+        }
       }
     }
 

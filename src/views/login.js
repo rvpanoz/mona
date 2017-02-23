@@ -62,13 +62,17 @@ var LoginView = Marionette.View.extend({
       },
       success: function (response) {
         var token = response.data.id_token;
-        var isAdmin = response.data.admin || false;
-        app.onAppEvent('app:signin', token, isAdmin);
+        var isAdmin = response.data.admin;
+        app.onAppEvent('app:signin', {
+          token: token,
+          isAdmin: isAdmin
+        });
       },
-      error: _.bind(function () {
-
+      error: _.bind(function (err) {
+        throw new Error(err);
       }, this)
     });
+
     return false;
   },
   serializeData() {

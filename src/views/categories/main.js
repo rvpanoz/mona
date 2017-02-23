@@ -28,7 +28,7 @@ var CategoriesLayoutView = Marionette.View.extend({
   },
   onChildFetchCategories: function(collection) {
     app.triggerMethod("sidebar:switch", "actions");
-  },
+  }
 });
 
 module.exports = CategoriesLayoutView;

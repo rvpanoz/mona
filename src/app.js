@@ -12,6 +12,7 @@ var app = Marionette.Application.extend({
   activeAlert: null,
   region: '#app-content',
   publicUrls: ['login', 'register'],
+  adminUrls: ['admin/main'],
   baseUrl: config.api.url,
   onBeforeStart() {
     /**
@@ -70,9 +71,9 @@ var app = Marionette.Application.extend({
   onHideSidebar() {
     $('.dashboard').removeClass('dashboard_menu');
   },
-  onSignin(token, isAdmin) {
-    localStorage.setItem('token', token);
-    localStorage.setItem('isAdmin', isAdmin);
+  onSignin(params) {
+    localStorage.setItem('token', _.get(params, 'token'));
+    localStorage.setItem('isAdmin', _.get(params, 'isAdmin'));
     this.onAppEvent('userstate:change', true);
     this.navigate('home');
     return false;
