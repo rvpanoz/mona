@@ -69,7 +69,7 @@ var LoginView = Marionette.View.extend({
         });
       },
       error: _.bind(function (err) {
-        throw new Error(err);
+
       }, this)
     });
 

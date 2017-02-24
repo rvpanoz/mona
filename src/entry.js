@@ -29,20 +29,20 @@ $.ajaxSetup({
     400: function(data) {
       if (data && data.responseText) {
         var response = JSON.parse(data.responseText);
-        alert(response.message);
+        app.showMessage(response.message, 'danger');
       }
     },
     401: function(data) {
       if (data && data.responseText) {
         var response = JSON.parse(data.responseText);
-        app.showMessage(response.message, 'danger')
+        app.showMessage(response.message, 'danger');
         app.triggerMethod('app:signout');
       }
     },
     403: function(data) {
       if (data && data.responseText) {
         var response = JSON.parse(data.responseText);
-        app.showMessage(response.message, 'danger')
+        app.showMessage(response.message, 'danger');
         app.triggerMethod('app:signout');
       }
     },

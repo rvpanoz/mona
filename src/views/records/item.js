@@ -47,7 +47,6 @@ var RecordItemView = Marionette.View.extend({
   onModelDestroy: function(model) {
     this.triggerMethod('model:removed', model);
   },
-
   serializeData: function() {
     var d = this.model.get('entry_date');
     var k = this.model.get('kind');
