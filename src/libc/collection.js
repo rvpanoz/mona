@@ -7,7 +7,7 @@ var backboneSync = Backbone.sync;
 var Collection = Backbone.Collection.extend({
   sync(method, collection, options) {
     options = _.extend(options, {
-      url: config.api.url + (_.isFunction(collection.url) ? collection.url() : collection.url)
+      url: config.api.url_dev + (_.isFunction(collection.url) ? collection.url() : collection.url)
     });
     backboneSync(method, collection, options);
   },

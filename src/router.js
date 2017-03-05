@@ -13,7 +13,7 @@ module.exports = Backbone.Router.extend({
     //fix url
     if (!url || _.isNull(url)) {
       url = {
-        cls: 'home'
+        cls: 'records/main'
       }
     }
 
@@ -25,7 +25,7 @@ module.exports = Backbone.Router.extend({
         app.onAppEvent('userstate:change', token);
       } else {
         if (($.inArray(url.cls, app.adminUrls) !== -1) && !app.isAdministrator()) {
-          return app.navigate('home');
+          return app.navigate('records/main');
         }
       }
     }

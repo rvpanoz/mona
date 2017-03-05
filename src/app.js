@@ -13,7 +13,7 @@ var app = Marionette.Application.extend({
   region: '#app-content',
   publicUrls: ['login', 'register'],
   adminUrls: ['admin/main'],
-  baseUrl: config.api.url,
+  baseUrl: config.api.url_dev,
   onBeforeStart() {
     /**
      * Instatiate router
@@ -52,6 +52,11 @@ var app = Marionette.Application.extend({
     this.listenTo(this, 'app:signout', this.onSignout, this, arguments);
     this.listenTo(this, 'hide:sidebar', this.onHideSidebar, this, arguments);
   },
+
+  getActiveView() {
+    return this.activeView;
+  },
+
   navigate(cls, params) {
     var url = {};
     _.extend(url, {
@@ -65,12 +70,15 @@ var app = Marionette.Application.extend({
     this.trigger('hide:sidebar');
     return false;
   },
+
   onAppEvent(event, opts) {
     this.trigger(event, opts);
   },
+
   onHideSidebar() {
     $('.dashboard').removeClass('dashboard_menu');
   },
+
   onSignin(params) {
     localStorage.setItem('token', _.get(params, 'token'));
     localStorage.setItem('isAdmin', _.get(params, 'isAdmin'));
@@ -78,6 +86,7 @@ var app = Marionette.Application.extend({
     this.navigate('home');
     return false;
   },
+
   onSignout() {
     localStorage.removeItem('token');
     localStorage.removeItem('isAdmin');
@@ -85,12 +94,15 @@ var app = Marionette.Application.extend({
     this.navigate('login');
     return false;
   },
+
   isAdministrator() {
     return localStorage.getItem('isAdmin');
   },
+
   updateUI() {
     return localStorage.getItem('token');
   },
+
   stringToDate(_date, _format, _delimiter) {
     var formatLowerCase = _format.toLowerCase();
     var formatItems = formatLowerCase.split(_delimiter);
@@ -103,16 +115,22 @@ var app = Marionette.Application.extend({
 
     return new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
   },
+
   wait(active) {
-    var spinner = $('.loading');
-    if (active == true) {
-      spinner.show();
-    } else if (active == false) {
-      setTimeout(function() {
-        spinner.hide();
-      }, 1000);
+    var av = this.getActiveView();
+    var lm = $('.loadmask-container');
+
+    if(lm) {
+      if (active == true) {
+        lm.show().mask();
+      } else if (active == false) {
+        setTimeout(function() {
+          lm.hide().unmask();
+        }, 1000);
+      }
     }
   },
+
   showMessage(message, type) {
     return $.bootstrapGrowl(message, {
       ele: 'body',
@@ -130,4 +148,4 @@ var app = Marionette.Application.extend({
   }
 });
 
-window.app = module.exports = app
+window.app = module.exports = app;

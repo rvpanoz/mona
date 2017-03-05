@@ -5,8 +5,8 @@ const Handlebars = require('handlebars');
 const Application = require('./app');
 const config = require('./config');
 
-//trick to copy index.html into dist/index.html
-require('file-loader?name=[name].[ext]!./index.html');
+// copy index.html into dist/index.html
+// require('file-loader?name=[name].[ext]!./index.html');
 
 Backbone.emulateHTTP = false;
 

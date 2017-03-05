@@ -108,14 +108,20 @@ var RecordController = _.extend({
 
     /** run in parallel **/
     async.parallel([countQuery, retrieveQuery], function (err, results) {
-      reply({
-        success: true,
-        data: results[1].docs,
-        total: results[1].total,
-        pages: results[1].pages,
-        page: results[1].page,
-        allData: results[0]
-      });
+      setTimeout(function() {
+        reply({
+          success: true,
+          data: results[1].docs,
+          total: results[1].total,
+          pages: results[1].pages,
+          page: results[1].page,
+          allData: results[0]
+        });
+      }, 3000)
+
+      // _.delay(function() {
+      //
+      // }, 3000);
     });
   },
 

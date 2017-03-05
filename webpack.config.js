@@ -15,7 +15,8 @@ function getPlugins() {
   plugins.push(new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
-    'window.jQuery': 'jquery'
+    'window.jQuery': 'jquery',
+    Spinner: 'src/plugins/loadmask/spin.min'
   }));
 
   // Conditionally add plugins for Production builds.

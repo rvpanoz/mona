@@ -7,7 +7,7 @@ var backboneSync = Backbone.sync;
 var Model = Backbone.Model.extend({
   sync(method, model, options) {
     options = _.extend(options, {
-      url: config.api.url + (_.isFunction(model.url) ? model.url() : model.url)
+      url: config.api.url_dev + (_.isFunction(model.url) ? model.url() : model.url)
     });
     backboneSync(method, model, options);
   },
