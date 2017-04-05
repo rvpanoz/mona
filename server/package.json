@@ -1,33 +1,38 @@
 {
-  "name": "montra",
-  "version": "1.0.0",
-  "description": "personal money tracker",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "finance"
-  ],
-  "author": "rvpanoz@gmail.com",
-  "license": "MIT",
-  "dependencies": {
-    "bcryptjs": "^2.3.0",
-    "boom": "^4.2.0",
-    "glob": "^7.0.0",
-    "handlebars": "^4.0.5",
-    "hapi": "^15.2.0",
-    "hapi-auth-jwt": "^4.0.0",
-    "inert": "^4.0.2",
-    "joi": "^8.0.4",
-    "joi-objectid": "^2.0.0",
-    "jsonwebtoken": "^5.7.0",
-    "lodash": "^4.17.2",
-    "mongodb": "^2.2.24",
-    "mongoose": "^4.6.6",
-    "mongoose-paginate": "^5.0.3",
-    "vision": "^4.1.0",
-    "winston": "^2.3.0",
-    "wreck": "^10.0.0"
-  }
+    "name": "montra",
+    "version": "1.0.0",
+    "description": "personal money tracker",
+    "main": "server.js",
+    "scripts": {
+        "prestart": "mongod --fork --logpath /dev/null",
+        "start": "nodemon ./server.js",
+        "poststop": "mongo admin --eval 'db.shutdownServer()' > /dev/null",
+        "pretest": "mongod --dbpath data --fork --logpath /dev/null",
+        "test": "mocha test",
+        "posttest": "mongo admin --eval 'db.shutdownServer()' > /dev/null"
+    },
+    "keywords": [
+        "finance"
+    ],
+    "author": "rvpanoz@gmail.com",
+    "license": "MIT",
+    "dependencies": {
+        "bcryptjs": "^2.3.0",
+        "boom": "^4.2.0",
+        "glob": "^7.0.0",
+        "handlebars": "^4.0.5",
+        "hapi": "^15.2.0",
+        "hapi-auth-jwt": "^4.0.0",
+        "inert": "^4.0.2",
+        "joi": "^8.0.4",
+        "joi-objectid": "^2.0.0",
+        "jsonwebtoken": "^5.7.0",
+        "lodash": "^4.17.2",
+        "mongodb": "^2.2.24",
+        "mongoose": "^4.6.6",
+        "mongoose-paginate": "^5.0.3",
+        "vision": "^4.1.0",
+        "winston": "^2.3.0",
+        "wreck": "^10.0.0"
+    }
 }

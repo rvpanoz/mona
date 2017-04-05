@@ -39,7 +39,7 @@ var server = new Hapi.Server({
 
 // server connection
 server.connection({
-  port: config.port,
+  port: config.port
 });
 
 var app = new require('./controllers/app')(server);

@@ -56,7 +56,7 @@ module.exports = {
       dataType: cd ? 'jsonp' : 'json',
       success: doCallbacks,
       error: function (req, err, ex) {
-        if (opts.alerts !== false && !lib.shutdown && !opts.aborted) alert('Ajax Error ' + err + ' ' + ex);
+        if (opts.alerts !== false && !opts.aborted) alert('Ajax Error ' + err + ' ' + ex);
       },
       complete: function () {
         delete opts.xhr;
