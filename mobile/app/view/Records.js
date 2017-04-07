@@ -3,9 +3,7 @@ Ext.define('mona.view.RecordsListView', {
 	xtype: 'recordsnav',
 	requires: [
 		'Ext.plugin.PullRefresh',
-		'Ext.field.DatePicker',
-		'mona.store.RecordStore',
-		'mona.controller.Record',
+		'Ext.field.DatePicker'
 	],
 	config: {
 		autoDestroy: true,
@@ -78,7 +76,7 @@ Ext.define('mona.view.RecordsList', {
 		disableSelection: false,
 		itemHeight: '36px',
 		store: 'RecordStore',
-		itemTpl: '{amount - entry_date}',
+		itemTpl: '{amount}',
 		title: 'Records',
 		emptyText: '<div style="margin-top: 20px; text-align: center">No records found.</div>'
 	}

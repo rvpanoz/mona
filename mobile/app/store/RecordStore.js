@@ -3,7 +3,7 @@ Ext.define('mona.store.RecordStore', {
 	xtype: 'RecordStore',
 	config: {
 		model: 'mona.model.Record',
-		autoLoad: true,
+		autoLoad: false,
 		fields: ['amount', 'entry_date'],
 		storeId: 'RecordStore',
 		listeners: {

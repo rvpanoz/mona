@@ -32,12 +32,11 @@ Ext.define("mona.controller.User", {
 						success: function (response, opts) {
 
 							if (!response.responseText) {
-								throw new Error('Invalid response');
+								throw new Error('Critical error');
 							}
 
 							// get response
 							var resp = JSON.parse(response.responseText);
-							console.log(resp);
 
 							try {
 
@@ -55,6 +54,7 @@ Ext.define("mona.controller.User", {
 
 								// navifate to main view
 								Ext.Viewport.setActiveItem(Ext.Viewport.add(Ext.create('mona.view.Main')));
+
 							} catch (e) {
 								Ext.Msg.alert('Failure', e);
 							} finally {
