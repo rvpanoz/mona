@@ -22,7 +22,7 @@ Ext.application({
   models: ['User'],
   controllers: ['User'],
   views: ['Main', 'Login'],
-  stores: ['User'],
+  stores: ['User', 'RecordStore'],
 
   icon: {
     '57': 'resources/icons/Icon.png',
@@ -43,16 +43,28 @@ Ext.application({
   },
 
   launch: function() {
+
+    Ext.Ajax.on('beforerequest', function(conn, options, eOptions) {
+        var store = Ext.getStore('User');
+        if(store) {
+          var data = store.getAt(0);
+          console.log(data);
+        }
+        // var token = localStorage.getItem('id_token');
+        // xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+        // options.headers['Authorization'] = 'BASIC YTpi';
+    }, this);
+
     // Destroy the #appLoadingIndicator element
     Ext.fly('appLoadingIndicator').destroy();
 
     var userStore = Ext.data.StoreManager.get('User');
+
     if(userStore) {
       if(userStore.getAt(0)) {
         var token = userStore.getAt(0).data.id_token;
         if(token) {
-          // Initialize the main view
-          Ext.Viewport.add(Ext.create('mona.view.Main'));
+          Ext.Viewport.add(Ext.create('mona.view.RecordsListView'));
         } else {
           Ext.Viewport.add(Ext.create('mona.view.Login'));
         }
@@ -62,7 +74,6 @@ Ext.application({
     } else {
       Ext.Viewport.add(Ext.create('mona.view.Login'));
     }
-
   },
 
   onUpdated: function() {

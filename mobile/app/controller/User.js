@@ -30,8 +30,6 @@ Ext.define("mona.controller.User", {
               password: password
             },
             success: function(response, opts) {
-              Ext.Viewport.setMasked(false);
-
               var resp = JSON.parse(response.responseText);
               try {
                 var userStore = Ext.data.StoreManager.get('User');
@@ -46,11 +44,14 @@ Ext.define("mona.controller.User", {
               } catch (e) {
                 Ext.Msg.alert('Failure', e);
               } finally {
-                return false;
+                Ext.Viewport.setMasked(false);
               }
             },
             failure: function(response, opts) {
               Ext.Viewport.setMasked(false);
+
+              if(!response.responseText)
+                return Ext.Msg.alert('Error', 'Server is not responding.');
 
               var resp = JSON.parse(response.responseText);
               return Ext.Msg.alert('Failure', resp.message);

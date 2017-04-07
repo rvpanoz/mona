@@ -3,7 +3,8 @@ Ext.define('mona.view.Main', {
   xtype: 'mainview',
   id: 'tabpanel',
   requires: [
-    'Ext.TitleBar'
+    'Ext.TitleBar',
+    'mona.view.RecordsListView'
   ],
   config: {
     fullscreen: true,
@@ -17,8 +18,11 @@ Ext.define('mona.view.Main', {
     activeItem: 0,
     tabBarPosition: 'bottom',
     items: [{
-      title: 'Αρχική',
+      title: 'Home',
       iconCls: 'home'
+    },{
+      title: 'Records',
+      iconCls: 'list'
     }]
   }
 });

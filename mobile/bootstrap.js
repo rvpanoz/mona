@@ -32,7 +32,14 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
-  "mona": "app"
+  "addTodoButton": "app/view/Records.js",
+  "datepickertoolbar": "app/view/Records.js",
+  "lefttodolistButton": "app/view/Records.js",
+  "mona": "app",
+  "mona.view.RecordsList": "app/view/Records.js",
+  "mona.view.RecordsListView": "app/view/Records.js",
+  "recordlistDatepicker": "app/view/Records.js",
+  "righttodolistButton": "app/view/Records.js"
 });
 
 Ext.ClassManager.addNameAlternateMappings({
@@ -668,11 +675,19 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
+  "addTodoButton": [],
+  "datepickertoolbar": [],
+  "lefttodolistButton": [],
   "mona.controller.User": [],
   "mona.model.User": [],
+  "mona.store.RecordStore": [],
   "mona.store.User": [],
   "mona.view.Login": [],
-  "mona.view.Main": []
+  "mona.view.Main": [],
+  "mona.view.RecordsList": [],
+  "mona.view.RecordsListView": [],
+  "recordlistDatepicker": [],
+  "righttodolistButton": []
 });
 
 Ext.ClassManager.addNameAliasMappings({
@@ -1401,14 +1416,38 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
+  "addTodoButton": [
+    "widget.addtodobutton"
+  ],
+  "datepickertoolbar": [
+    "widget.datepickertoolbar"
+  ],
+  "lefttodolistButton": [
+    "widget.lefttodolistbutton"
+  ],
   "mona.controller.User": [
     "widget.login"
   ],
   "mona.model.User": [],
+  "mona.store.RecordStore": [
+    "widget.RecordStore"
+  ],
   "mona.store.User": [],
   "mona.view.Login": [],
   "mona.view.Main": [
     "widget.mainview"
+  ],
+  "mona.view.RecordsList": [
+    "widget.recordslist"
+  ],
+  "mona.view.RecordsListView": [
+    "widget.recordsnav"
+  ],
+  "recordlistDatepicker": [
+    "widget.recordlistDatepicker"
+  ],
+  "righttodolistButton": [
+    "widget.righttodolistbutton"
   ]
 });
 
