@@ -678,7 +678,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "addTodoButton": [],
   "datepickertoolbar": [],
   "lefttodolistButton": [],
+  "mona.controller.Main": [],
+  "mona.controller.Record": [],
   "mona.controller.User": [],
+  "mona.model.Record": [],
   "mona.model.User": [],
   "mona.store.RecordStore": [],
   "mona.store.User": [],
@@ -1425,9 +1428,14 @@ Ext.ClassManager.addNameAliasMappings({
   "lefttodolistButton": [
     "widget.lefttodolistbutton"
   ],
+  "mona.controller.Main": [
+    "widget.maincontroller"
+  ],
+  "mona.controller.Record": [],
   "mona.controller.User": [
     "widget.login"
   ],
+  "mona.model.Record": [],
   "mona.model.User": [],
   "mona.store.RecordStore": [
     "widget.RecordStore"

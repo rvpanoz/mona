@@ -1,16 +1,20 @@
 Ext.define('mona.store.RecordStore', {
-  extend: 'Ext.data.Store',
-  xtype: 'RecordStore',
-  config: {
-    autoLoad: true,
-    fields: ['amount', 'entry_date'],
-    storeId: 'RecordStore',
-    proxy: {
-      url: api.url_dev + '/data/records',
-      reader: {
-        rootProperty: 'data',
-        totalProperty: 'allData'
-      }
-    }
-  }
+	extend: 'Ext.data.Store',
+	xtype: 'RecordStore',
+	config: {
+		model: 'mona.model.Record',
+		autoLoad: true,
+		fields: ['amount', 'entry_date'],
+		storeId: 'RecordStore',
+		listeners: {
+			beforeLoad: function () {
+				this.getProxy().setExtraParams({
+					"_params": true
+				});
+			},
+			load: function (self, records) {
+				console.log(records);
+			}
+		}
+	}
 });
