@@ -1,6 +1,6 @@
-Ext.define('mona.view.RecordsListView', {
+Ext.define('mona.view.RecordsNavView', {
 	extend: 'Ext.navigation.View',
-	xtype: 'recordsnav',
+	xtype: 'nav-records-view',
 	requires: [
 		'Ext.plugin.PullRefresh',
 		'Ext.field.DatePicker'

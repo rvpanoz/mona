@@ -3,16 +3,14 @@ Ext.define('mona.view.Main', {
 	xtype: 'mainview',
 	id: 'tabpanel',
 	requires: [
-		'Ext.TitleBar',
-		'mona.view.RecordsListView'
+		'Ext.TitleBar'
 	],
 	config: {
 		fullscreen: true,
 		layout: {
 			type: 'card',
 			animation: {
-				type: 'slide',
-				direction: 'left'
+				type: 'fade'
 			}
 		},
 		activeItem: 0,
@@ -23,7 +21,7 @@ Ext.define('mona.view.Main', {
 		}, {
 			title: 'Records',
 			iconCls: 'list',
-			xtype: 'recordsnav'
+			xtype: 'nav-records-view'
 		}]
 	}
 });

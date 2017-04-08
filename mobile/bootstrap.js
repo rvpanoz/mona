@@ -32,14 +32,13 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
-  "addTodoButton": "app/view/Records.js",
-  "datepickertoolbar": "app/view/Records.js",
-  "lefttodolistButton": "app/view/Records.js",
+  "addTodoButton": "app/view/RecordsNavView.js",
+  "datepickertoolbar": "app/view/RecordsNavView.js",
+  "lefttodolistButton": "app/view/RecordsNavView.js",
   "mona": "app",
-  "mona.view.RecordsList": "app/view/Records.js",
-  "mona.view.RecordsListView": "app/view/Records.js",
-  "recordlistDatepicker": "app/view/Records.js",
-  "righttodolistButton": "app/view/Records.js"
+  "mona.view.RecordsList": "app/view/RecordsNavView.js",
+  "recordlistDatepicker": "app/view/RecordsNavView.js",
+  "righttodolistButton": "app/view/RecordsNavView.js"
 });
 
 Ext.ClassManager.addNameAlternateMappings({
@@ -679,7 +678,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "datepickertoolbar": [],
   "lefttodolistButton": [],
   "mona.controller.Main": [],
-  "mona.controller.RecordList": [],
+  "mona.controller.RecordController": [],
   "mona.controller.User": [],
   "mona.model.Record": [],
   "mona.model.User": [],
@@ -689,7 +688,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "mona.view.Login": [],
   "mona.view.Main": [],
   "mona.view.RecordsList": [],
-  "mona.view.RecordsListView": [],
+  "mona.view.RecordsNavView": [],
   "recordlistDatepicker": [],
   "righttodolistButton": []
 });
@@ -1432,7 +1431,7 @@ Ext.ClassManager.addNameAliasMappings({
   "mona.controller.Main": [
     "widget.maincontroller"
   ],
-  "mona.controller.RecordList": [],
+  "mona.controller.RecordController": [],
   "mona.controller.User": [
     "widget.login"
   ],
@@ -1450,8 +1449,8 @@ Ext.ClassManager.addNameAliasMappings({
   "mona.view.RecordsList": [
     "widget.recordslist"
   ],
-  "mona.view.RecordsListView": [
-    "widget.recordsnav"
+  "mona.view.RecordsNavView": [
+    "widget.nav-records-view"
   ],
   "recordlistDatepicker": [
     "widget.recordlistDatepicker"

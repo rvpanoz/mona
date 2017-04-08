@@ -12,28 +12,23 @@
 
 Ext.application({
   name: 'mona',
-
   requires: [
     'Ext.MessageBox',
     'Ext.util.DelayedTask',
     'Ext.plugin.PullRefresh',
     'mona.utils.globals'
   ],
-
   models: ['User', 'Record'],
-  controllers: ['Main', 'User', 'RecordList'],
+  controllers: ['Main', 'User', 'RecordController'],
   views: ['Main', 'Login'],
-  stores: ['User', 'RecordStore'],
-
+  stores: ['User'],
   icon: {
     '57': 'resources/icons/Icon.png',
     '72': 'resources/icons/Icon~ipad.png',
     '114': 'resources/icons/Icon@2x.png',
     '144': 'resources/icons/Icon~ipad@2x.png'
   },
-
   isIconPrecomposed: true,
-
   startupImage: {
     '320x460': 'resources/startup/320x460.jpg',
     '640x920': 'resources/startup/640x920.png',
@@ -55,14 +50,14 @@ Ext.application({
     // };
 
     Ext.Ajax.on('beforerequest', function (conn, options, eOpts) {
-      // get token - set Authorization header
       if (userStore.getAt(0)) {
         token = userStore.getAt(0).data.id_token;
         options.headers['Authorization'] = 'Bearer ' + token;
       }
     });
 
-    if (userStore.getAt(0).data.id_token) {
+    var userItem = userStore.getAt(0);
+    if (userItem && userItem.data.id_token) {
       Ext.Viewport.add(Ext.create('mona.view.Main'));
     } else {
       Ext.Viewport.add(Ext.create('mona.view.Login'));

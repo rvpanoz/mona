@@ -1,4 +1,4 @@
-Ext.define('mona.controller.RecordList', {
+Ext.define('mona.controller.RecordController', {
 	extend: 'Ext.app.Controller',
 	requires: [
 		'mona.store.RecordStore'
@@ -9,8 +9,9 @@ Ext.define('mona.controller.RecordList', {
 		},
 		control: {
 			recordslist: {
-				initialize: function() {
-					console.log('initialize list component');
+				launch: function() {
+					var store = Ext.data.StoreManager.get('RecordStore');
+					store.load();
 				}
 			}
 		}
