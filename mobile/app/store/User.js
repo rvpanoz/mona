@@ -1,4 +1,4 @@
-Ext.define('mona.store.User', {
+Ext.define('MTAPP.store.User', {
   extend: 'Ext.data.Store',
   requires: ['Ext.data.identifier.Uuid'],
   config: {

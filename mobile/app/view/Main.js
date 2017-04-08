@@ -1,5 +1,6 @@
-Ext.define('mona.view.Main', {
+Ext.define('MTAPP.view.Main', {
 	extend: 'Ext.tab.Panel',
+	alias: 'widget.Main',
 	xtype: 'mainview',
 	id: 'tabpanel',
 	requires: [
@@ -17,11 +18,12 @@ Ext.define('mona.view.Main', {
 		tabBarPosition: 'bottom',
 		items: [{
 			title: 'Home',
-			iconCls: 'home'
+			iconCls: 'home',
+			xtype: 'homeView'
 		}, {
 			title: 'Records',
 			iconCls: 'list',
-			xtype: 'nav-records-view'
+			xtype: 'recordsview'
 		}]
 	}
 });

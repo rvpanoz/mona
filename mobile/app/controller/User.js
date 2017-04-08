@@ -1,4 +1,4 @@
-Ext.define("mona.controller.User", {
+Ext.define("MTAPP.controller.User", {
 	extend: 'Ext.app.Controller',
 	xtype: 'login',
 	config: {
@@ -53,7 +53,7 @@ Ext.define("mona.controller.User", {
 								userStore.sync();
 
 								// navifate to main view
-								Ext.Viewport.setActiveItem(Ext.Viewport.add(Ext.create('mona.view.Main')));
+								Ext.Viewport.setActiveItem('Main');
 
 							} catch (e) {
 								Ext.Msg.alert('Failure', e);

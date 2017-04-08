@@ -11,17 +11,17 @@
 */
 
 Ext.application({
-  name: 'mona',
+  name: 'MTAPP',
   requires: [
     'Ext.MessageBox',
     'Ext.util.DelayedTask',
     'Ext.plugin.PullRefresh',
-    'mona.utils.globals'
+    'MTAPP.utils.globals'
   ],
   models: ['User', 'Record'],
   controllers: ['Main', 'User', 'RecordController'],
-  views: ['Main', 'Login'],
-  stores: ['User'],
+  views: ['Main', 'Login', 'Home', 'RecordsNavView'],
+  stores: ['User', 'Record'],
   icon: {
     '57': 'resources/icons/Icon.png',
     '72': 'resources/icons/Icon~ipad.png',
@@ -58,9 +58,9 @@ Ext.application({
 
     var userItem = userStore.getAt(0);
     if (userItem && userItem.data.id_token) {
-      Ext.Viewport.add(Ext.create('mona.view.Main'));
+      Ext.Viewport.add(Ext.create('MTAPP.view.Main'));
     } else {
-      Ext.Viewport.add(Ext.create('mona.view.Login'));
+      Ext.Viewport.add(Ext.create('MTAPP.view.Login'));
     }
 
     // Destroy the #appLoadingIndicator element

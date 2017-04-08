@@ -1,6 +1,9 @@
-Ext.define('mona.model.User', {
+Ext.define('MTAPP.model.User', {
   extend: 'Ext.data.Model',
   config: {
+    identifier: {
+        type: 'uuid'
+    },
     fields: [{
         name: '_id',
         type: 'string'

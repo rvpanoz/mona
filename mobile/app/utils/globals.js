@@ -2,7 +2,7 @@
  * [singleton global variables]
  * @type {Boolean}
  */
-Ext.define('mona.utils.globals', {
+Ext.define('MTAPP.utils.globals', {
   singleton: true,
   config: {
     idToken: null

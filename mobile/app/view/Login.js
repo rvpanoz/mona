@@ -1,5 +1,6 @@
-Ext.define("mona.view.Login", {
+Ext.define("MTAPP.view.Login", {
   extend: 'Ext.Panel',
+  alias:'widget.Login',
   requires: [
     'Ext.TitleBar', 'Ext.form.FieldSet', 'Ext.form.Email', 'Ext.field.Password', 'Ext.data.proxy.LocalStorage'
   ],
