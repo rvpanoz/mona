@@ -38,8 +38,9 @@
     ],
     "css": [
         {
-            "path": "resources/css/app.css",
-            "update": "delta"
+            "path": "resources/css/mountainview.css",
+            "update": "delta",
+            "theme": "mountainview"
         }
     ],
     "appCache": {

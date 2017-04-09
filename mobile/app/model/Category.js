@@ -15,7 +15,7 @@ Ext.define('MTAPP.model.Category', {
     ],
     proxy: {
       type: 'ajax',
-      url: api.url_prod + '/data/categories',
+      url: api.url_dev + '/data/categories',
       enablePagingParams: false,
       reader: {
         type: 'json',

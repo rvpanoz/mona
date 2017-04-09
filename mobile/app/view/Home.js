@@ -9,7 +9,10 @@ Ext.define('MTAPP.view.Home', {
         xtype: 'logout'
       }],
       cls: 'speechmark'
-    }
+    },
+    items: [{
+      html: '<h3>Welcome</h3>'
+    }]
   }
 });
 

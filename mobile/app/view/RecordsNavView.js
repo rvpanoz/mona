@@ -34,17 +34,19 @@ Ext.define('MTAPP.view.RecordsNavView', {
           xtype: 'toolbar',
           ui: 'light',
           items: [{
-              xtype: 'leftFilterButton'
+              xtype: 'leftFilterButton',
+              hidden: true
             },
             {
               xtype: 'spacer'
             },
             {
               xtype: 'datepickerfield',
+              value: new Date(),
+              dateFormat: 'm/Y',
               picker: {
                 cancelButton: 'Cancel',
                 doneButton: 'Apply',
-                format: 'd/m/Y',
                 slotOrder: ['month', 'year'],
                 yearFrom: new Date().getFullYear(),
                 yearTo: new Date().getFullYear() + 100
@@ -54,7 +56,8 @@ Ext.define('MTAPP.view.RecordsNavView', {
               xtype: 'spacer'
             },
             {
-              xtype: 'rightFilterButton'
+              xtype: 'rightFilterButton',
+              hidden: true
             }
           ]
         },
@@ -77,7 +80,7 @@ Ext.define('MTAPP.view.RecordsList', {
     grouped: true,
     itemTpl: new Ext.XTemplate(
       '<div>',
-      '<div>{amount} - {entry_date}</div>',
+      '<div>{amount}&nbsp;&euro; - {category_name}</div>',
       '</div>'
     ),
     title: 'Records',

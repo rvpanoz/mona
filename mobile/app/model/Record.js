@@ -16,7 +16,15 @@ Ext.define('MTAPP.model.Record', {
       {
         name: 'category_id',
         type: 'string',
-        required: true
+        required: true,
+        convert: function(val, record) {
+          record.set('category_name', val.name);
+          return val;
+        }
+      },
+      {
+        name: 'category_name',
+        type: 'string'
       },
       {
         name: 'entry_date',
@@ -42,7 +50,7 @@ Ext.define('MTAPP.model.Record', {
       {
         type: 'presence',
         field: 'category_id'
-      },
+      }
       // {
       //   type: 'length',
       //   field: 'name',
@@ -66,7 +74,7 @@ Ext.define('MTAPP.model.Record', {
     ],
     proxy: {
       type: 'ajax',
-      url: api.url_prod + '/data/records',
+      url: api.url_dev + '/data/records',
       enablePagingParams: false,
       writer: {
         type: 'json',

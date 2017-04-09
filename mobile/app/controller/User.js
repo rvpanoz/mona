@@ -23,7 +23,7 @@ Ext.define("MTAPP.controller.User", {
 					});
 
 					Ext.Ajax.request({
-						url: api.url_prod + '/user/authenticate',
+						url: api.url_dev + '/user/authenticate',
 						method: "POST",
 						params: {
 							email: username,
@@ -56,19 +56,14 @@ Ext.define("MTAPP.controller.User", {
 								Ext.Viewport.setActiveItem('Main');
 
 							} catch (e) {
-								Ext.Msg.alert('Failure', e);
+								return Ext.Msg.alert('Failure', e);
 							} finally {
 								Ext.Viewport.setMasked(false);
 							}
 						},
 						failure: function (response, opts) {
 							Ext.Viewport.setMasked(false);
-
-							if (!response.responseText)
-								return Ext.Msg.alert('Error', 'Server is not responding.');
-
-							var resp = JSON.parse(response.responseText);
-							return Ext.Msg.alert('Failure', resp.message);
+							return Ext.Msg.alert('Error', 'Please try again later.');
 						}
 					});
 

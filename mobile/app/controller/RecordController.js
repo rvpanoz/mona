@@ -13,7 +13,7 @@ Ext.define('MTAPP.controller.RecordController', {
       recordslist: 'recordslist',
       leftFilterButton: 'leftFilterButton',
       rightFilterButton: 'rightFilterButton',
-      datepicker: 'datepickerfield'
+      datepickerfield: 'datepickerfield'
     },
     control: {
       saverecordbutton: {
@@ -31,30 +31,22 @@ Ext.define('MTAPP.controller.RecordController', {
             rec.data.kind = (val.kind === true) ? 2 : 1;
             rec.data.entry_date = val.entry_date;
             rec.data.notes = val.notes;
-            rec.data.payment_method = 1;
+            rec.data.payment_method = (val.payment_method === true) ? 2 : 1,
             rec.data.category_id = val.category_id;
           } else {
-            // var date = Ext.Date.format(val.entry_date, "d/m/Y");
-
             rec = Ext.create('MTAPP.model.Record', {
               amount: val.amount,
-              payment_method: 1,
               category_id: val.category_id,
               kind: (val.kind === true) ? 2 : 1,
+              payment_method: (val.payment_method === true) ? 2 : 1,
               entry_date: val.entry_date,
               notes: val.notes
             });
           }
 
-          rec.save(function () {
-            nav.setMasked({
-              xtype: 'loadmask'
-            });
-
+          rec.save(function() {
             store.load({
               callback: function() {
-                store.sync();
-                nav.setMasked(false);
                 nav.pop();
               }
             })
@@ -62,6 +54,9 @@ Ext.define('MTAPP.controller.RecordController', {
         }
       },
       recordsnav: {
+        initialize: function() {
+
+        },
         pop: function(recordsView, detailsView, idx) {
           var tabpanel = recordsView.up();
           Ext.ComponentQuery.query('#' + recordsView.id + ' new')[0].show();
@@ -70,19 +65,41 @@ Ext.define('MTAPP.controller.RecordController', {
           var tabpanel = recordsView.up();
           Ext.ComponentQuery.query('#' + recordsView.id + ' new')[0].hide();
         },
-        activate: function(view) {
-          var dp = this.getDatepicker();
+        show: function(view) {
           var store = this.getRecordslist().getStore();
+          // var dp = Ext.ComponentQuery.query('#' + view.id + ' datepickerfield')[0];
+
+          var dp = this.getDatepickerfield();
+
+          dp.addListener('change', function(cmp) {
+            var startDate = new Date(cmp.getValue());
+            var endDate = Ext.Date.add(startDate, Ext.Date.MONTH, 1);
+            if(!startDate || !endDate) return;
+
+            store.getProxy().setExtraParams({
+              mobile: true,
+              'input-entry-date-from': startDate,
+              'input-entry-date-to': endDate
+            });
+
+            store.load();
+          });
+
+          store.getProxy().setExtraParams({
+            mobile: true
+          });
+
           store.load();
         }
       },
       dets: {
         activate: function(view) {
-          var control = Ext.ComponentQuery.query('#' + view.id + ' selectfield')[0];
-          var categories =  Ext.data.StoreManager.get('Category');
+          var selectfield = Ext.ComponentQuery.query('#' + view.id + ' selectfield')[0];
+          var categories = Ext.data.StoreManager.get('Category');
+
           categories.load({
             callback: function() {
-              control.setStore(categories);
+              selectfield.setStore(categories);
             }
           });
         }
@@ -116,34 +133,7 @@ Ext.define('MTAPP.controller.RecordController', {
             }]);
           }
         }
-      },
-      datepicker: {
-        change: function (field, date) {
-          var store = Ext.getStore('Record');
-
-          var startDate = new Date(field.getValue())
-          var endDate = Ext.Date.add(startDate, Ext.Date.MONTH, 1);
-
-          store.getProxy().setExtraParams({
-            "_run": "TODO->crud",
-            "xaction": "read",
-            "_params": true
-          });
-
-          store.load({
-            params: {
-              'input-entry-date-from': startDate,
-              'input-entry-date-to': endDate
-            },
-            callback: function (data) {
-              store.sync();
-            }
-          });
-        }
-      },
+      }
     }
-  },
-  launch: function() {
-
   }
 });

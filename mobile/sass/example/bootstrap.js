@@ -1906,16 +1906,15 @@ Ext.Loader.addClassPathMappings({
   "MTAPP": "../../app",
   "MTAPP.button.logout": "../../app/view/Home.js",
   "MTAPP.button.new": "../../app/view/RecordsNavView.js",
-  "MTAPP.view.RecordViewDetails": "../../app/view/RecorcdViewDetails.js",
   "MTAPP.view.RecordsList": "../../app/view/RecordsNavView.js",
-  "cancelTodoActionSheetButton": "../../app/view/RecorcdViewDetails.js",
+  "cancelTodoActionSheetButton": "../../app/view/RecordViewDetails.js",
   "datepickertoolbar": "../../app/view/RecordsNavView.js",
-  "deleteTodoActionSheet": "../../app/view/RecorcdViewDetails.js",
-  "deleteTodoActionSheetButton": "../../app/view/RecorcdViewDetails.js",
-  "deleterecordbutton": "../../app/view/RecorcdViewDetails.js",
+  "deleteTodoActionSheet": "../../app/view/RecordViewDetails.js",
+  "deleteTodoActionSheetButton": "../../app/view/RecordViewDetails.js",
+  "deleterecordbutton": "../../app/view/RecordViewDetails.js",
   "leftFilterButton": "../../app/view/RecordsNavView.js",
   "rightFilterButton": "../../app/view/RecordsNavView.js",
-  "saverecordbutton": "../../app/view/RecorcdViewDetails.js"
+  "saverecordbutton": "../../app/view/RecordViewDetails.js"
 });
 
 Ext.ClassManager.addNameAlternateMappings({
@@ -2542,11 +2541,15 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "MTAPP.button.logout": [],
   "MTAPP.button.new": [],
+  "MTAPP.controller.Home": [],
   "MTAPP.controller.Main": [],
   "MTAPP.controller.RecordController": [],
   "MTAPP.controller.User": [],
+  "MTAPP.layout.Menu": [],
+  "MTAPP.model.Category": [],
   "MTAPP.model.Record": [],
   "MTAPP.model.User": [],
+  "MTAPP.store.Category": [],
   "MTAPP.store.Record": [],
   "MTAPP.store.User": [],
   "MTAPP.utils.globals": [],
@@ -3287,6 +3290,7 @@ Ext.ClassManager.addNameAliasMappings({
   "MTAPP.button.new": [
     "widget.new"
   ],
+  "MTAPP.controller.Home": [],
   "MTAPP.controller.Main": [
     "widget.maincontroller"
   ],
@@ -3294,8 +3298,16 @@ Ext.ClassManager.addNameAliasMappings({
   "MTAPP.controller.User": [
     "widget.login"
   ],
+  "MTAPP.layout.Menu": [
+    "widget.Menu",
+    "widget.menu"
+  ],
+  "MTAPP.model.Category": [],
   "MTAPP.model.Record": [],
   "MTAPP.model.User": [],
+  "MTAPP.store.Category": [
+    "widget.store-category"
+  ],
   "MTAPP.store.Record": [
     "widget.store-record"
   ],

@@ -87,7 +87,7 @@ var RecordController = _.extend({
       populate: 'category_id',
       lean: true,
       page: (dataParams && dataParams.page) ? dataParams.page : 1,
-      limit: config.perPage
+      limit: (dataParams.mobile) ? 1000 : config.perPage
     };
 
     var countQuery = function (callback) {
