@@ -19,7 +19,7 @@ Ext.define('MTAPP.model.User', {
     ],
     proxy: {
       type: 'ajax',
-      url: api.url_dev,
+      url: api_url + '/data/user',
       enablePagingParams: false,
       reader: {
         type: 'json',

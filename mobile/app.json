@@ -1,9 +1,11 @@
 {
     "builds": {
-        "web": {"default": true},
+        "web": {
+            "default": true
+        },
         "native": {
             "packager": "cordova",
-            "cordova" : {
+            "cordova": {
                 "config": {
                     "platforms": "android",
                     "id": "com.app.mtapp",
@@ -16,8 +18,7 @@
     "indexHtmlPath": "index.html",
     "framework": "touch",
     "url": null,
-    "js": [
-        {
+    "js": [{
             "path": "touch/sencha-touch.js",
             "x-bootstrap": true
         },
@@ -29,18 +30,16 @@
             "path": "app.js",
             "bundle": true,
             "update": "delta"
-        },
-        {
-          "path": "config.js",
-          "bundle": false,
-          "update": "full"
         }
     ],
-    "css": [
-        {
+    "css": [{
             "path": "resources/css/mountainview.css",
             "update": "delta",
             "theme": "mountainview"
+        },
+        {
+            "path": "resources/css/custom.css",
+            "update": "delta"
         }
     ],
     "appCache": {
@@ -53,6 +52,7 @@
         "fallback": []
     },
     "resources": [
+        "resources/pages",
         "resources/images",
         "resources/icons",
         "resources/startup"
@@ -61,8 +61,7 @@
         "\.svn$"
     ],
     "archivePath": "archive",
-    "requires": [
-    ],
+    "requires": [],
     "cache": {
         "enable": true,
         "deltas": "deltas"

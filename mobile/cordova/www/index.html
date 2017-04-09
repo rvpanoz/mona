@@ -1,15 +1,18 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
+
 <head>
     <meta charset="UTF-8">
     <title>mona</title>
     <style type="text/css">
-         /**
+        /**
          * Example of an initial loading indicator.
          * It is recommended to keep this as minimal as possible to provide instant feedback
          * while other resources are still being loaded for the first time
          */
-        html, body {
+
+        html,
+        body {
             height: 100%;
             background-color: #1985D0
         }
@@ -27,7 +30,7 @@
             -webkit-animation-direction: linear;
         }
 
-        #appLoadingIndicator > * {
+        #appLoadingIndicator>* {
             background-color: #FFFFFF;
             display: inline-block;
             height: 30px;
@@ -37,7 +40,7 @@
             opacity: 0.8;
         }
 
-        @-webkit-keyframes appLoadingIndicator{
+        @-webkit-keyframes appLoadingIndicator {
             0% {
                 opacity: 0.8
             }
@@ -49,6 +52,11 @@
             }
         }
     </style>
+
+    <script type="text/javascript">
+        var api_url = "http://104.236.58.95:4471";
+        // var api_url = "http://127.0.0.1:50066";
+    </script>
     <!-- The line below must be kept intact for Sencha Command to build your application -->
     <script id="microloader" data-app="add54cb6-8cdf-4e08-9800-24fb0e8dfa6f" type="text/javascript">/**
  * Sencha Blink - Testing
@@ -230,8 +238,9 @@
     }
 
 })(this);
-Ext.blink({"id":"add54cb6-8cdf-4e08-9800-24fb0e8dfa6f","hash":"7eb5dec7ae4ca3cb996774ff961aac03ae58fa17","js":[{"remote":true,"path":"cordova.js"},{"update":"delta","hash":"3a066643b881e36fd84b923872d6ee2555ba1203","path":"app.js"},{"update":"full","hash":"2aad68e3ad19ccfd454b1e05c98a38e2c7916570","path":"config.js"}],"css":[{"update":"delta","hash":"fc5c394a4327c0bf51f24ca4acb67b36ecc51de6","path":"resources/css/app.css"}]});</script>
+Ext.blink({"id":"add54cb6-8cdf-4e08-9800-24fb0e8dfa6f","hash":"8e45c39c16b687c1baea54c0708f0bc5c0dd8a0b","js":[{"remote":true,"path":"cordova.js"},{"update":"delta","hash":"60f21d9b67d7f7d80f6c78bcfbd62cdb28c8a716","path":"app.js"}],"css":[{"update":"delta","theme":"mountainview","hash":"79944d6a01c84b78f87e5e35b518f1b6cc560cbe","path":"resources/css/mountainview.css"},{"update":"delta","hash":"56256059397c76046c80f41b9c53514a9395b73d","path":"resources/css/custom.css"}]});</script>
 </head>
+
 <body>
     <div id="appLoadingIndicator">
         <div></div>
@@ -239,4 +248,5 @@ Ext.blink({"id":"add54cb6-8cdf-4e08-9800-24fb0e8dfa6f","hash":"7eb5dec7ae4ca3cb9
         <div></div>
     </div>
 </body>
+
 </html>

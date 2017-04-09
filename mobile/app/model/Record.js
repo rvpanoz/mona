@@ -74,7 +74,7 @@ Ext.define('MTAPP.model.Record', {
     ],
     proxy: {
       type: 'ajax',
-      url: api.url_dev + '/data/records',
+      url: api_url + '/data/records',
       enablePagingParams: false,
       writer: {
         type: 'json',

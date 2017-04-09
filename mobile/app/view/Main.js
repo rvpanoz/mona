@@ -9,19 +9,6 @@ Ext.define('MTAPP.view.Main', {
 	config: {
 		fullscreen: false,
 		autoDestroy: true,
-    navigationBar: {
-      ui: 'dark',
-      items: [{
-        xtype: 'logout'
-      }],
-      cls: 'speechmark'
-    },
-		layout: {
-			type: 'card',
-			animation: {
-				type: 'fade'
-			}
-		},
 		activeItem: 0,
 		tabBarPosition: 'bottom',
 		items: [{

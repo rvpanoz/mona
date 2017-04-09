@@ -1,1 +1,1 @@
-function _2aad68e3ad19ccfd454b1e05c98a38e2c7916570(){};var api={url_dev:"http://127.0.0.1:50066",url_prod:"http://104.236.58.95:4471"};
+function _da808e4ea2e83941b79fe9df72fb31dcf142f896(){};var api_url="http://104.236.58.95:4471";

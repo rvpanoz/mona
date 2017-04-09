@@ -11,7 +11,6 @@ Ext.define('MTAPP.view.RecordViewDetails', {
           xtype: 'numberfield',
           name: 'amount',
           label: 'Amount',
-          value: 125,
           required: true
         },
         {
@@ -48,8 +47,7 @@ Ext.define('MTAPP.view.RecordViewDetails', {
         {
           xtype: 'textareafield',
           name: 'notes',
-          label: 'Notes',
-          value: 'notes goes here..'
+          label: 'Notes'
         },
         {
           xtype: 'spacer',

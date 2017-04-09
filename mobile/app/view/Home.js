@@ -3,6 +3,9 @@ Ext.define('MTAPP.view.Home', {
   xtype: 'homeView',
   config: {
     autoDestroy: true,
+    listeners: {
+      activate: "onActivate"
+    },
     navigationBar: {
       ui: 'dark',
       items: [{
@@ -10,9 +13,16 @@ Ext.define('MTAPP.view.Home', {
       }],
       cls: 'speechmark'
     },
-    items: [{
-      html: '<h3>Welcome</h3>'
-    }]
+    items: []
+  },
+  onActivate: function (b, a) {
+    Ext.Ajax.request({
+      url: "resources/pages/home.html",
+      method: "GET",
+      success: function (c, d) {
+        b.setHtml(c.responseText);
+      }
+    });
   }
 });
 
@@ -21,6 +31,8 @@ Ext.define('MTAPP.button.logout', {
   xtype: 'logout',
   config: {
     text: 'Logout',
-    align: 'right'
+    align: 'right',
+    icon: true,
+    iconCls: 'refresh'
   }
 });

@@ -53,7 +53,9 @@ Ext.application({
     Ext.Ajax.on('beforerequest', function(conn, options, eOpts) {
       if (userStore.getAt(0)) {
         token = userStore.getAt(0).data.id_token;
-        options.headers['Authorization'] = 'Bearer ' + token;
+        if(options.headers) {
+          options.headers['Authorization'] = 'Bearer ' + token;
+        }
       }
     });
 

@@ -49,14 +49,18 @@ Ext.define("MTAPP.view.Login", {
                 }
               }
             }
+          },
+          {
+            xtype: 'spacer',
+            height: 50
+          },
+          {
+            xtype: "button",
+            text: "Connect",
+            id: "loginbutton",
+            ui: "action"
           }
         ]
-      }, {
-        xtype: "button",
-        text: "Connect",
-        id: "loginbutton",
-        margin: "0 auto",
-        ui: "action"
       }
     ]
   }
