@@ -94,8 +94,7 @@ Ext.define('MTAPP.button.new', {
   config: {
     iconCls: 'add',
     icon: true,
-    align: 'right',
-    cls: 'add'
+    align: 'right'
   }
 });
 
