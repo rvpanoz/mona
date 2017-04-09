@@ -16,12 +16,13 @@ Ext.application({
     'Ext.MessageBox',
     'Ext.util.DelayedTask',
     'Ext.plugin.PullRefresh',
-    'MTAPP.utils.globals'
+    'MTAPP.utils.globals',
+    'MTAPP.layout.Menu'
   ],
-  models: ['User', 'Record'],
-  controllers: ['Main', 'User', 'RecordController'],
+  models: ['User', 'Record', 'Category'],
+  controllers: ['Main', 'User', 'Home', 'RecordController'],
   views: ['Main', 'Login', 'Home', 'RecordsNavView'],
-  stores: ['User', 'Record'],
+  stores: ['User', 'Record', 'Category'],
   icon: {
     '57': 'resources/icons/Icon.png',
     '72': 'resources/icons/Icon~ipad.png',
@@ -29,6 +30,7 @@ Ext.application({
     '144': 'resources/icons/Icon~ipad@2x.png'
   },
   isIconPrecomposed: true,
+
   startupImage: {
     '320x460': 'resources/startup/320x460.jpg',
     '640x920': 'resources/startup/640x920.png',
@@ -40,26 +42,31 @@ Ext.application({
 
   launch: function() {
     var token;
+
+    //user store (id_token, is_admin)
     var userStore = Ext.data.StoreManager.get('User');
 
     //load the store
     userStore.load();
 
-    // Ext.Ajax._defaultHeaders = {
-    //   'Authorization': 'Bearer ' + token
-    // };
-
-    Ext.Ajax.on('beforerequest', function (conn, options, eOpts) {
+    //listen to 'beforerequest' event to set Authorization header
+    Ext.Ajax.on('beforerequest', function(conn, options, eOpts) {
       if (userStore.getAt(0)) {
         token = userStore.getAt(0).data.id_token;
         options.headers['Authorization'] = 'Bearer ' + token;
       }
     });
 
+    //get user data
     var userItem = userStore.getAt(0);
+
     if (userItem && userItem.data.id_token) {
+
+      //navigate to main view
       Ext.Viewport.add(Ext.create('MTAPP.view.Main'));
     } else {
+
+      //navigate to login view
       Ext.Viewport.add(Ext.create('MTAPP.view.Login'));
     }
 

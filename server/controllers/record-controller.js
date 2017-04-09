@@ -121,8 +121,21 @@ var RecordController = _.extend({
 
   insert: function(uid, data, reply) {
 
+    //fix for touch
+    var _data = data.data;
+
+    if(_data) {
+      data = JSON.parse(_data);
+    }
+
     //fix date for mongodb
     var dateString = data.entry_date;
+
+    if(!dateString) {
+      console.error('Invalid entry_date parameter');
+      return;
+    }
+
     var parts = dateString.split('/');
     var day = parts[0];
     var month = parts[1];

@@ -23,6 +23,7 @@ Ext.define("MTAPP.view.Login", {
             xtype: "textfield",
             name: "text",
             label: "Username",
+            value: 'rvpanoz@gmail.com',
             autoCorrect: false,
             autoCapitalize: false,
             labelWidth: "50%",
@@ -40,6 +41,7 @@ Ext.define("MTAPP.view.Login", {
             xtype: "passwordfield",
             name: "password",
             label: "Password",
+            value: 'z0ut0n!28',
             labelWidth: "50%",
             listeners: {
               keyup: function(a, b) {

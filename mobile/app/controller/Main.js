@@ -3,23 +3,20 @@ Ext.define('MTAPP.controller.Main', {
   xtype: 'maincontroller',
   config: {
     refs: {
-      logout: 'layout-logout'
+      mainview: 'mainview'
     },
     control: {
-      logout: {
-        tap: function(btn, evt) {
-          var store = Ext.data.StoreManager.get('User');
-          store.removeAll();
-          store.sync();
-          Ext.Viewport.setActiveItem('Login');
+      mainview: {
+        initialize: function() {
+
         }
       }
     }
   },
   init: function() {
-    console.log('main init');
+
   },
   launch: function() {
-    console.log('main launch');
+
   }
 });

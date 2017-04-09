@@ -6,16 +6,16 @@ Ext.define('MTAPP.view.Home', {
     navigationBar: {
       ui: 'dark',
       items: [{
-        xtype: 'layout-logout'
+        xtype: 'logout'
       }],
       cls: 'speechmark'
     }
   }
 });
 
-Ext.define('layout-logout', {
+Ext.define('MTAPP.button.logout', {
   extend: 'Ext.Button',
-  xtype: 'layout-logout',
+  xtype: 'logout',
   config: {
     text: 'Logout',
     align: 'right'

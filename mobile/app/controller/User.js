@@ -23,7 +23,7 @@ Ext.define("MTAPP.controller.User", {
 					});
 
 					Ext.Ajax.request({
-						url: api.url_dev + '/user/authenticate',
+						url: api.url_prod + '/user/authenticate',
 						method: "POST",
 						params: {
 							email: username,

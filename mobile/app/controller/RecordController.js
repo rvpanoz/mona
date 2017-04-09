@@ -5,19 +5,86 @@ Ext.define('MTAPP.controller.RecordController', {
   ],
   config: {
     refs: {
-      layoutNew: 'layout-new',
-      recordsview: 'recordsview',
+      mainview: 'mainview',
+      dets: 'recorddetails',
+      layoutNew: 'new',
+      saverecordbutton: 'saverecordbutton',
+      recordsnav: 'recordsview',
       recordslist: 'recordslist',
       leftFilterButton: 'leftFilterButton',
       rightFilterButton: 'rightFilterButton',
-      dp: 'datepickerfield'
+      datepicker: 'datepickerfield'
     },
     control: {
-      recordsview: {
-        activate: function() {
-          var dp = this.getDp();
+      saverecordbutton: {
+        tap: function(btn, evt) {
+          var nav = btn.up('navigationview');
+          var det = Ext.ComponentQuery.query('#' + nav.id + ' recorddetails')[0];
+          var val = det.getValues();
+          var rec = det.getRecord();
+
+          var store = Ext.data.StoreManager.get('Record');
+          det.fireEvent('submit');
+
+          if (rec.data) {
+            rec.data.amount = val.amount;
+            rec.data.kind = (val.kind === true) ? 2 : 1;
+            rec.data.entry_date = val.entry_date;
+            rec.data.notes = val.notes;
+            rec.data.payment_method = 1;
+            rec.data.category_id = val.category_id;
+          } else {
+            // var date = Ext.Date.format(val.entry_date, "d/m/Y");
+
+            rec = Ext.create('MTAPP.model.Record', {
+              amount: val.amount,
+              payment_method: 1,
+              category_id: val.category_id,
+              kind: (val.kind === true) ? 2 : 1,
+              entry_date: val.entry_date,
+              notes: val.notes
+            });
+          }
+
+          rec.save(function () {
+            nav.setMasked({
+              xtype: 'loadmask'
+            });
+
+            store.load({
+              callback: function() {
+                store.sync();
+                nav.setMasked(false);
+                nav.pop();
+              }
+            })
+          });
+        }
+      },
+      recordsnav: {
+        pop: function(recordsView, detailsView, idx) {
+          var tabpanel = recordsView.up();
+          Ext.ComponentQuery.query('#' + recordsView.id + ' new')[0].show();
+        },
+        push: function(recordsView, detailsView, idx) {
+          var tabpanel = recordsView.up();
+          Ext.ComponentQuery.query('#' + recordsView.id + ' new')[0].hide();
+        },
+        activate: function(view) {
+          var dp = this.getDatepicker();
           var store = this.getRecordslist().getStore();
           store.load();
+        }
+      },
+      dets: {
+        activate: function(view) {
+          var control = Ext.ComponentQuery.query('#' + view.id + ' selectfield')[0];
+          var categories =  Ext.data.StoreManager.get('Category');
+          categories.load({
+            callback: function() {
+              control.setStore(categories);
+            }
+          });
         }
       },
       leftFilterButton: {
@@ -32,16 +99,12 @@ Ext.define('MTAPP.controller.RecordController', {
       },
       layoutNew: {
         tap: function(view, idx, target, record) {
+          //get recordslist navigationview
           var nav = view.up('navigationview');
+
           nav.push({
             xtype: 'recorddetails',
             title: 'Record'
-          });
-
-          var bar = nav.getNavigationBar();
-
-          bar.add({
-            xtype: 'saverecordbutton'
           });
 
           var det = Ext.ComponentQuery.query('#' + nav.id + ' recorddetails')[0];
@@ -53,7 +116,34 @@ Ext.define('MTAPP.controller.RecordController', {
             }]);
           }
         }
-      }
+      },
+      datepicker: {
+        change: function (field, date) {
+          var store = Ext.getStore('Record');
+
+          var startDate = new Date(field.getValue())
+          var endDate = Ext.Date.add(startDate, Ext.Date.MONTH, 1);
+
+          store.getProxy().setExtraParams({
+            "_run": "TODO->crud",
+            "xaction": "read",
+            "_params": true
+          });
+
+          store.load({
+            params: {
+              'input-entry-date-from': startDate,
+              'input-entry-date-to': endDate
+            },
+            callback: function (data) {
+              store.sync();
+            }
+          });
+        }
+      },
     }
+  },
+  launch: function() {
+
   }
 });

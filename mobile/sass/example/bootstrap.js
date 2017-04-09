@@ -1903,7 +1903,19 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSet": "../../touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "../../touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "../../touch/src/device/sqlite/Sencha.js",
-  "mona": "../../app"
+  "MTAPP": "../../app",
+  "MTAPP.button.logout": "../../app/view/Home.js",
+  "MTAPP.button.new": "../../app/view/RecordsNavView.js",
+  "MTAPP.view.RecordViewDetails": "../../app/view/RecorcdViewDetails.js",
+  "MTAPP.view.RecordsList": "../../app/view/RecordsNavView.js",
+  "cancelTodoActionSheetButton": "../../app/view/RecorcdViewDetails.js",
+  "datepickertoolbar": "../../app/view/RecordsNavView.js",
+  "deleteTodoActionSheet": "../../app/view/RecorcdViewDetails.js",
+  "deleteTodoActionSheetButton": "../../app/view/RecorcdViewDetails.js",
+  "deleterecordbutton": "../../app/view/RecorcdViewDetails.js",
+  "leftFilterButton": "../../app/view/RecordsNavView.js",
+  "rightFilterButton": "../../app/view/RecordsNavView.js",
+  "saverecordbutton": "../../app/view/RecorcdViewDetails.js"
 });
 
 Ext.ClassManager.addNameAlternateMappings({
@@ -2528,11 +2540,30 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "mona.controller.User": [],
-  "mona.model.User": [],
-  "mona.store.User": [],
-  "mona.view.Login": [],
-  "mona.view.Main": []
+  "MTAPP.button.logout": [],
+  "MTAPP.button.new": [],
+  "MTAPP.controller.Main": [],
+  "MTAPP.controller.RecordController": [],
+  "MTAPP.controller.User": [],
+  "MTAPP.model.Record": [],
+  "MTAPP.model.User": [],
+  "MTAPP.store.Record": [],
+  "MTAPP.store.User": [],
+  "MTAPP.utils.globals": [],
+  "MTAPP.view.Home": [],
+  "MTAPP.view.Login": [],
+  "MTAPP.view.Main": [],
+  "MTAPP.view.RecordViewDetails": [],
+  "MTAPP.view.RecordsList": [],
+  "MTAPP.view.RecordsNavView": [],
+  "cancelTodoActionSheetButton": [],
+  "datepickertoolbar": [],
+  "deleteTodoActionSheet": [],
+  "deleteTodoActionSheetButton": [],
+  "deleterecordbutton": [],
+  "leftFilterButton": [],
+  "rightFilterButton": [],
+  "saverecordbutton": []
 });
 
 Ext.ClassManager.addNameAliasMappings({
@@ -3250,14 +3281,68 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
-  "mona.controller.User": [
+  "MTAPP.button.logout": [
+    "widget.logout"
+  ],
+  "MTAPP.button.new": [
+    "widget.new"
+  ],
+  "MTAPP.controller.Main": [
+    "widget.maincontroller"
+  ],
+  "MTAPP.controller.RecordController": [],
+  "MTAPP.controller.User": [
     "widget.login"
   ],
-  "mona.model.User": [],
-  "mona.store.User": [],
-  "mona.view.Login": [],
-  "mona.view.Main": [
+  "MTAPP.model.Record": [],
+  "MTAPP.model.User": [],
+  "MTAPP.store.Record": [
+    "widget.store-record"
+  ],
+  "MTAPP.store.User": [],
+  "MTAPP.utils.globals": [],
+  "MTAPP.view.Home": [
+    "widget.homeView"
+  ],
+  "MTAPP.view.Login": [
+    "widget.Login"
+  ],
+  "MTAPP.view.Main": [
+    "widget.Main",
     "widget.mainview"
+  ],
+  "MTAPP.view.RecordViewDetails": [
+    "widget.recorddetails"
+  ],
+  "MTAPP.view.RecordsList": [
+    "widget.recordslist"
+  ],
+  "MTAPP.view.RecordsNavView": [
+    "widget.recordsview"
+  ],
+  "cancelTodoActionSheetButton": [
+    "widget.canceltodoactionsheetbutton"
+  ],
+  "datepickertoolbar": [
+    "widget.datepickertoolbar"
+  ],
+  "deleteTodoActionSheet": [
+    "widget.deletetodoactionsheet"
+  ],
+  "deleteTodoActionSheetButton": [
+    "widget.deletetodoactionsheetbutton"
+  ],
+  "deleterecordbutton": [
+    "widget.deleterecordbutton"
+  ],
+  "leftFilterButton": [
+    "widget.leftFilterButton"
+  ],
+  "rightFilterButton": [
+    "widget.rightFilterButton"
+  ],
+  "saverecordbutton": [
+    "widget.saverecordbutton"
   ]
 });
 

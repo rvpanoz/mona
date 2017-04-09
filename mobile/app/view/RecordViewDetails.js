@@ -1,41 +1,62 @@
 Ext.define('MTAPP.view.RecordViewDetails', {
   extend: 'Ext.form.Panel',
   xtype: 'recorddetails',
+  requires: ['Ext.field.Number'],
   config: {
     autoDestroy: true,
     items: [{
       xtype: 'container',
       cls: 'edit',
       items: [{
-          xtype: 'textfield',
+          xtype: 'numberfield',
           name: 'amount',
           label: 'Amount',
+          value: 125,
           required: true
         },
         {
           xtype: 'datepickerfield',
-          id: 'todoDatepickerFieldId',
-          name: 'DueDate',
-          label: 'Λήξη',
+          name: 'entry_date',
+          label: 'Date',
           dateFormat: 'd/m/Y',
-          picker: {
-            value: new Date(),
-            cancelButton: 'Ακύρωση',
-            doneButton: 'Επιλογή',
-            slotOrder: ['day', 'month', 'year'],
-            yearFrom: new Date().getFullYear(),
-            yearTo: new Date().getFullYear() + 100
-          }
+          value: new Date(),
+          required: true
         },
         {
-          xtype: 'textareafield',
-          name: 'Notes',
-          label: 'Notes'
+          xtype: 'selectfield',
+          name: 'category_id',
+          store: 'Category',
+          label: 'Category',
+          displayField: 'name',
+          valueField: '_id',
+          required: true
         },
         {
           xtype: 'checkboxfield',
-          name: 'Income',
+          name: 'kind',
           label: 'Income'
+        },
+        {
+          xtype: 'checkboxfield',
+          name: 'payment_method',
+          label: 'Credit card'
+        },
+        {
+          xtype: 'spacer',
+          height: 25
+        },
+        {
+          xtype: 'textareafield',
+          name: 'notes',
+          label: 'Notes',
+          value: 'notes goes here..'
+        },
+        {
+          xtype: 'spacer',
+          height: 25
+        },
+        {
+          xtype: 'saverecordbutton'
         }
       ]
     }]

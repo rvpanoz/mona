@@ -2,27 +2,71 @@ Ext.define('MTAPP.model.Record', {
   extend: 'Ext.data.Model',
   config: {
     identifier: {
-        type: 'uuid'
+      type: 'uuid'
     },
-    idProperty: '_id',
+    idProperty: 'id',
     fields: [{
         name: '_id',
         type: 'string'
       }, {
         name: 'amount',
-        type: 'string'
+        type: 'float',
+        required: true
+      },
+      {
+        name: 'category_id',
+        type: 'string',
+        required: true
       },
       {
         name: 'entry_date',
-        type: 'date',
-        convert: function(val) {
-          return Ext.Date.parse(val, 'c');
+        type: 'string',
+        required: true,
+        convert: function(v, record) {
+          return record.parseDate(v, record);
         }
+      },
+      {
+        name: 'payment_method',
+        type: 'string'
+      },
+      {
+        name: 'kind',
+        type: 'string'
       }
+    ],
+    validations: [{
+        type: 'presence',
+        field: 'amount'
+      },
+      {
+        type: 'presence',
+        field: 'category_id'
+      },
+      // {
+      //   type: 'length',
+      //   field: 'name',
+      //   min: 5
+      // },
+      // {
+      //   type: 'format',
+      //   field: 'age',
+      //   matcher: /\d+/
+      // },
+      // {
+      //   type: 'inclusion',
+      //   field: 'gender',
+      //   list: ['male', 'female']
+      // },
+      // {
+      //   type: 'exclusion',
+      //   field: 'name',
+      //   list: ['admin']
+      // }
     ],
     proxy: {
       type: 'ajax',
-      url: api.url_dev + '/data/records',
+      url: api.url_prod + '/data/records',
       enablePagingParams: false,
       writer: {
         type: 'json',
@@ -41,5 +85,8 @@ Ext.define('MTAPP.model.Record', {
         destroy: "DELETE"
       }
     }
+  },
+  parseDate: function(v, record) {
+    return Ext.Date.format(new Date(v), 'd/m/Y');
   }
 });

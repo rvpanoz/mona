@@ -7,7 +7,15 @@ Ext.define('MTAPP.view.Main', {
 		'Ext.TitleBar'
 	],
 	config: {
-		fullscreen: true,
+		fullscreen: false,
+		autoDestroy: true,
+    navigationBar: {
+      ui: 'dark',
+      items: [{
+        xtype: 'logout'
+      }],
+      cls: 'speechmark'
+    },
 		layout: {
 			type: 'card',
 			animation: {
