@@ -33,8 +33,10 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
   "MTAPP": "app",
+  "MTAPP.button.categoryActionNew": "app/view/CategoriesNavView.js",
   "MTAPP.button.logout": "app/view/Home.js",
   "MTAPP.button.new": "app/view/RecordsNavView.js",
+  "MTAPP.view.CategoriesList": "app/view/CategoriesNavView.js",
   "MTAPP.view.RecordsList": "app/view/RecordsNavView.js",
   "cancelTodoActionSheetButton": "app/view/RecordViewDetails.js",
   "datepickertoolbar": "app/view/RecordsNavView.js",
@@ -43,6 +45,7 @@ Ext.Loader.addClassPathMappings({
   "deleterecordbutton": "app/view/RecordViewDetails.js",
   "leftFilterButton": "app/view/RecordsNavView.js",
   "rightFilterButton": "app/view/RecordsNavView.js",
+  "savecategorybutton": "app/view/CategoryViewDetails.js",
   "saverecordbutton": "app/view/RecordViewDetails.js"
 });
 
@@ -679,8 +682,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
+  "MTAPP.button.categoryActionNew": [],
   "MTAPP.button.logout": [],
   "MTAPP.button.new": [],
+  "MTAPP.controller.CategoryController": [],
   "MTAPP.controller.Home": [],
   "MTAPP.controller.Main": [],
   "MTAPP.controller.RecordController": [],
@@ -693,6 +698,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "MTAPP.store.Record": [],
   "MTAPP.store.User": [],
   "MTAPP.utils.globals": [],
+  "MTAPP.view.CategoriesList": [],
+  "MTAPP.view.CategoriesNavView": [],
+  "MTAPP.view.CategoryViewDetails": [],
   "MTAPP.view.Home": [],
   "MTAPP.view.Login": [],
   "MTAPP.view.Main": [],
@@ -706,6 +714,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "deleterecordbutton": [],
   "leftFilterButton": [],
   "rightFilterButton": [],
+  "savecategorybutton": [],
   "saverecordbutton": []
 });
 
@@ -1435,12 +1444,16 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
+  "MTAPP.button.categoryActionNew": [
+    "widget.categoryActionNew"
+  ],
   "MTAPP.button.logout": [
     "widget.logout"
   ],
   "MTAPP.button.new": [
     "widget.new"
   ],
+  "MTAPP.controller.CategoryController": [],
   "MTAPP.controller.Home": [],
   "MTAPP.controller.Main": [
     "widget.maincontroller"
@@ -1464,6 +1477,15 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "MTAPP.store.User": [],
   "MTAPP.utils.globals": [],
+  "MTAPP.view.CategoriesList": [
+    "widget.categoriesList"
+  ],
+  "MTAPP.view.CategoriesNavView": [
+    "widget.categoriesview"
+  ],
+  "MTAPP.view.CategoryViewDetails": [
+    "widget.categorydetails"
+  ],
   "MTAPP.view.Home": [
     "widget.homeView"
   ],
@@ -1503,6 +1525,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "rightFilterButton": [
     "widget.rightFilterButton"
+  ],
+  "savecategorybutton": [
+    "widget.savecategorybutton"
   ],
   "saverecordbutton": [
     "widget.saverecordbutton"

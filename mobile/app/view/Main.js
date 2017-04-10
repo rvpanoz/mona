@@ -7,7 +7,7 @@ Ext.define('MTAPP.view.Main', {
 		'Ext.TitleBar'
 	],
 	config: {
-		fullscreen: false,
+		fullscreen: true,
 		autoDestroy: true,
 		activeItem: 0,
 		tabBarPosition: 'bottom',
@@ -19,6 +19,10 @@ Ext.define('MTAPP.view.Main', {
 			title: 'Records',
 			iconCls: 'list',
 			xtype: 'recordsview'
+		}, {
+			title: 'Categories',
+			iconCls: 'list',
+			xtype: 'categoriesview'
 		}]
 	}
 });
