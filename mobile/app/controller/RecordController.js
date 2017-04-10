@@ -17,46 +17,9 @@ Ext.define('MTAPP.controller.RecordController', {
     },
     control: {
       saverecordbutton: {
-        tap: function(btn, evt) {
-          var nav = btn.up('navigationview');
-          var det = Ext.ComponentQuery.query('#' + nav.id + ' recorddetails')[0];
-          var val = det.getValues();
-          var rec = det.getRecord();
-
-          var store = Ext.data.StoreManager.get('Record');
-          det.fireEvent('submit');
-
-          if (rec.data) {
-            rec.data.amount = val.amount;
-            rec.data.kind = (val.kind === true) ? 2 : 1;
-            rec.data.entry_date = val.entry_date;
-            rec.data.notes = val.notes;
-            rec.data.payment_method = (val.payment_method === true) ? 2 : 1,
-            rec.data.category_id = val.category_id;
-          } else {
-            rec = Ext.create('MTAPP.model.Record', {
-              amount: val.amount,
-              category_id: val.category_id,
-              kind: (val.kind === true) ? 2 : 1,
-              payment_method: (val.payment_method === true) ? 2 : 1,
-              entry_date: val.entry_date,
-              notes: val.notes
-            });
-          }
-
-          rec.save(function() {
-            store.load({
-              callback: function() {
-                nav.pop();
-              }
-            })
-          });
-        }
+        tap: 'save'
       },
       recordsnav: {
-        initialize: function() {
-
-        },
         pop: function(recordsView, detailsView, idx) {
           var tabpanel = recordsView.up();
           Ext.ComponentQuery.query('#' + recordsView.id + ' new')[0].show();
@@ -74,7 +37,7 @@ Ext.define('MTAPP.controller.RecordController', {
           dp.addListener('change', function(cmp) {
             var startDate = new Date(cmp.getValue());
             var endDate = Ext.Date.add(startDate, Ext.Date.MONTH, 1);
-            if(!startDate || !endDate) return;
+            if (!startDate || !endDate) return;
 
             store.getProxy().setExtraParams({
               mobile: true,
@@ -135,5 +98,46 @@ Ext.define('MTAPP.controller.RecordController', {
         }
       }
     }
+  },
+  save: function(btn, evt) {
+    var nav = btn.up('navigationview');
+    var det = Ext.ComponentQuery.query('#' + nav.id + ' recorddetails')[0];
+    var val = det.getValues();
+    var rec = det.getRecord();
+
+    var store = Ext.data.StoreManager.get('Record');
+    det.fireEvent('submit');
+
+    // create data
+    if (rec.data) {
+      rec.data.amount = val.amount;
+      rec.data.kind = (val.kind === true) ? 2 : 1;
+      rec.data.entry_date = val.entry_date;
+      rec.data.notes = val.notes;
+      rec.data.payment_method = (val.payment_method === true) ? 2 : 1;
+      rec.data.category_id = val.category_id;
+    } else {
+      rec = Ext.create('MTAPP.model.Record', {
+        amount: val.amount,
+        category_id: val.category_id,
+        kind: (val.kind === true) ? 2 : 1,
+        payment_method: (val.payment_method === true) ? 2 : 1,
+        entry_date: val.entry_date,
+        notes: val.notes
+      });
+    }
+
+    // save record and return to list
+    rec.save(function() {
+      nav.setMasked({
+        xtype: 'loadmask'
+      });
+      store.load({
+        callback: function() {
+          nav.setMasked(false);
+          nav.pop();
+        }
+      })
+    });
   }
 });

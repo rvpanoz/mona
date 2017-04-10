@@ -3,6 +3,7 @@ Ext.define('MTAPP.store.Record', {
   xtype: 'store-record',
   requires: ['Ext.data.identifier.Uuid'],
   config: {
+    grouped: true,
     grouper: {
       sortProperty: 'entry_date',
       groupFn: function(record) {
