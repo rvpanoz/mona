@@ -23,7 +23,6 @@ Ext.define('MTAPP.view.Login', {
             xtype: 'textfield',
             name: 'text',
             label: 'Username',
-            value: 'rvpanoz@gmail.com',
             listeners: {
               keyup: function(a, b) {
                 if (b.browserEvent.keyCode == 13) {
@@ -38,7 +37,6 @@ Ext.define('MTAPP.view.Login', {
             xtype: 'passwordfield',
             name: 'password',
             label: 'Password',
-            value: 'z0ut0n!28',
             listeners: {
               keyup: function(a, b) {
                 if (b.browserEvent.keyCode == 13) {
