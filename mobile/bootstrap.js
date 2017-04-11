@@ -1469,7 +1469,7 @@ Ext.ClassManager.addNameAliasMappings({
   "MTAPP.store.User": [],
   "MTAPP.utils.globals": [],
   "MTAPP.view.CategoriesList": [
-    "widget.categoriesList"
+    "widget.categorieslist"
   ],
   "MTAPP.view.CategoriesNavView": [
     "widget.categoriesview"

@@ -1,2 +1,2 @@
 // @tag full-page
-// @require /home/rvpanoz/projects/mona/mobile/app.js
+// @require c:\projects\gitrepos\mona\mobile\app.js

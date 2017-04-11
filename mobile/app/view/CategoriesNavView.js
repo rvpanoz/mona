@@ -12,14 +12,41 @@ Ext.define('MTAPP.view.CategoriesNavView', {
 			animation: true
 		},
 		navigationBar: {
-			ui: 'dark',
+			splitNavigation: false,
+			ui: 'sencha',
 			items: [{
-				xtype: 'categoryActionNew'
-			}],
-			cls: 'speechmark app-bar',
-			backButton: {
-				width: 36
-			}
+					xtype: 'button',
+					itemId: 'newcategorybutton',
+					text: 'New category',
+					ui: 'sencha',
+					align: 'right',
+					hidden: false,
+					hideAnimation: Ext.os.is.Android ? false : {
+						type: 'fadeOut',
+						duration: 200
+					},
+					showAnimation: Ext.os.is.Android ? false : {
+						type: 'fadeIn',
+						duration: 200
+					}
+				},
+				{
+					xtype: 'button',
+					itemId: 'savecategorybutton',
+					text: 'Save category',
+					ui: 'sencha',
+					align: 'right',
+					hidden: true,
+					hideAnimation: Ext.os.is.Android ? false : {
+						type: 'fadeOut',
+						duration: 200
+					},
+					showAnimation: Ext.os.is.Android ? false : {
+						type: 'fadeIn',
+						duration: 200
+					}
+				}
+			]
 		},
 		items: [{
 			xtype: 'container',
@@ -28,19 +55,18 @@ Ext.define('MTAPP.view.CategoriesNavView', {
 			config: {
 				itemId: 'categories-container'
 			},
-			items: [
-				{
-					xtype: 'categoriesList',
-					flex: 1
-				}
-			]
+			items: [{
+				xtype: 'categorieslist',
+				itemId: 'categories-list',
+				flex: 1
+			}]
 		}]
 	}
 });
 
 Ext.define('MTAPP.view.CategoriesList', {
 	extend: 'Ext.List',
-	xtype: 'categoriesList',
+	xtype: 'categorieslist',
 	config: {
 		store: 'Category',
 		itemTpl: new Ext.XTemplate(

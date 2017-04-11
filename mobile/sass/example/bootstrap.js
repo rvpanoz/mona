@@ -1891,7 +1891,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.Element-static": "../../touch/src/dom/Element.static.js",
   "Ext.Element-style": "../../touch/src/dom/Element.style.js",
   "Ext.Element-traversal": "../../touch/src/dom/Element.traversal.js",
-  "Ext.cmd": "../../../../../../../usr/bin/Sencha/Cmd/6.2.2.36/plugins/src",
+  "Ext.cmd": "../../../../../../../C:/Users/parvanitis/bin/Sencha/Cmd/6.2.2.36/plugins/src",
   "Ext.core.DomQuery": "../../touch/src/dom/Query.js",
   "Ext.device.Purchases.Product": "../../touch/src/device/purchases/Sencha.js",
   "Ext.device.filesystem.DirectoryEntry": "../../touch/src/device/filesystem/Sencha.js",
@@ -1904,7 +1904,6 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSetRowList": "../../touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "../../touch/src/device/sqlite/Sencha.js",
   "MTAPP": "../../app",
-  "MTAPP.button.actionUserLogout": "../../app/view/Home.js",
   "MTAPP.button.categoryActionNew": "../../app/view/CategoriesNavView.js",
   "MTAPP.button.new": "../../app/view/RecordsNavView.js",
   "MTAPP.view.CategoriesList": "../../app/view/CategoriesNavView.js",
@@ -2542,7 +2541,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "MTAPP.button.actionUserLogout": [],
   "MTAPP.button.categoryActionNew": [],
   "MTAPP.button.new": [],
   "MTAPP.controller.CategoryController": [],
@@ -2550,7 +2548,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "MTAPP.controller.Main": [],
   "MTAPP.controller.RecordController": [],
   "MTAPP.controller.User": [],
-  "MTAPP.layout.Menu": [],
   "MTAPP.model.Category": [],
   "MTAPP.model.Record": [],
   "MTAPP.model.User": [],
@@ -2567,7 +2564,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "MTAPP.view.RecordViewDetails": [],
   "MTAPP.view.RecordsList": [],
   "MTAPP.view.RecordsNavView": [],
-  "MTAPP.view.Settings": [],
+  "MTAPP.view.SettingsView": [],
   "cancelTodoActionSheetButton": [],
   "datepickertoolbar": [],
   "deleteTodoActionSheet": [],
@@ -3294,9 +3291,6 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
-  "MTAPP.button.actionUserLogout": [
-    "widget.actionUserLogout"
-  ],
   "MTAPP.button.categoryActionNew": [
     "widget.categoryActionNew"
   ],
@@ -3311,10 +3305,6 @@ Ext.ClassManager.addNameAliasMappings({
   "MTAPP.controller.RecordController": [],
   "MTAPP.controller.User": [
     "widget.login"
-  ],
-  "MTAPP.layout.Menu": [
-    "widget.Menu",
-    "widget.menu"
   ],
   "MTAPP.model.Category": [],
   "MTAPP.model.Record": [],
@@ -3355,7 +3345,7 @@ Ext.ClassManager.addNameAliasMappings({
   "MTAPP.view.RecordsNavView": [
     "widget.recordsview"
   ],
-  "MTAPP.view.Settings": [
+  "MTAPP.view.SettingsView": [
     "widget.settingsView"
   ],
   "cancelTodoActionSheetButton": [

@@ -7,18 +7,11 @@ Ext.define('MTAPP.view.CategoryViewDetails', {
 			xtype: 'container',
 			cls: 'edit',
 			items: [{
-					xtype: 'textfield',
-					name: 'name',
-					label: 'Amount',
-					required: true
-				}, {
-					xtype: 'spacer',
-					height: 25
-				},
-				{
-					xtype: 'savecategorybutton'
-				}
-			]
+				xtype: 'textfield',
+				name: 'name',
+				label: 'Name',
+				required: true
+			}]
 		}]
 	}
 });

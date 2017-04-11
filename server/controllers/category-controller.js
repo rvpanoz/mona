@@ -6,104 +6,111 @@ const Category = require('../models/category');
 
 var CategoryController = _.extend({
 
-  browse: function (uid, reply) {
-    Category.find({
-      user_id: uid
-    }).lean().exec(function (err, categories) {
-      if (err) {
-        throw Boom.badRequest(err);
-      }
-      reply({
-        success: true,
-        data: categories
-      });
-    });
-  },
+	browse: function (uid, reply) {
+		Category.find({
+			user_id: uid
+		}).lean().exec(function (err, categories) {
+			if (err) {
+				throw Boom.badRequest(err);
+			}
+			reply({
+				success: true,
+				data: categories
+			});
+		});
+	},
 
-  insert: function (uid, data, reply) {
-    var category = new Category(_.extend(data, {
-      user_id: uid
-    }));
+	insert: function (uid, data, reply) {
+		//fix for touch
+		var _data = data.data;
 
-    category.save(function (err, new_category) {
-      if (err) {
-        reply({
-          success: false,
-          data: [],
-          error: err
-        });
-      } else if (new_category) {
-        reply({
-          success: true,
-          data: new_category
-        });
-      } else {
-        throw Boom.badRequest(err);
-      }
-    });
-  },
+		if (_data) {
+			data = JSON.parse(_data);
+		}
 
-  update: function (uid, id, data, reply) {
-    Category.findOne({
-      user_id: uid,
-      _id: id
-    }, function (err, category) {
-      if (err) {
-        throw Boom.badRequest(err);
-      }
+		var category = new Category(_.extend(data, {
+			user_id: uid
+		}));
 
-      // set new attrs
-      category.name = data.name;
-      category.color = data.color;
-      category.updated_at = moment().toISOString();
+		category.save(function (err, new_category) {
+			if (err) {
+				reply({
+					success: false,
+					data: [],
+					error: err
+				});
+			} else if (new_category) {
+				reply({
+					success: true,
+					data: new_category
+				});
+			} else {
+				throw Boom.badRequest(err);
+			}
+		});
+	},
 
-      category.save(function (err, updated_category) {
-        if (err) {
-          throw Boom.badImplementation('Category:  Error on updating category', err);
-        }
-        reply({
-          success: true,
-          data: updated_category
-        })
-      });
-    });
-  },
+	update: function (uid, id, data, reply) {
+		Category.findOne({
+			user_id: uid,
+			_id: id
+		}, function (err, category) {
+			if (err) {
+				throw Boom.badRequest(err);
+			}
 
-  get: function (uid, id, reply) {
-    Category.findOne({
-      user_id: uid,
-      _id: id
-    }).exec(function (err, category) {
-      if (err) {
-        throw Boom.badRequest(err);
-      }
-      reply({
-        success: true,
-        data: category
-      });
-    });
-  },
+			// set new attrs
+			category.name = data.name;
+			category.color = data.color;
+			category.updated_at = moment().toISOString();
 
-  remove: function (uid, id, reply) {
-    Category.findOne({
-      user_id: uid,
-      _id: id
-    }, function (err, category) {
-      if (err) {
-        throw Boom.badRequest(err);
-      }
+			category.save(function (err, updated_category) {
+				if (err) {
+					throw Boom.badImplementation('Category:  Error on updating category', err);
+				}
+				reply({
+					success: true,
+					data: updated_category
+				})
+			});
+		});
+	},
 
-      category.remove(function (err, removed_category) {
-        if (err) {
-          throw Boom.badImplementation('Category:  Error on deleting category', err);
-        }
-        reply({
-          success: true,
-          data: removed_category
-        })
-      });
-    });
-  }
+	get: function (uid, id, reply) {
+		Category.findOne({
+			user_id: uid,
+			_id: id
+		}).exec(function (err, category) {
+			if (err) {
+				throw Boom.badRequest(err);
+			}
+			reply({
+				success: true,
+				data: category
+			});
+		});
+	},
+
+	remove: function (uid, id, reply) {
+		Category.findOne({
+			user_id: uid,
+			_id: id
+		}, function (err, category) {
+			if (err) {
+				throw Boom.badRequest(err);
+			}
+
+			category.remove(function (err, removed_category) {
+				if (err) {
+					throw Boom.badImplementation('Category:  Error on deleting category', err);
+				}
+				reply({
+					success: true,
+					data: removed_category
+				})
+			});
+		});
+	}
 
 })
 

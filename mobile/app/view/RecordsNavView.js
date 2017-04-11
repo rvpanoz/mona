@@ -12,42 +12,42 @@ Ext.define('MTAPP.view.RecordsNavView', {
 			animation: true
 		},
 		navigationBar: {
-	    splitNavigation: false,
-	    ui: 'sencha',
-	    items: [{
-	        xtype: 'button',
-	        id: 'newButton',
-	        text: 'New record',
+			splitNavigation: false,
+			ui: 'sencha',
+			items: [{
+					xtype: 'button',
+					itemId: 'newrecordbutton',
+					text: 'New record',
 					ui: 'sencha',
-	        align: 'right',
-	        hidden: false,
-	        hideAnimation: Ext.os.is.Android ? false : {
-	          type: 'fadeOut',
-	          duration: 200
-	        },
-	        showAnimation: Ext.os.is.Android ? false : {
-	          type: 'fadeIn',
-	          duration: 200
-	        }
-	      },
-	      {
-	        xtype: 'button',
-	        id: 'saveButton',
-	        text: 'Save record',
-	        ui: 'sencha',
-	        align: 'right',
-	        hidden: true,
-	        hideAnimation: Ext.os.is.Android ? false : {
-	          type: 'fadeOut',
-	          duration: 200
-	        },
-	        showAnimation: Ext.os.is.Android ? false : {
-	          type: 'fadeIn',
-	          duration: 200
-	        }
-	      }
-	    ]
-	  },
+					align: 'right',
+					hidden: false,
+					hideAnimation: Ext.os.is.Android ? false : {
+						type: 'fadeOut',
+						duration: 200
+					},
+					showAnimation: Ext.os.is.Android ? false : {
+						type: 'fadeIn',
+						duration: 200
+					}
+				},
+				{
+					xtype: 'button',
+					itemId: 'saverecordbutton',
+					text: 'Save record',
+					ui: 'sencha',
+					align: 'right',
+					hidden: true,
+					hideAnimation: Ext.os.is.Android ? false : {
+						type: 'fadeOut',
+						duration: 200
+					},
+					showAnimation: Ext.os.is.Android ? false : {
+						type: 'fadeIn',
+						duration: 200
+					}
+				}
+			]
+		},
 		items: [{
 			xtype: 'container',
 			layout: 'vbox',
