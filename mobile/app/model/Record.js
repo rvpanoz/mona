@@ -4,7 +4,7 @@ Ext.define('MTAPP.model.Record', {
     identifier: {
       type: 'uuid'
     },
-    idProperty: 'id',
+    idProperty: '_id',
     fields: [{
         name: '_id',
         type: 'string'

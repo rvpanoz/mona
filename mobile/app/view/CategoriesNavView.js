@@ -14,7 +14,7 @@ Ext.define('MTAPP.view.CategoriesNavView', {
 		navigationBar: {
 			ui: 'dark',
 			items: [{
-				xtype: 'new'
+				xtype: 'categoryActionNew'
 			}],
 			cls: 'speechmark app-bar',
 			backButton: {
@@ -28,65 +28,13 @@ Ext.define('MTAPP.view.CategoriesNavView', {
 			config: {
 				itemId: 'categories-container'
 			},
-			items: [{
-					xtype: 'categoryActionNew',
-					flex: 1
-				},
+			items: [
 				{
 					xtype: 'categoriesList',
-					flex: 2
+					flex: 1
 				}
 			]
 		}]
-	},
-	launch: function () {
-		debugger;
-		this.setMenu();
-	},
-	createMenu: function (side) {
-		var items = [{
-				text: 'Settings',
-				iconCls: 'settings',
-				scope: this,
-				handler: function () {
-					Ext.Viewport.hideMenu(side);
-				}
-			},
-			{
-				text: 'New Item',
-				iconCls: 'compose',
-				scope: this,
-				handler: function () {
-					Ext.Viewport.hideMenu(side);
-				}
-			},
-			{
-				xtype: 'button',
-				text: 'Star',
-				iconCls: 'star',
-				scope: this,
-				handler: function () {
-					Ext.Viewport.hideMenu(side);
-				}
-			}
-		];
-
-		var className = 'Ext.Menu';
-
-		return Ext.create(className, {
-			items: items
-		});
-	},
-	setMenu: function (hidden) {
-		Ext.Viewport.setMenu(this.createMenu('left'), {
-			side: 'left',
-			reveal: true
-		});
-
-		// Ext.Viewport.setMenu(this.createMenu('right'), {
-		// 	side: 'right',
-		// 	reveal: true
-		// });
 	}
 });
 

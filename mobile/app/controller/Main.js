@@ -7,16 +7,11 @@ Ext.define('MTAPP.controller.Main', {
     },
     control: {
       mainview: {
-        initialize: function() {
-
+        activate: function() {
+          var mainview = this.getMainview();
+          mainview.setActiveItem('homeView');
         }
       }
     }
-  },
-  init: function() {
-
-  },
-  launch: function() {
-
   }
 });

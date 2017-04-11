@@ -1,4 +1,4 @@
-Ext.define("MTAPP.view.Login", {
+Ext.define('MTAPP.view.Login', {
   extend: 'Ext.Panel',
   alias:'widget.Login',
   requires: [
@@ -9,23 +9,21 @@ Ext.define("MTAPP.view.Login", {
     items: [{
         styleHtmlContent: true,
         items: {
-          docked: "top",
-          xtype: "titlebar",
-          title: "User login",
+          docked: 'top',
+          xtype: 'titlebar',
+          title: 'User login',
           cls: 'front speechmark'
         }
       },
       {
-        xtype: "fieldset",
+        xtype: 'fieldset',
         cls: 'edit',
         items: [{
-            id: "loginusername",
-            xtype: "textfield",
-            name: "text",
-            label: "Username",
-            autoCorrect: false,
-            autoCapitalize: false,
-            labelWidth: "50%",
+            id: 'loginusername',
+            xtype: 'textfield',
+            name: 'text',
+            label: 'Username',
+            value: 'rvpanoz@gmail.com',
             listeners: {
               keyup: function(a, b) {
                 if (b.browserEvent.keyCode == 13) {
@@ -36,11 +34,11 @@ Ext.define("MTAPP.view.Login", {
             }
           },
           {
-            id: "loginpassword",
-            xtype: "passwordfield",
-            name: "password",
-            label: "Password",
-            labelWidth: "50%",
+            id: 'loginpassword',
+            xtype: 'passwordfield',
+            name: 'password',
+            label: 'Password',
+            value: 'z0ut0n!28',
             listeners: {
               keyup: function(a, b) {
                 if (b.browserEvent.keyCode == 13) {
@@ -55,10 +53,10 @@ Ext.define("MTAPP.view.Login", {
             height: 50
           },
           {
-            xtype: "button",
-            text: "Connect",
-            id: "loginbutton",
-            ui: "action"
+            xtype: 'button',
+            text: 'Connect',
+            id: 'loginbutton',
+            ui: 'action'
           }
         ]
       }

@@ -21,8 +21,12 @@ Ext.define('MTAPP.view.Main', {
 			xtype: 'recordsview'
 		}, {
 			title: 'Categories',
-			iconCls: 'list',
+			iconCls: 'favorites',
 			xtype: 'categoriesview'
+		},{
+			title: 'Settings',
+			iconCls: 'settings',
+			xtype: 'settingsView'
 		}]
 	}
 });

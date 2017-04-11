@@ -42,5 +42,58 @@
 }
 
 .x-mask .x-mask-message {
-  color: white !important;
+    color: white !important;
+}
+
+
+/*All the button styles*/
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/********************
+GENERIC BUTTON STYLES
+********************/
+
+.btn {
+    font-size: 18px;
+    white-space: nowrap;
+    width: 100%;
+    padding: .8em 1.5em;
+    font-family: Open Sans, Helvetica, Arial, sans-serif;
+    line-height: 18px;
+    display: inline-block;
+    zoom: 1;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear;
+    transition: border .25s linear, color .25s linear, background-color .25s linear;
+}
+
+
+/*RED BUTTON STYLES*/
+
+.btn.btn-red {
+    background-color: #ea4f37;
+    border-color: #ea4f37;
+}
+
+.btn.btn-red:hover {
+    background-color: #a53422;
+}
+
+.btn.btn-red:active {
+    top: 3px;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }

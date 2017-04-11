@@ -10,8 +10,6 @@ const logger = require('../logger');
 var RecordController = _.extend({
 	browse: function (uid, reply, dataParams) {
 
-		logger.info('info', 'lol');
-
 		function str2bool(strvalue) {
 			var ret;
 			if (strvalue && typeof strvalue == 'string') {

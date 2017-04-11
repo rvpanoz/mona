@@ -14,17 +14,15 @@ Ext.define('MTAPP.controller.CategoryController', {
 		},
 		control: {
 			categoryActionNew: {
-				tap: function (view, idx, target, record) {
-
-				}
+				tap: 'showDetail'
 			},
 			categorydetails: {
 				activate: function (view) {
 
 				}
 			},
-			cateogorieslist: {
-				itemtap: 'showCategory'
+			categorieslist: {
+				itemtap: 'showDetail'
 			},
 			cateogoriesnav: {
 				activate: function (view) {
@@ -35,14 +33,16 @@ Ext.define('MTAPP.controller.CategoryController', {
 				},
 				pop: function (categoriesView, detailsView, idx) {
 					var tabpanel = categoriesView.up();
+					Ext.ComponentQuery.query('#' + tabpanel.id + ' new')[0].hide();
 				},
 				push: function (categoriesView, detailsView, idx) {
 					var tabpanel = categoriesView.up();
+					Ext.ComponentQuery.query('#' + tabpanel.id + ' new')[0].show();
 				}
 			}
-		},
-		showCategory: function (btn, evt) {
-			console.log(arguments);
 		}
+	},
+	showDetail: function (btn, evt) {
+		console.log(arguments);
 	}
 });

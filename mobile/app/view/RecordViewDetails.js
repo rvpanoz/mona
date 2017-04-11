@@ -41,10 +41,6 @@ Ext.define('MTAPP.view.RecordViewDetails', {
 					label: 'Credit card'
 				},
 				{
-					xtype: 'spacer',
-					height: 25
-				},
-				{
 					xtype: 'textareafield',
 					name: 'notes',
 					label: 'Notes'
@@ -54,7 +50,7 @@ Ext.define('MTAPP.view.RecordViewDetails', {
 					height: 25
 				},
 				{
-					xtype: 'saverecordbutton'
+					xtype: 'deleterecordbutton'
 				}
 			]
 		}]
@@ -76,6 +72,7 @@ Ext.define('deleterecordbutton', {
 	extend: 'Ext.Button',
 	xtype: 'deleterecordbutton',
 	config: {
+		hidden: true,
 		ui: 'decline',
 		text: 'Delete'
 	}

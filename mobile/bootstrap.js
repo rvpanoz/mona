@@ -34,7 +34,6 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
   "MTAPP": "app",
   "MTAPP.button.categoryActionNew": "app/view/CategoriesNavView.js",
-  "MTAPP.button.logout": "app/view/Home.js",
   "MTAPP.button.new": "app/view/RecordsNavView.js",
   "MTAPP.view.CategoriesList": "app/view/CategoriesNavView.js",
   "MTAPP.view.RecordsList": "app/view/RecordsNavView.js",
@@ -683,14 +682,12 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.viewport.WP"
   ],
   "MTAPP.button.categoryActionNew": [],
-  "MTAPP.button.logout": [],
   "MTAPP.button.new": [],
   "MTAPP.controller.CategoryController": [],
   "MTAPP.controller.Home": [],
   "MTAPP.controller.Main": [],
   "MTAPP.controller.RecordController": [],
   "MTAPP.controller.User": [],
-  "MTAPP.layout.Menu": [],
   "MTAPP.model.Category": [],
   "MTAPP.model.Record": [],
   "MTAPP.model.User": [],
@@ -707,6 +704,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "MTAPP.view.RecordViewDetails": [],
   "MTAPP.view.RecordsList": [],
   "MTAPP.view.RecordsNavView": [],
+  "MTAPP.view.SettingsView": [],
   "cancelTodoActionSheetButton": [],
   "datepickertoolbar": [],
   "deleteTodoActionSheet": [],
@@ -1447,9 +1445,6 @@ Ext.ClassManager.addNameAliasMappings({
   "MTAPP.button.categoryActionNew": [
     "widget.categoryActionNew"
   ],
-  "MTAPP.button.logout": [
-    "widget.logout"
-  ],
   "MTAPP.button.new": [
     "widget.new"
   ],
@@ -1461,10 +1456,6 @@ Ext.ClassManager.addNameAliasMappings({
   "MTAPP.controller.RecordController": [],
   "MTAPP.controller.User": [
     "widget.login"
-  ],
-  "MTAPP.layout.Menu": [
-    "widget.Menu",
-    "widget.menu"
   ],
   "MTAPP.model.Category": [],
   "MTAPP.model.Record": [],
@@ -1504,6 +1495,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "MTAPP.view.RecordsNavView": [
     "widget.recordsview"
+  ],
+  "MTAPP.view.SettingsView": [
+    "widget.settingsView"
   ],
   "cancelTodoActionSheetButton": [
     "widget.canceltodoactionsheetbutton"

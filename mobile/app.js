@@ -16,12 +16,11 @@ Ext.application({
 		'Ext.MessageBox',
 		'Ext.util.DelayedTask',
 		'Ext.plugin.PullRefresh',
-		'MTAPP.utils.globals',
-		'MTAPP.layout.Menu'
+		'MTAPP.utils.globals'
 	],
 	models: ['User', 'Record', 'Category'],
 	controllers: ['Main', 'User', 'Home', 'RecordController', 'CategoryController'],
-	views: ['Main', 'Login', 'Home', 'RecordsNavView', 'CategoriesNavView'],
+	views: ['Main', 'Login', 'Home', 'SettingsView', 'RecordsNavView', 'CategoriesNavView'],
 	stores: ['User', 'Record', 'Category'],
 	icon: {
 		'57': 'resources/icons/Icon.png',
