@@ -32,7 +32,9 @@ Ext.define("MTAPP.controller.User", {
 						success: function (response, opts) {
 
 							if (!response.responseText) {
-								throw new Error('Critical error');
+								return Ext.Msg.alert('Error', 'Critical error', function () {
+									console.log(arguments);
+								});
 							}
 
 							// get response
@@ -56,7 +58,7 @@ Ext.define("MTAPP.controller.User", {
 								Ext.Viewport.setActiveItem('Main');
 
 							} catch (e) {
-								return Ext.Msg.alert('Failure', e);
+								return Ext.Msg.alert('Failure', e, Ext.emptyFn);
 							} finally {
 								Ext.Viewport.setMasked(false);
 							}

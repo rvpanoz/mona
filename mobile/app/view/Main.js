@@ -30,3 +30,14 @@ Ext.define('MTAPP.view.Main', {
 		}]
 	}
 });
+
+Ext.define('Ext.ux.plugin.PullRefresh', {
+  extend: 'Ext.plugin.PullRefresh',
+	config: {
+		lastUpdatedDateFormat: 'd/m/Y',
+		autoSnapBack: true
+	},
+  onLatestFetched: function (store) {
+		this.callParent(arguments);
+  }
+});

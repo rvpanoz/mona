@@ -130,6 +130,9 @@ var RecordController = _.extend({
 
 		if (_data) {
 			data = JSON.parse(_data);
+			if(data._id) {
+				delete data._id;
+			}
 		}
 
 		//fix date for mongodb
@@ -191,6 +194,15 @@ var RecordController = _.extend({
 	},
 
 	update: function (uid, id, data, reply) {
+		console.log(id);
+		
+		//fix for touch
+		var _data = data.data;
+
+		if (_data) {
+			data = JSON.parse(_data);
+		}
+
 		Record.findOne({
 			user_id: uid,
 			_id: id
@@ -199,13 +211,15 @@ var RecordController = _.extend({
 				throw Boom.badRequest(err);
 			}
 
+			// console.log(data);
+			// console.log(record);
+
 			//fix date for mongodb
 			var dateString = data.entry_date;
 			var parts = dateString.split('/');
 			var day = parts[0];
 			var month = parts[1];
 			var year = parts[2];
-
 			var fd = moment(utils.stringToDate(dateString, "dd/MM/yyyy", "/"));
 
 			if (fd.isValid()) {

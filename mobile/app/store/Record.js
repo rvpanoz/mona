@@ -16,8 +16,11 @@ Ext.define('MTAPP.store.Record', {
     listeners: {
       beforeload: function() {
         // this.getProxy().setExtraParams({
-        //
+        //   mobile: true
         // });
+      },
+      load: function() {
+
       }
     }
   }

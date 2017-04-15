@@ -2,7 +2,7 @@ Ext.define('MTAPP.view.RecordsNavView', {
 	extend: 'Ext.navigation.View',
 	xtype: 'recordsview',
 	requires: [
-		'Ext.plugin.PullRefresh',
+		'Ext.ux.plugin.PullRefresh',
 		'Ext.field.DatePicker',
 		'MTAPP.view.RecordViewDetails'
 	],
@@ -111,7 +111,7 @@ Ext.define('MTAPP.view.RecordsList', {
 		title: 'Records',
 		emptyText: '<div style="margin-top: 20px; text-align: center">No records found.</div>',
 		plugins: [{
-			xclass: 'Ext.plugin.PullRefresh'
+			xclass: 'Ext.ux.plugin.PullRefresh'
 		}]
 	}
 });

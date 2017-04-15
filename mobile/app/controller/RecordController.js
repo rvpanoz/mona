@@ -38,12 +38,12 @@ Ext.define('MTAPP.controller.RecordController', {
 				},
 				push: function (recordsView, detailsView, idx) {
 					var tabpanel = recordsView.up();
-				},
-				show: function (view) {
+
 					var store = this.getRecordslist().getStore();
 					var dp = this.getDatepickerfield();
 
 					dp.addListener('change', function (cmp) {
+						
 						var startDate = new Date(cmp.getValue());
 						var endDate = Ext.Date.add(startDate, Ext.Date.MONTH, 1);
 						if (!startDate || !endDate) return;
@@ -57,31 +57,21 @@ Ext.define('MTAPP.controller.RecordController', {
 						store.load();
 					});
 
-					//pass extra param to proxy
-					store.getProxy().setExtraParams({
-						mobile: true
-					});
-
+				},
+				show: function (view) {
 					//load the store
+						var store = this.getRecordslist().getStore();
 					store.load();
 				}
 			},
 			recorddetails: {
+				show: function(view) {
+					var nav = view.up('navigationview');
+					var det = Ext.ComponentQuery.query('#' + nav.id + ' recorddetails')[0];
+
+				},
 				activate: function (view) {
 					var recordsView = view.up();
-
-					// fill categories from db
-					var selectfield = Ext.ComponentQuery.query('#' + view.id + ' selectfield')[0];
-					var categories = Ext.data.StoreManager.get('Category');
-
-					categories.load({
-						callback: function () {
-							if (!categories.getCount()) {
-								Ext.Msg.alert("Message", "You do not have categories", Ext.emptyFn);
-							}
-							selectfield.setStore(categories);
-						}
-					});
 
 					var newButton = Ext.ComponentQuery.query('#' + recordsView.id + ' [itemId=newrecordbutton]');
 					if (newButton[0]) {
@@ -127,11 +117,16 @@ Ext.define('MTAPP.controller.RecordController', {
 		var det = Ext.ComponentQuery.query('#' + nav.id + ' recorddetails')[0];
 		var record = det.getRecord();
 		var store = this.getRecordslist().getStore();
-
 		//TODO: implementation
+		//TODO:
+		//TODO:
 	},
-	showRecord: function (view, idx, target, record) {
-		var nav = view.up('navigationview');
+	showRecord: function (list, idx, target, record) {
+		var nav = list.up('navigationview');
+
+		console.log(record);
+		return;
+		//** TODO - has bugs**
 
 		nav.push({
 			xtype: 'recorddetails',
@@ -169,6 +164,7 @@ Ext.define('MTAPP.controller.RecordController', {
 			rec.data.notes = val.notes;
 			rec.data.payment_method = (val.payment_method === true) ? 2 : 1;
 			rec.data.category_id = val.category_id;
+			rec.phantom = false;
 		} else {
 			rec = Ext.create('MTAPP.model.Record', {
 				amount: val.amount,
@@ -178,6 +174,7 @@ Ext.define('MTAPP.controller.RecordController', {
 				entry_date: val.entry_date,
 				notes: val.notes
 			});
+			rec.phantom = true; //mark as new
 		}
 
 		// save record and return to list

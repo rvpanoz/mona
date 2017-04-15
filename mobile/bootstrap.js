@@ -32,6 +32,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.device.sqlite.SQLResultSet": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLResultSetRowList": "touch/src/device/sqlite/Sencha.js",
   "Ext.device.sqlite.SQLTransaction": "touch/src/device/sqlite/Sencha.js",
+  "Ext.ux.plugin.PullRefresh": "app/view/Main.js",
   "MTAPP": "app",
   "MTAPP.button.categoryActionNew": "app/view/CategoriesNavView.js",
   "MTAPP.button.new": "app/view/RecordsNavView.js",
@@ -672,6 +673,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.parse.Store": [],
   "Ext.ux.parse.association.Pointer": [],
   "Ext.ux.parse.association.Relation": [],
+  "Ext.ux.plugin.PullRefresh": [],
   "Ext.viewport.AndroidStock": [
     "Ext.viewport.Android"
   ],
@@ -1435,6 +1437,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.parse.association.Relation": [
     "association.relation"
   ],
+  "Ext.ux.plugin.PullRefresh": [],
   "Ext.viewport.AndroidStock": [],
   "Ext.viewport.Default": [
     "widget.viewport"

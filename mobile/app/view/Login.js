@@ -17,12 +17,13 @@ Ext.define('MTAPP.view.Login', {
       },
       {
         xtype: 'fieldset',
-        cls: 'edit',
         items: [{
             id: 'loginusername',
             xtype: 'textfield',
             name: 'text',
             label: 'Username',
+            autoComplete: false,
+            autoCorrect: false,
             listeners: {
               keyup: function(a, b) {
                 if (b.browserEvent.keyCode == 13) {

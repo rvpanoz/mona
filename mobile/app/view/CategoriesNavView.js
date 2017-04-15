@@ -77,7 +77,7 @@ Ext.define('MTAPP.view.CategoriesList', {
 		title: 'Categories',
 		emptyText: '<div style="margin-top: 20px; text-align: center">No categories found.</div>',
 		plugins: [{
-			xclass: 'Ext.plugin.PullRefresh'
+			xclass: 'Ext.ux.plugin.PullRefresh'
 		}]
 	}
 });

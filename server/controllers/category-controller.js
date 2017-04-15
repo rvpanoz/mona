@@ -26,6 +26,9 @@ var CategoryController = _.extend({
 
 		if (_data) {
 			data = JSON.parse(_data);
+			if(data._id) {
+				delete data._id;
+			}
 		}
 
 		var category = new Category(_.extend(data, {

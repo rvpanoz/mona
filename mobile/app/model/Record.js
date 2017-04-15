@@ -4,7 +4,7 @@ Ext.define('MTAPP.model.Record', {
 		identifier: {
 			type: 'uuid'
 		},
-		idProperty: 'id',
+		idProperty: '_id',
 		fields: [{
 				name: '_id',
 				type: 'string'
@@ -30,10 +30,14 @@ Ext.define('MTAPP.model.Record', {
 			},
 			{
 				name: 'entry_date',
-				type: 'string',
+				type: 'date',
 				required: true,
-				convert: function (v, record) {
-					return record.parseDate(v, record);
+				dateFormat: 'd/m/Y',
+				_convert: function(val, raw) {
+					//TODO - buggy for now;
+					if(!val) return;
+					var d = Date.parse(val);
+					return Ext.Date.format(new Date(d), 'd/m/Y')
 				}
 			},
 			{
@@ -53,26 +57,6 @@ Ext.define('MTAPP.model.Record', {
 				type: 'presence',
 				field: 'category_id'
 			}
-			// {
-			//   type: 'length',
-			//   field: 'name',
-			//   min: 5
-			// },
-			// {
-			//   type: 'format',
-			//   field: 'age',
-			//   matcher: /\d+/
-			// },
-			// {
-			//   type: 'inclusion',
-			//   field: 'gender',
-			//   list: ['male', 'female']
-			// },
-			// {
-			//   type: 'exclusion',
-			//   field: 'name',
-			//   list: ['admin']
-			// }
 		],
 		proxy: {
 			type: 'ajax',
@@ -95,8 +79,5 @@ Ext.define('MTAPP.model.Record', {
 				destroy: "DELETE"
 			}
 		}
-	},
-	parseDate: function (v, record) {
-		return Ext.Date.format(new Date(v), 'd/m/Y');
 	}
 });

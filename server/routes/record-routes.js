@@ -38,8 +38,16 @@ module.exports = [{
 		path: '/data/records/{id?}',
 		config: {
 			handler: function (req, reply) {
-				var payload = req.payload;
-				var id = req.payload._id;
+				var payload = req.payload, id;
+
+				//fix for touch
+				if(payload.mobile && payload.data) {
+					var parsedPayloadData = JSON.parse(payload.data);
+					id = parsedPayloadData._id;
+				} else {
+					id = payload._id;
+				}
+
 				var uid = req.auth.credentials.id;
 				return Controller.update(uid, id, payload, reply);
 			}
