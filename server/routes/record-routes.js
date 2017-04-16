@@ -18,7 +18,17 @@ module.exports = [{
 			handler: function (req, reply) {
 				var payload = req.payload;
 				var uid = req.auth.credentials.id;
-				return Controller.insert(uid, payload, reply);
+
+				if(payload.mobile) {
+					var data = payload.data || {};
+					if(data != null) {
+						data = JSON.parse(data);
+					}
+				} else {
+					data = payload;
+				}
+
+				return Controller.insert(uid, data, reply);
 			}
 		}
 	},
@@ -38,18 +48,21 @@ module.exports = [{
 		path: '/data/records/{id?}',
 		config: {
 			handler: function (req, reply) {
-				var payload = req.payload, id;
+				var payload = req.payload
+				var id = req.params.id;
+				var uid = req.auth.credentials.id;
 
-				//fix for touch
-				if(payload.mobile && payload.data) {
-					var parsedPayloadData = JSON.parse(payload.data);
-					id = parsedPayloadData._id;
+				if(!id && payload.mobile) {
+					var data = payload.data || {};
+					if(data != null) {
+						data = JSON.parse(data);
+						id = data._id;
+					}
 				} else {
-					id = payload._id;
+					data = payload;
 				}
 
-				var uid = req.auth.credentials.id;
-				return Controller.update(uid, id, payload, reply);
+				return Controller.update(uid, id, data, reply);
 			}
 		}
 	},

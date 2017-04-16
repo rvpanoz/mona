@@ -13,9 +13,7 @@ Ext.define("MTAPP.controller.User", {
 					var password = Ext.getCmp("loginpassword").getValue().trim();
 
 					if (!username.length || !password.length) {
-						return Ext.Msg.alert('Error', 'Please fill your credentials', function () {
-							console.log(arguments);
-						});
+						return Ext.Msg.alert('Error', 'Please fill your credentials', Ext.emptyFn);
 					}
 
 					Ext.Viewport.setMasked({
@@ -33,7 +31,7 @@ Ext.define("MTAPP.controller.User", {
 
 							if (!response.responseText) {
 								return Ext.Msg.alert('Error', 'Critical error', function () {
-									console.log(arguments);
+									// console.log(arguments);
 								});
 							}
 

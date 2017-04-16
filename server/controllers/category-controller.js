@@ -21,16 +21,6 @@ var CategoryController = _.extend({
 	},
 
 	insert: function (uid, data, reply) {
-		//fix for touch
-		var _data = data.data;
-
-		if (_data) {
-			data = JSON.parse(_data);
-			if(data._id) {
-				delete data._id;
-			}
-		}
-
 		var category = new Category(_.extend(data, {
 			user_id: uid
 		}));
@@ -64,7 +54,7 @@ var CategoryController = _.extend({
 
 			// set new attrs
 			category.name = data.name;
-			category.color = data.color;
+			category.color = data.color || false;
 			category.updated_at = moment().toISOString();
 
 			category.save(function (err, updated_category) {

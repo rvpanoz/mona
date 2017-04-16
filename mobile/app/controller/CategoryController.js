@@ -78,7 +78,7 @@ Ext.define('MTAPP.controller.CategoryController', {
   },
 
   showDetail: function(btn, evt) {
-    console.log('call showDetail');
+
   },
 
   saveDetail: function(btn, evt) {
@@ -93,10 +93,15 @@ Ext.define('MTAPP.controller.CategoryController', {
       rec.data.name = val.name;
     } else {
       rec = Ext.create('MTAPP.model.Category', {
-        name: val.name,
+        name: val.name
       });
       rec.phantom = true;
     }
+
+    //clear sencha id if rec.phantom
+		if(rec.phantom && rec.phantom == true) {
+			rec.set('_id', null);
+		}
 
     // save record and return to list
     rec.save(function() {

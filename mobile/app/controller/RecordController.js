@@ -38,18 +38,23 @@ Ext.define('MTAPP.controller.RecordController', {
 				},
 				push: function (recordsView, detailsView, idx) {
 					var tabpanel = recordsView.up();
-
+				},
+				show: function (view) {
+					//load the store
 					var store = this.getRecordslist().getStore();
+
+					//datepicker component
 					var dp = this.getDatepickerfield();
 
+					//listen to 'change' event of datepicker - fetch data
 					dp.addListener('change', function (cmp) {
-						
+
 						var startDate = new Date(cmp.getValue());
 						var endDate = Ext.Date.add(startDate, Ext.Date.MONTH, 1);
 						if (!startDate || !endDate) return;
 
 						store.getProxy().setExtraParams({
-							mobile: true,
+							'mobile': true,
 							'input-entry-date-from': startDate,
 							'input-entry-date-to': endDate
 						});
@@ -57,10 +62,6 @@ Ext.define('MTAPP.controller.RecordController', {
 						store.load();
 					});
 
-				},
-				show: function (view) {
-					//load the store
-						var store = this.getRecordslist().getStore();
 					store.load();
 				}
 			},
@@ -124,7 +125,6 @@ Ext.define('MTAPP.controller.RecordController', {
 	showRecord: function (list, idx, target, record) {
 		var nav = list.up('navigationview');
 
-		console.log(record);
 		return;
 		//** TODO - has bugs**
 
@@ -133,15 +133,18 @@ Ext.define('MTAPP.controller.RecordController', {
 			title: 'Record'
 		});
 
+		//find details view
 		var det = Ext.ComponentQuery.query('#' + nav.id + ' recorddetails')[0];
+
+		//bind record data to details view
 		det.setRecord(record);
 
-		var deleteButton = Ext.ComponentQuery.query('#' + det.id + ' deleterecordbutton');
-		if (deleteButton) {
-			deleteButton[0].show();
-		}
-
+		//if edit show/create delete button
 		if (record.data) {
+			var deleteButton = Ext.ComponentQuery.query('#' + det.id + ' deleterecordbutton');
+			if (deleteButton) {
+				deleteButton[0].show();
+			}
 			det.add([{
 				xtype: 'deleterecordbutton'
 			}]);
@@ -175,6 +178,11 @@ Ext.define('MTAPP.controller.RecordController', {
 				notes: val.notes
 			});
 			rec.phantom = true; //mark as new
+		}
+
+		//clear sencha id if rec.phantom
+		if(rec.phantom && rec.phantom == true) {
+			rec.set('_id', null);
 		}
 
 		// save record and return to list

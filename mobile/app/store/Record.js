@@ -4,10 +4,13 @@ Ext.define('MTAPP.store.Record', {
   requires: ['Ext.data.identifier.Uuid'],
   config: {
     grouped: true,
+    sorters: 'amount',
+    groupDir: 'DESC',
     grouper: {
       sortProperty: 'entry_date',
-      groupFn: function(record) {
-        return record.get('entry_date');
+      groupFn: function(item) {
+        var d = item.get('entry_date');
+        return d;
       }
     },
     autoLoad: false,
@@ -15,11 +18,14 @@ Ext.define('MTAPP.store.Record', {
     storeId: 'Record',
     listeners: {
       beforeload: function() {
-        // this.getProxy().setExtraParams({
-        //   mobile: true
-        // });
-      },
-      load: function() {
+        var prx = this.getProxy();
+        var params = prx.getExtraParams();
+
+        if (!params.mobile) {
+          this.getProxy().setExtraParams({
+            mobile: true
+          });
+        }
 
       }
     }

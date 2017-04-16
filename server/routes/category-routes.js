@@ -18,7 +18,20 @@ module.exports = [{
       handler: function (req, reply) {
         var payload = req.payload;
         var uid = req.auth.credentials.id;
-        return Controller.insert(uid, payload, reply);
+
+        var payload = req.payload;
+				var uid = req.auth.credentials.id;
+
+				if(payload.mobile) {
+					var data = payload.data || {};
+					if(data != null) {
+						data = JSON.parse(data);
+					}
+				} else {
+					data = payload;
+				}
+
+        return Controller.insert(uid, data, reply);
       }
     }
   },
@@ -27,10 +40,21 @@ module.exports = [{
     path: '/data/categories/{id?}',
     config: {
       handler: function (req, reply) {
-        var payload = req.payload;
-        var id = req.params.id;
-        var uid = req.auth.credentials.id;
-        return Controller.update(uid, id, payload, reply);
+        var payload = req.payload
+				var id = req.params.id;
+				var uid = req.auth.credentials.id;
+
+				if(!id && payload.mobile) {
+					var data = payload.data || {};
+					if(data != null) {
+						data = JSON.parse(data);
+						id = data._id;
+					}
+				} else {
+					data = payload;
+				}
+
+        return Controller.update(uid, id, data, reply);
       }
     }
   },

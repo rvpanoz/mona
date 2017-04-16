@@ -98,11 +98,12 @@ Ext.define('MTAPP.view.RecordsNavView', {
 
 
 Ext.define('MTAPP.view.RecordsList', {
-	extend: 'Ext.List',
+	extend: 'Ext.dataview.List',
 	xtype: 'recordslist',
 	config: {
 		store: 'Record',
 		grouped: true,
+		ui: 'round',
 		itemTpl: new Ext.XTemplate(
 			'<div>',
 			'<div>{amount}&nbsp;&euro; - {category_name}</div>',
