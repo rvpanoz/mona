@@ -41,10 +41,10 @@ Ext.define('MTAPP.model.Record', {
           }
 
           if(val !== null) {
-            var d = Ext.Date.parse(val, 'c');
+            var d = Ext.Date.parse(val, 'c'); //parse ISOdate format - mongodb
             return Ext.Date.format(new Date(d), 'd/m/Y');
           }
-          
+
           return null;
         }
       },
