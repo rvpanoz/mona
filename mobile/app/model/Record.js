@@ -36,16 +36,19 @@ Ext.define('MTAPP.model.Record', {
         dateFormat: 'd/m/Y',
         convert: function(val, raw) {
           var dp = Date.parse(val);
+
           if(isNaN(dp) && val !== null) {
             return val;
           }
 
-          if(val !== null) {
+          if(val !== null && raw.data._id) {
             var d = Ext.Date.parse(val, 'c'); //parse ISOdate format - mongodb
-            return Ext.Date.format(new Date(d), 'd/m/Y');
+            return (d) ? new Date(d) : new Date(val);
+          } else {
+            if(!isNaN(dp) && !raw.data._id) {
+              return new Date(dp);
+            }
           }
-
-          return null;
         }
       },
       {
@@ -54,7 +57,10 @@ Ext.define('MTAPP.model.Record', {
       },
       {
         name: 'kind',
-        type: 'string'
+        type: 'integer',
+        convert: function(val, raw) {
+          return val.toString();
+        }
       }
     ],
     validations: [{
@@ -67,7 +73,7 @@ Ext.define('MTAPP.model.Record', {
       }
     ],
     proxy: {
-      type: 'ajax',
+      type: 'rest',
       url: api_url + '/data/records',
       enablePagingParams: false,
       writer: {

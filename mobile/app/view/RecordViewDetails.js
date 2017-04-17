@@ -83,38 +83,6 @@ Ext.define('deleterecordbutton', {
   }
 });
 
-Ext.define('deleteTodoActionSheet', {
-  extend: 'Ext.ActionSheet',
-  xtype: 'deletetodoactionsheet',
-  config: {
-    autoDestroy: true,
-    items: [{
-        xtype: 'deletetodoactionsheetbutton'
-      },
-      {
-        xtype: 'canceltodoactionsheetbutton'
-      }
-    ]
-  }
-});
-
-Ext.define('deleteTodoActionSheetButton', {
-  extend: 'Ext.Button',
-  xtype: 'deletetodoactionsheetbutton',
-  config: {
-    text: 'Διαγραφή',
-    ui: 'decline'
-  }
-});
-
-Ext.define('cancelTodoActionSheetButton', {
-  extend: 'Ext.Button',
-  xtype: 'canceltodoactionsheetbutton',
-  config: {
-    text: 'Ακύρωση'
-  }
-});
-
 Ext.define('datepickertoolbar', {
   extend: 'Ext.Toolbar',
   alias: 'widget.datepickertoolbar',

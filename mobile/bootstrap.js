@@ -38,10 +38,7 @@ Ext.Loader.addClassPathMappings({
   "MTAPP.button.new": "app/view/RecordsNavView.js",
   "MTAPP.view.CategoriesList": "app/view/CategoriesNavView.js",
   "MTAPP.view.RecordsList": "app/view/RecordsNavView.js",
-  "cancelTodoActionSheetButton": "app/view/RecordViewDetails.js",
   "datepickertoolbar": "app/view/RecordsNavView.js",
-  "deleteTodoActionSheet": "app/view/RecordViewDetails.js",
-  "deleteTodoActionSheetButton": "app/view/RecordViewDetails.js",
   "deleterecordbutton": "app/view/RecordViewDetails.js",
   "leftFilterButton": "app/view/RecordsNavView.js",
   "rightFilterButton": "app/view/RecordsNavView.js",
@@ -707,10 +704,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "MTAPP.view.RecordsList": [],
   "MTAPP.view.RecordsNavView": [],
   "MTAPP.view.SettingsView": [],
-  "cancelTodoActionSheetButton": [],
   "datepickertoolbar": [],
-  "deleteTodoActionSheet": [],
-  "deleteTodoActionSheetButton": [],
   "deleterecordbutton": [],
   "leftFilterButton": [],
   "rightFilterButton": [],
@@ -1502,17 +1496,8 @@ Ext.ClassManager.addNameAliasMappings({
   "MTAPP.view.SettingsView": [
     "widget.settingsView"
   ],
-  "cancelTodoActionSheetButton": [
-    "widget.canceltodoactionsheetbutton"
-  ],
   "datepickertoolbar": [
     "widget.datepickertoolbar"
-  ],
-  "deleteTodoActionSheet": [
-    "widget.deletetodoactionsheet"
-  ],
-  "deleteTodoActionSheetButton": [
-    "widget.deletetodoactionsheetbutton"
   ],
   "deleterecordbutton": [
     "widget.deleterecordbutton"

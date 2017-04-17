@@ -6,7 +6,7 @@ Ext.define('MTAPP.controller.RecordController', {
 			recorddetails: 'recorddetails',
 			newrecordbutton: '[itemId=newrecordbutton]',
 			saverecordbutton: '[itemId=saverecordbutton]',
-			deleteButton: 'deleterecordbutton',
+			deleterecordbutton: '[itemId=deleterecordbutton]',
 			recordsnav: 'recordsview',
 			recordslist: 'recordslist',
 			leftFilterButton: 'leftFilterButton',
@@ -20,7 +20,7 @@ Ext.define('MTAPP.controller.RecordController', {
 			recordslist: {
 				itemtap: 'showRecord'
 			},
-			deleteButton: {
+			deleterecordbutton: {
 				tap: 'deleteRecord'
 			},
 			recordsnav: {
@@ -83,16 +83,21 @@ Ext.define('MTAPP.controller.RecordController', {
 					if (saveButton[0]) {
 						saveButton[0].show();
 					}
+
+					var deleteButton = Ext.ComponentQuery.query('#' + recordsView.id + ' [itemId=deleterecordbutton]');
+					if (deleteButton[0]) {
+						deleteButton[0].hide();
+					}
 				},
 				deactivate: function (view) {
-					var listView = view.up();
+					var recordsView = view.up();
 
-					var newButton = Ext.ComponentQuery.query('#newButton');
+					var newButton = Ext.ComponentQuery.query('#' + recordsView.id + ' [itemId=newrecordbutton]');
 					if (newButton[0]) {
 						newButton[0].show();
 					}
 
-					var saveButton = Ext.ComponentQuery.query('#saveButton');
+					var saveButton = Ext.ComponentQuery.query('#' + recordsView.id + ' [itemId=saverecordbutton]');
 					if (saveButton[0]) {
 						saveButton[0].hide();
 					}
@@ -113,20 +118,29 @@ Ext.define('MTAPP.controller.RecordController', {
 			}
 		}
 	},
+
 	deleteRecord: function (btn, evt) {
 		var nav = btn.up('navigationview');
-		var det = Ext.ComponentQuery.query('#' + nav.id + ' recorddetails')[0];
-		var record = det.getRecord();
-		var store = this.getRecordslist().getStore();
-		//TODO: implementation
-		//TODO:
-		//TODO:
+		var list = this.getRecordslist();
+
+		var selected = list.getSelection();
+		if(!selected.length) {
+			return Ext.Msg.alert('Information', 'Please select one record.', Ext.emptyFn);
+		}
+
+		selected[0].erase({
+			success: function() {
+				console.error('Record removed.');
+			}
+		});
+
+		return false;
 	},
 	showRecord: function (list, idx, target, record) {
 		var nav = list.up('navigationview');
 
+		//TODO
 		return;
-		//** TODO - has bugs**
 
 		nav.push({
 			xtype: 'recorddetails',

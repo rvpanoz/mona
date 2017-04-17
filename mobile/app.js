@@ -40,7 +40,7 @@ Ext.application({
   },
 
   onRequestComplete() {
-    console.log('request completed', arguments);
+    // console.log('request completed', arguments);
   },
   onRequestException(ajx, resp, opts) {
     /**

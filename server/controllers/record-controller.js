@@ -184,7 +184,7 @@ var RecordController = _.extend({
   },
 
   update: function(uid, id, data, reply) {
-		
+
     Record.findOne({
       user_id: uid,
       _id: id

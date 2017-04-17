@@ -97,3 +97,101 @@ GENERIC BUTTON STYLES
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
+
+/** ARROWS **/
+
+.up {
+    -webkit-transform: rotate(135deg);
+    position: absolute;
+    top: 11px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+    float: right;
+}
+
+.down {
+    -webkit-transform: rotate(315deg);
+    position: absolute;
+    top: 11px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+    float: right;
+}
+
+.up:after {
+    content: '';
+    top: 11px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+}
+
+.down:after {
+    content: '';
+    top: 11px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+}
+
+
+/* Clearfix */
+
+.nav:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* Colors */
+
+.green {
+    background: rgb(121, 193, 67);
+}
+
+.yellow {
+    background: rgb(255, 217, 102);
+}
+
+.orange {
+    background: rgb(246, 178, 107);
+}
+
+.blue {
+    background: rgb(109, 158, 235);
+}
+
+.red {
+    background: rgb(224, 102, 102);
+}
+
+.purple {
+    background: rgb(194, 123, 160);
+}
+
+
+/** BUDGES **/
+
+.badge, .badge-pro, .badge-hire, .badge-delete, .badge-details, .badge-ok, .badge-yellow, .badge-blue, .badge-red, .badge-pruple, .badge-green, .badge-pink, .badge-orange, .badge-black, .badge-white {
+    font-size: 0.8rem;
+    border-radius: 3px;
+    position: relative;
+    top: 0;
+    -na-text-transform: uppercase;
+    padding: 1px 3px 1px 3px;
+    color: #000;
+    text-shadow: none !important;
+    white-space: nowrap;
+}
+
+.badge-stars {
+    position: absolute;
+    right: 45px;
+    top: 13px;
+    float: right;
+    color: #fff;
+}

@@ -10,7 +10,7 @@ Ext.define('MTAPP.store.Record', {
       sortProperty: 'entry_date',
       groupFn: function(item) {
         var d = item.get('entry_date');
-        return d;
+        return Ext.Date.format(new Date(d), 'd/m/Y');
       }
     },
     autoLoad: false,
